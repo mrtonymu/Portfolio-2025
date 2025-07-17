@@ -6,14 +6,11 @@ import {
   Box,
   SimpleGrid,
   Button,
-  List,
-  ListItem,
   useColorModeValue,
   chakra,
   Text,
   VStack,
   HStack,
-  Icon,
   Flex
 } from '@chakra-ui/react'
 import { ChevronRightIcon, CheckIcon } from '@chakra-ui/icons'
