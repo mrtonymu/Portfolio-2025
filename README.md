@@ -6,6 +6,7 @@
 
 ## ✨ Features
 
+- **Cyberpunk Preloader**: Immersive loading experience with matrix effects and smooth animations
 - **Interactive 3D Model**: Rotating dog model built with Three.js
 - **Dynamic Typography**: Word rotation effects and gradient text animations
 - **Responsive Design**: Mobile-first approach with Chakra UI components
@@ -64,6 +65,14 @@ The development server will start at `http://localhost:3000` (or next available 
 ```
 
 ## 🎯 Key Components
+
+### Cyberpunk Preloader
+- Matrix-style digital rain background effect
+- Floating particle animations with smooth motion
+- Progress bar with cyber-themed styling
+- Comfortable color palette (blue/purple tones)
+- Enhanced text visibility with semi-transparent backgrounds
+- Responsive design for all screen sizes
 
 ### 3D Dog Model
 - Interactive WebGL model with orbit controls
