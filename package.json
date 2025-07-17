@@ -14,7 +14,7 @@
     "analyze": "ANALYZE=true npm run build"
   },
   "keywords": [],
-  "author": "Takuya Matsuyama",
+  "author": "Tonymumu",
   "license": "MIT",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",

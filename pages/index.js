@@ -33,7 +33,8 @@ const Home = () => (
       <Section delay={0.1}>
         <Box 
           textAlign="center" 
-          py={{ base: 16, md: 24 }}
+          py={{ base: 8, sm: 12, md: 16, lg: 24 }}
+          px={{ base: 4, sm: 6, md: 8 }}
           position="relative"
           _before={{
             content: '""',
@@ -41,26 +42,27 @@ const Home = () => (
             top: 0,
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '100px',
-            height: '4px',
+            width: { base: '60px', md: '100px' },
+            height: { base: '3px', md: '4px' },
             bg: 'linear-gradient(90deg, teal.400, blue.400)',
             borderRadius: 'full',
             opacity: 0.6
           }}
         >
-          <Box mb={12}>
+          <Box mb={{ base: 8, md: 12 }}>
             <WordRotationEffect
               staticText="I help non-tech creatives build"
               rotatingWords={["smart websites", "clean sites", "useful tools"]}
-              fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
+              fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
               fontWeight="800"
               bgGradient="linear(135deg, teal.400, blue.500, purple.500)"
               bgClip="text"
-              minH={{ base: "120px", md: "140px" }}
+              minH={{ base: "100px", sm: "120px", md: "140px" }}
               display="flex"
               alignItems="center"
               justifyContent="center"
               letterSpacing="-0.02em"
+              lineHeight={{ base: 1.2, md: 1.1 }}
               style={{ 
                 fontDisplay: 'swap',
                 WebkitFontSmoothing: 'antialiased',
@@ -69,46 +71,56 @@ const Home = () => (
             />
           </Box>
           <Text 
-            fontSize={{ base: "lg", md: "xl" }}
+            fontSize={{ base: "md", sm: "lg", md: "xl" }}
             color={useColorModeValue('gray.600', 'gray.300')}
-            mb={12}
-            maxW="3xl"
+            mb={{ base: 8, md: 12 }}
+            maxW={{ base: "100%", sm: "2xl", md: "3xl" }}
             mx="auto"
-            lineHeight={1.8}
-            px={6}
+            lineHeight={{ base: 1.6, md: 1.8 }}
+            px={{ base: 2, sm: 4, md: 6 }}
             fontWeight="500"
           >
             No templates, no agencies, no headaches. Just fast, functional websites that actually work for your business.
           </Text>
-          <VStack spacing={6}>
-            <HStack spacing={6} justify="center" flexWrap="wrap">
+          <VStack spacing={{ base: 4, md: 6 }}>
+            <VStack 
+              spacing={{ base: 3, sm: 4, md: 6 }} 
+              direction={{ base: "column", sm: "row" }}
+              justify="center" 
+              align="center"
+              w="100%"
+            >
               <NextLink href="#projects" passHref>
                 <Button 
-                  size="lg" 
+                  size={{ base: "md", md: "lg" }}
                   colorScheme="teal" 
                   rightIcon={<ChevronRightIcon />}
-                  px={8}
-                  py={6}
-                  fontSize="md"
+                  px={{ base: 6, md: 8 }}
+                  py={{ base: 4, md: 6 }}
+                  fontSize={{ base: "sm", md: "md" }}
                   fontWeight="600"
+                  w={{ base: "full", sm: "auto" }}
+                  maxW={{ base: "280px", sm: "auto" }}
                 >
                   View My Work
                 </Button>
               </NextLink>
               <NextLink href="#contact" passHref>
                 <Button 
-                  size="lg" 
+                  size={{ base: "md", md: "lg" }}
                   variant="outline" 
                   colorScheme="teal"
-                  px={8}
-                  py={6}
-                  fontSize="md"
+                  px={{ base: 6, md: 8 }}
+                  py={{ base: 4, md: 6 }}
+                  fontSize={{ base: "sm", md: "md" }}
                   fontWeight="600"
+                  w={{ base: "full", sm: "auto" }}
+                  maxW={{ base: "280px", sm: "auto" }}
                 >
                   Let's Work Together
                 </Button>
               </NextLink>
-            </HStack>
+            </VStack>
             <Text 
               fontSize="sm" 
               color={useColorModeValue('gray.500', 'gray.400')}
@@ -122,17 +134,18 @@ const Home = () => (
 
       {/* About Section */}
       <Section delay={0.2}>
-        <Box py={{ base: 16, md: 20 }}>
+        <Box py={{ base: 12, sm: 16, md: 20 }} px={{ base: 4, sm: 6, md: 8 }}>
           <Heading 
             as="h2" 
             variant="section-title" 
             textAlign="center"
-            mb={12}
+            mb={{ base: 8, md: 12 }}
+            fontSize={{ base: "2xl", md: "3xl" }}
           >
             A bit about me
           </Heading>
           
-          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8} mb={12}>
+          <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={{ base: 6, md: 8 }} mb={{ base: 8, md: 12 }}>
             <Box variant="card" position="relative" overflow="hidden">
               <Box 
                 position="absolute"

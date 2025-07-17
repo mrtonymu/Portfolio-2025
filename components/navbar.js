@@ -24,10 +24,20 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
   return (
     <NextLink href={href} passHref scroll={false}>
       <Link
-        p={2}
+        p={{ base: 3, md: 2 }}
+        minH={{ base: '44px', md: 'auto' }}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        borderRadius="md"
         bg={active ? 'grassTeal' : undefined}
         color={active ? '#202023' : inactiveColor}
         target={target}
+        transition="all 0.2s ease"
+        _hover={{
+          bg: active ? 'grassTeal' : useColorModeValue('gray.100', 'whiteAlpha.200'),
+          transform: 'translateY(-1px)'
+        }}
         {...props}
       >
         {children}
@@ -51,8 +61,8 @@ const Navbar = props => {
     >
       <Container
         display="flex"
-        p={2}
-        maxW="container.md"
+        p={{ base: 3, md: 2 }}
+        maxW={{ base: "100%", md: "container.md" }}
         wrap="wrap"
         align="center"
         justify="space-between"
@@ -98,13 +108,17 @@ const Navbar = props => {
         <Box flex={1} align="right">
           <ThemeToggleButton />
 
-          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
+          <Box ml={{ base: 1, md: 2 }} display={{ base: 'inline-block', md: 'none' }}>
             <Menu isLazy id="navbar-menu">
               <MenuButton
                 as={IconButton}
                 icon={<HamburgerIcon />}
                 variant="outline"
-                aria-label="Options"
+                aria-label="Navigation Menu"
+                size="md"
+                minH="44px"
+                minW="44px"
+                borderRadius="lg"
               />
               <MenuList>
                 <NextLink href="/" passHref>

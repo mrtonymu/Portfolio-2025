@@ -32,7 +32,7 @@ const Work = () => (
         </ListItem>
         <ListItem>
           <Meta>Presentation</Meta>
-          <Link href="https://speakerdeck.com/craftzdog/the-fun-deep-learning">
+          <Link href="https://speakerdeck.com/tonymumu/the-fun-deep-learning">
             The fun Deep Learning <ExternalLinkIcon mx="2px" />
           </Link>
         </ListItem>

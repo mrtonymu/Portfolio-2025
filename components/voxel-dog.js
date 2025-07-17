@@ -50,9 +50,18 @@ const VoxelDog = () => {
         20 * Math.cos(0.2 * Math.PI)
       )
 
-      // 640 -> 240
-      // 8   -> 6
-      const scale = scH * 0.005 + 4.8
+      // Improved responsive scaling
+      const isMobile = scW < 768
+      const isTablet = scW >= 768 && scW < 1024
+      
+      let scale
+      if (isMobile) {
+        scale = Math.min(scW, scH) * 0.008 + 3.5
+      } else if (isTablet) {
+        scale = scH * 0.006 + 4.2
+      } else {
+        scale = scH * 0.005 + 4.8
+      }
       const camera = new THREE.OrthographicCamera(
         -scale,
         scale,
