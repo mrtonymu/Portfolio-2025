@@ -1,4 +1,4 @@
-import { Container, Heading, SimpleGrid, Divider, Text, Box, VStack, HStack, Button, useColorModeValue } from '@chakra-ui/react'
+import { Container, Heading, SimpleGrid, Text, Box, VStack, Button, useColorModeValue } from '@chakra-ui/react'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItem } from '../components/grid-item'
@@ -23,7 +23,7 @@ const Works = () => (
       </Heading>
       
       <Text fontSize="lg" mb={8} color={useColorModeValue('gray.600', 'gray.300')}>
-        Here are some projects I've built while learning and experimenting with different technologies. 
+        Here are some projects I&apos;ve built while learning and experimenting with different technologies. 
         Each one taught me something new about development, problem-solving, and staying resilient when things break.
       </Text>
 
@@ -55,7 +55,7 @@ const Works = () => (
           </VStack>
           
           <Text fontStyle="italic" color={useColorModeValue('teal.700', 'teal.200')}>
-            "The best way to learn is to break things and fix them again."
+            &ldquo;The best way to learn is to break things and fix them again.&rdquo;
           </Text>
         </Box>
       </Section>
@@ -93,7 +93,7 @@ const Works = () => (
           Want to work together?
         </Heading>
         <Text mb={4}>
-          I'm always interested in new projects and collaborations. Let's build something useful together.
+          I&apos;m always interested in new projects and collaborations. Let&apos;s build something useful together.
         </Text>
         <Button as={NextLink} href="/#contact" colorScheme="blue" size="lg">
           Get In Touch

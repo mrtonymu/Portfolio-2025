@@ -16,11 +16,12 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
-import { IoLogoGithub, IoLogoInstagram } from 'react-icons/io5'
+import { IoLogoInstagram } from 'react-icons/io5'
 
 const LinkItem = ({ href, path, target, children, ...props }) => {
   const active = path === href
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+  const hoverBg = useColorModeValue('gray.100', 'whiteAlpha.200')
   return (
     <NextLink href={href} scroll={false}>
       <Link
@@ -35,7 +36,7 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
         target={target}
         transition="all 0.2s ease"
         _hover={{
-          bg: active ? 'grassTeal' : useColorModeValue('gray.100', 'whiteAlpha.200'),
+          bg: active ? 'grassTeal' : hoverBg,
           transform: 'translateY(-1px)'
         }}
         {...props}
@@ -101,7 +102,7 @@ const Navbar = props => {
             pl={2}
           >
             <IoLogoInstagram />
-            Let's Talk
+            Let&apos;s Talk
           </LinkItem>
         </Stack>
 

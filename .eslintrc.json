@@ -9,9 +9,6 @@
         "varsIgnorePattern": "^_",
         "ignoreRestSiblings": true
       }
-    ]
-  }
-}
     ],
     "react/display-name": 0
   }

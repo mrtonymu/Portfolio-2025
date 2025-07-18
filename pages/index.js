@@ -1,13 +1,11 @@
 import NextLink from 'next/link'
 import {
-  Link,
   Container,
   Heading,
   Box,
   SimpleGrid,
   Button,
   useColorModeValue,
-  chakra,
   Text,
   VStack,
   HStack,
@@ -15,22 +13,18 @@ import {
 } from '@chakra-ui/react'
 import { ChevronRightIcon, CheckIcon } from '@chakra-ui/icons'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import Paragraph from '../components/paragraph'
-import { BioSection, BioYear } from '../components/bio'
+
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import WordRotationEffect from '../components/typing-effect'
-import { IoLogoTwitter, IoLogoInstagram, IoLogoGithub } from 'react-icons/io5'
-import Image from 'next/image'
+import { IoLogoInstagram, IoLogoGithub } from 'react-icons/io5'
 import dynamic from 'next/dynamic'
 
 const VoxelDog = dynamic(() => import('../components/voxel-dog'), {
   ssr: false
 })
 
-const ProfileImage = chakra(Image, {
-  shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
-})
+
 
 const Home = () => {
   const { scrollY } = useScroll()
@@ -327,7 +321,7 @@ const Home = () => {
                 }}
                 transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                🤝 Let's Connect
+                🤝 Let&apos;s Connect
               </Button>
             </Flex>
             <Text 
@@ -434,7 +428,7 @@ const Home = () => {
                   wordBreak="break-word"
                   overflowWrap="break-word"
                 >
-                  Spent years handling customer escalations in fintech. Learned that behind every "bug report" is a frustrated human who just wants things to work.
+                  Spent years handling customer escalations in fintech. Learned that behind every &ldquo;bug report&rdquo; is a frustrated human who just wants things to work.
                 </Text>
               </VStack>
             </Box>
@@ -483,7 +477,7 @@ const Home = () => {
                   AI + Web3 Explorer
                 </Heading>
                 <Text fontSize="sm" color={useColorModeValue('purple.600', 'purple.300')} fontWeight="600" mb={3}>
-                  Experimenting with tomorrow's tools
+                  Experimenting with tomorrow&apos;s tools
                 </Text>
                 <Text 
                   fontSize={{ base: "sm", md: "md" }} 
@@ -492,7 +486,7 @@ const Home = () => {
                   wordBreak="break-word"
                   overflowWrap="break-word"
                 >
-                  Currently exploring GPT integrations, prompt engineering, and blockchain applications. Not chasing hype — genuinely curious about tools that could solve real problems.
+                  Currently exploring GPT integrations, prompt engineering, and blockchain applications. Not chasing hype &mdash; genuinely curious about tools that could solve real problems.
                 </Text>
               </VStack>
             </Box>
@@ -577,7 +571,7 @@ const Home = () => {
                 wordBreak="break-word"
                 overflowWrap="break-word"
               >
-                "Building digital solutions that actually solve problems, not just look pretty."
+                &ldquo;Building digital solutions that actually solve problems, not just look pretty.&rdquo;
               </Text>
             </VStack>
           </Flex>
@@ -670,7 +664,7 @@ const Home = () => {
               position="relative"
               zIndex={1}
             >
-              ✨ If you have the idea, I'll help you shape it, ship it, and own it.
+              ✨ If you have the idea, I&apos;ll help you shape it, ship it, and own it.
             </Text>
           </Box>
         </Box>
@@ -700,7 +694,7 @@ const Home = () => {
             wordBreak="break-word"
             overflowWrap="break-word"
           >
-            A curated selection of things I've built, broken, and learned from.
+            A curated selection of things I&apos;ve built, broken, and learned from.
           </Text>
           
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 8, sm: 10, md: 8 }} mb={{ base: 12, sm: 14, md: 12 }}>
@@ -938,7 +932,7 @@ const Home = () => {
                 <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
                 <Text fontSize="xs" mb={2}>Next.js • React • Chakra UI • Three.js • Framer Motion</Text>
                 <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
-                  You're viewing it! 🎉
+                  You&apos;re viewing it! 🎉
                 </Button>
               </Box>
             </Box>
@@ -998,7 +992,7 @@ const Home = () => {
               </Text>
               <VStack align="start" spacing={2} fontSize="sm">
                 <Text color={useColorModeValue('gray.600', 'gray.300')}>• Trained GPT-4 to handle refund, OTP, and KYC queries</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Reduced response time from 3 minutes to &lt;1 minute</Text>
+                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Reduced response time from 3 minutes to {'<1 minute'}</Text>
                 <Text color={useColorModeValue('gray.600', 'gray.300')}>• Simulated sentiment-based prioritization in Telegram Bot</Text>
                 <Box 
                   p={3} 
@@ -1246,7 +1240,7 @@ const Home = () => {
           
           <Box textAlign="center" mb={4}>
             <Text fontSize="md" color={useColorModeValue('gray.600', 'gray.300')}>
-              Want a walkthrough of any project? DM me — I'd be happy to share a Loom or repo.
+              Want a walkthrough of any project? DM me — I&apos;d be happy to share a Loom or repo.
             </Text>
           </Box>
           
@@ -1311,7 +1305,7 @@ const Home = () => {
                 lineHeight="relaxed"
                 fontWeight="500"
               >
-                If you're working on something interesting, need a second pair of eyes on a project, or just want to chat about building things — I'm always up for a conversation.
+                If you&apos;re working on something interesting, need a second pair of eyes on a project, or just want to chat about building things — I&apos;m always up for a conversation.
               </Text>
               
               <VStack spacing={6} mb={8}>
@@ -1389,7 +1383,7 @@ const Home = () => {
             bgClip="text"
             fontWeight="700"
           >
-            🧠 What I'm currently exploring
+            🧠 What I&apos;m currently exploring
           </Heading>
           
           <Box 
@@ -1419,7 +1413,7 @@ const Home = () => {
                 color={useColorModeValue('gray.600', 'gray.300')}
                 fontWeight="500"
               >
-                Lately, I've been diving into how AI tools like ChatGPT, Midjourney, and Groq are reshaping creative workflows — especially for non-devs. I'm also experimenting with lightweight motion (Framer Motion, GSAP), mobile-first layout strategies, and emotion-driven microcopy in UIs.
+                Lately, I&apos;ve been diving into how AI tools like ChatGPT, Midjourney, and Groq are reshaping creative workflows — especially for non-devs. I&apos;m also experimenting with lightweight motion (Framer Motion, GSAP), mobile-first layout strategies, and emotion-driven microcopy in UIs.
               </Text>
               
               <Text 
@@ -1429,7 +1423,7 @@ const Home = () => {
                 color={useColorModeValue('gray.600', 'gray.300')}
                 fontWeight="500"
               >
-                On the side, I've been thinking about how to blend "utility + play" — particularly in creative or Web3 tool spaces.
+                On the side, I&apos;ve been thinking about how to blend &ldquo;utility + play&rdquo; — particularly in creative or Web3 tool spaces.
               </Text>
               
               <Button 
@@ -1448,7 +1442,7 @@ const Home = () => {
                 }}
                 transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                Still rough, but if you're into that kind of thing — let's jam. ✨
+                Still rough, but if you&apos;re into that kind of thing — let&apos;s jam. ✨
               </Button>
             </Box>
           </Box>
@@ -1499,7 +1493,7 @@ const Home = () => {
             >
               <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('teal.600', 'teal.300')}>Can we collaborate?</Text>
               <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
-                Absolutely. Especially if it's fun, weird, or meaningful.
+                Absolutely. Especially if it&apos;s fun, weird, or meaningful.
               </Text>
             </Box>
             

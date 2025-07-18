@@ -1,10 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
-import { Box, Text, VStack } from '@chakra-ui/react'
+import { useState, useEffect, useRef, useMemo } from 'react'
+import { Box, VStack } from '@chakra-ui/react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const MotionBox = motion(Box)
-const MotionText = motion(Text)
-const MotionDiv = motion.div
 
 // GIF Preloader Helper
 const preloadImages = (urls) => {
@@ -29,7 +27,7 @@ const StitchPreloader = ({ onComplete }) => {
     ">> SYSTEM READY. WELCOME TO THE MATRIX! 🚀"
   ]
 
-  const stages = [
+  const stages = useMemo(() => [
     {
       gif: "https://media.giphy.com/media/fRFK42AiiLDgs/giphy.gif", // Stitch calm/cute
       bgColor: "radial-gradient(ellipse at center, #4a5568 0%, #2d3748 30%, #1a202c 70%, #171923 100%)",
@@ -50,7 +48,7 @@ const StitchPreloader = ({ onComplete }) => {
       bgColor: "radial-gradient(ellipse at center, #9f7aea 0%, #805ad5 30%, #6b46c1 70%, #1a202c 100%)",
       range: [99, 100]
     }
-  ]
+  ], [])
 
   // Get current stage based on progress
   const getCurrentStage = () => {
@@ -110,7 +108,7 @@ const StitchPreloader = ({ onComplete }) => {
     }, 150)
 
     return () => clearInterval(timer)
-  }, [onComplete])
+  }, [onComplete, stages])
 
   const currentStageData = getCurrentStage()
   const currentMessage = getCurrentMessage()
