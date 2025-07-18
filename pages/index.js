@@ -101,7 +101,7 @@ const Home = () => (
             {/* Animated Stitch Avatar - Central Character Moment */}
             <Box
               position="absolute"
-              top={{ base: "-60px", sm: "-70px", md: "-100px" }}
+              top={{ base: "-40px", sm: "-60px", md: "-100px" }}
               left="0"
               right="0"
               zIndex={10}
@@ -116,14 +116,17 @@ const Home = () => (
                 left="0"
                 right="0"
                 transform="translateY(-50%)"
-                w={{ base: "300px", sm: "400px", md: "500px" }}
-                h={{ base: "300px", sm: "400px", md: "500px" }}
-                bg="radial-gradient(ellipse 120% 100% at center, rgba(56, 178, 172, 0.2) 0%, rgba(56, 178, 172, 0.15) 20%, rgba(66, 153, 225, 0.12) 35%, rgba(66, 153, 225, 0.08) 50%, rgba(159, 122, 234, 0.05) 65%, rgba(159, 122, 234, 0.02) 80%, transparent 95%)"
+                w={{ base: "400px", sm: "450px", md: "500px" }}
+                h={{ base: "400px", sm: "450px", md: "500px" }}
+                bg={{ 
+                  base: "radial-gradient(ellipse 140% 120% at center, rgba(56, 178, 172, 0.12) 0%, rgba(56, 178, 172, 0.08) 25%, rgba(66, 153, 225, 0.06) 40%, rgba(66, 153, 225, 0.04) 55%, rgba(159, 122, 234, 0.03) 70%, rgba(159, 122, 234, 0.015) 85%, transparent 100%)",
+                  md: "radial-gradient(ellipse 120% 100% at center, rgba(56, 178, 172, 0.2) 0%, rgba(56, 178, 172, 0.15) 20%, rgba(66, 153, 225, 0.12) 35%, rgba(66, 153, 225, 0.08) 50%, rgba(159, 122, 234, 0.05) 65%, rgba(159, 122, 234, 0.02) 80%, transparent 95%)"
+                }}
                 borderRadius="full"
                 zIndex={-1}
                 animation="pulse 4s ease-in-out infinite"
                 mx="auto"
-                filter="blur(1px)"
+                filter={{ base: "blur(2px)", md: "blur(1px)" }}
               />
               <Box
                 w={{ base: "90px", sm: "110px", md: "160px" }}
@@ -209,7 +212,7 @@ const Home = () => (
             </Box>
             
             <Box 
-              mt={{ base: "20px", sm: "25px", md: "35px" }} 
+              mt={{ base: "35px", sm: "40px", md: "35px" }} 
               px={{ base: 4, sm: 6, md: 8 }}
               maxW="100%"
               overflow="hidden"
@@ -218,11 +221,11 @@ const Home = () => (
                 staticText="I help non-tech creatives build"
                 rotatingWords={["smart websites", "clean sites", "useful tools"]}
                 speed={4800}
-                fontSize={{ base: "lg", sm: "xl", md: "3xl", lg: "4xl" }}
+                fontSize={{ base: "md", sm: "lg", md: "3xl", lg: "4xl" }}
                 fontWeight="800"
                 bgGradient="linear(135deg, teal.400, blue.500, purple.500)"
                 bgClip="text"
-                minH={{ base: "60px", sm: "80px", md: "120px" }}
+                minH={{ base: "50px", sm: "70px", md: "120px" }}
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -241,9 +244,9 @@ const Home = () => (
             </Box>
           </Box>
           <Text 
-            fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl" }}
+            fontSize={{ base: "xs", sm: "sm", md: "lg", lg: "xl" }}
             color={useColorModeValue('gray.600', 'gray.300')}
-            mb={{ base: 6, sm: 7, md: 8 }}
+            mb={{ base: 8, sm: 9, md: 8 }}
             maxW={{ base: "90%", sm: "2xl", md: "3xl" }}
             mx="auto"
             lineHeight={{ base: 1.6, sm: 1.7, md: 1.8 }}
@@ -255,7 +258,7 @@ const Home = () => (
           >
             No templates, no agencies, no headaches. Just fast, functional websites that actually work for your business.
           </Text>
-          <VStack spacing={{ base: 6, sm: 8, md: 10 }} px={{ base: 6, sm: 8, md: 10 }}>
+          <VStack spacing={{ base: 8, sm: 10, md: 10 }} px={{ base: 6, sm: 8, md: 10 }}>
             <Flex 
               direction={{ base: "column", sm: "row" }}
               gap={{ base: 4, sm: 6, md: 8 }}
@@ -301,6 +304,7 @@ const Home = () => (
               color={useColorModeValue('gray.500', 'gray.400')}
               fontStyle="italic"
               textAlign="center"
+              mt={{ base: 4, sm: 2, md: 0 }}
             >
               ✨ Currently available for new projects
             </Text>
@@ -341,7 +345,7 @@ const Home = () => (
             </Text>
           </Box>
 
-          <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={{ base: 6, sm: 8, md: 10 }} mb={{ base: 10, md: 14 }}>
+          <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={{ base: 6, sm: 8, md: 10 }} mb={{ base: 10, md: 14 }} maxW={{ base: "90%", sm: "100%" }} mx="auto">
             <Box variant="hero-card" position="relative" overflow="hidden">
               <Box 
                 position="absolute"
@@ -455,8 +459,8 @@ const Home = () => (
             <Box
               position="relative"
               zIndex={1}
-              w={{ base: 200, md: 240 }}
-              h={{ base: 200, md: 240 }}
+              w={{ base: 180, sm: 200, md: 240 }}
+              h={{ base: 180, sm: 200, md: 240 }}
               mx="auto"
               display="flex"
               alignItems="center"
