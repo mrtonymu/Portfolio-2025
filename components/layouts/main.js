@@ -1,18 +1,15 @@
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 import NavBar from '../navbar'
 import { Box, Container } from '@chakra-ui/react'
 import Footer from '../footer'
-import VoxelDogLoader from '../voxel-dog-loader'
+import FloatingParticles from '../floating-particles'
 
-const LazyVoxelDog = dynamic(() => import('../voxel-dog'), {
-  ssr: false,
-  loading: () => <VoxelDogLoader />
-})
+// VoxelDog removed from global layout - now only rendered in About section
 
 const Main = ({ children, router }) => {
   return (
-    <Box as="main" pb={8}>
+    <Box as="main" pb={8} position="relative">
+      <FloatingParticles count={15} />
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Tonymumu's homepage - Web developer helping non-tech creatives build smart websites" />
@@ -39,8 +36,6 @@ const Main = ({ children, router }) => {
         px={{ base: 4, sm: 6, md: 8 }}
         pt={{ base: 16, md: 20 }}
       >
-        <LazyVoxelDog />
-
         {children}
 
         <Footer />

@@ -21,6 +21,11 @@ import Section from '../components/section'
 import WordRotationEffect from '../components/typing-effect'
 import { IoLogoTwitter, IoLogoInstagram, IoLogoGithub } from 'react-icons/io5'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
+
+const VoxelDog = dynamic(() => import('../components/voxel-dog'), {
+  ssr: false
+})
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -29,102 +34,267 @@ const ProfileImage = chakra(Image, {
 const Home = () => (
   <Layout>
     <Container maxW="container.lg">
-      {/* Hero Section */}
+      {/* Hero Section - Cinematic Enhanced */}
       <Section delay={0.1}>
         <Box 
           textAlign="center" 
-          py={{ base: 8, sm: 12, md: 16, lg: 24 }}
-          px={{ base: 4, sm: 6, md: 8 }}
+          py={{ base: 16, sm: 20, md: 24, lg: 32 }}
+          px={{ base: 6, sm: 8, md: 10 }}
           position="relative"
+          overflow="hidden"
+          minH={{ base: '85vh', md: '90vh' }}
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
           _before={{
             content: '""',
             position: 'absolute',
             top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'radial-gradient(ellipse 150% 100% at 50% 0%, rgba(56, 178, 172, 0.2) 0%, rgba(66, 153, 225, 0.15) 25%, rgba(159, 122, 234, 0.1) 50%, transparent 80%)',
+            zIndex: -3
+          }}
+          _after={{
+            content: '""',
+            position: 'absolute',
+            top: '5%',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: { base: '60px', md: '100px' },
-            height: { base: '3px', md: '4px' },
-            bg: 'linear-gradient(90deg, teal.400, blue.400)',
+            width: { base: '400px', md: '600px', lg: '800px' },
+            height: { base: '400px', md: '600px', lg: '800px' },
+            background: 'conic-gradient(from 0deg, rgba(56, 178, 172, 0.15), rgba(66, 153, 225, 0.1), rgba(159, 122, 234, 0.08), rgba(56, 178, 172, 0.15))',
             borderRadius: 'full',
-            opacity: 0.6
+            filter: 'blur(60px)',
+            zIndex: -2,
+            animation: 'float 8s ease-in-out infinite, spin 20s linear infinite'
+          }}
+          sx={{
+            '@keyframes float': {
+              '0%, 100%': { transform: 'translateX(-50%) translateY(0px) scale(1)' },
+              '50%': { transform: 'translateX(-50%) translateY(-30px) scale(1.1)' }
+            },
+            '@keyframes spin': {
+              '0%': { transform: 'translateX(-50%) rotate(0deg)' },
+              '100%': { transform: 'translateX(-50%) rotate(360deg)' }
+            }
           }}
         >
-          <Box mb={{ base: 8, md: 12 }}>
-            <WordRotationEffect
-              staticText="I help non-tech creatives build"
-              rotatingWords={["smart websites", "clean sites", "useful tools"]}
-              fontSize={{ base: "2xl", sm: "3xl", md: "4xl", lg: "5xl" }}
-              fontWeight="800"
-              bgGradient="linear(135deg, teal.400, blue.500, purple.500)"
-              bgClip="text"
-              minH={{ base: "100px", sm: "120px", md: "140px" }}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              letterSpacing="-0.02em"
-              lineHeight={{ base: 1.2, md: 1.1 }}
-              style={{ 
-                fontDisplay: 'swap',
-                WebkitFontSmoothing: 'antialiased',
-                textRendering: 'optimizeLegibility'
-              }}
+          {/* Floating Particles */}
+          {[...Array(6)].map((_, i) => (
+            <Box
+              key={i}
+              position="absolute"
+              w={{ base: '4px', md: '6px' }}
+              h={{ base: '4px', md: '6px' }}
+              bg="rgba(56, 178, 172, 0.6)"
+              borderRadius="full"
+              top={`${20 + i * 15}%`}
+              left={`${10 + i * 15}%`}
+              animation={`float ${3 + i * 0.5}s ease-in-out infinite ${i * 0.2}s`}
+              zIndex={-1}
+              display={{ base: 'none', md: 'block' }}
             />
+          ))}
+          <Box mb={{ base: 10, sm: 12, md: 16 }} position="relative">
+            {/* Animated Stitch Avatar - Central Character Moment */}
+            <Box
+              position="absolute"
+              top={{ base: "-60px", sm: "-70px", md: "-100px" }}
+              left="50%"
+              transform="translateX(-50%)"
+              zIndex={10}
+            >
+              {/* Radial background gradient for depth */}
+              <Box
+                position="absolute"
+                top="50%"
+                left="50%"
+                transform="translate(-50%, -50%)"
+                w={{ base: "200px", sm: "250px", md: "350px" }}
+                h={{ base: "200px", sm: "250px", md: "350px" }}
+                bg="radial-gradient(circle, rgba(56, 178, 172, 0.15) 0%, rgba(66, 153, 225, 0.1) 40%, transparent 70%)"
+                borderRadius="full"
+                zIndex={-1}
+                animation="pulse 4s ease-in-out infinite"
+              />
+              <Box
+                w={{ base: "90px", sm: "110px", md: "160px" }}
+                h={{ base: "90px", sm: "110px", md: "160px" }}
+                borderRadius="full"
+                bg="rgba(255, 255, 255, 0.1)"
+                backdropFilter="blur(15px)"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                border="3px solid rgba(56, 178, 172, 0.4)"
+                boxShadow="0 0 40px rgba(56, 178, 172, 0.6), 0 0 80px rgba(56, 178, 172, 0.3), inset 0 0 25px rgba(255, 255, 255, 0.1)"
+                position="relative"
+                overflow="hidden"
+                _before={{
+                  content: '""',
+                  position: 'absolute',
+                  top: '-3px',
+                  left: '-3px',
+                  right: '-3px',
+                  bottom: '-3px',
+                  background: 'conic-gradient(from 0deg, transparent, rgba(56, 178, 172, 0.8), transparent, rgba(66, 153, 225, 0.8), transparent)',
+                  borderRadius: 'full',
+                  zIndex: -1,
+                  animation: 'spin 4s linear infinite'
+                }}
+                sx={{
+                  '@keyframes spin': {
+                    '0%': { transform: 'rotate(0deg)' },
+                    '100%': { transform: 'rotate(360deg)' }
+                  },
+                  '@keyframes scaleIn': {
+                    '0%': { transform: 'translateX(-50%) scale(0)', opacity: 0 },
+                    '50%': { transform: 'translateX(-50%) scale(1.15)', opacity: 0.8 },
+                    '100%': { transform: 'translateX(-50%) scale(1)', opacity: 1 }
+                  },
+                  '@keyframes pulse': {
+                    '0%, 100%': { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.6 },
+                    '50%': { transform: 'translate(-50%, -50%) scale(1.1)', opacity: 0.8 }
+                  },
+                  animation: 'scaleIn 1.5s ease-out 0.5s both'
+                }}
+              >
+                <Box
+                  as="img"
+                  src="https://media.giphy.com/media/fRFK42AiiLDgs/giphy.gif"
+                  alt="Stitch Avatar"
+                  w={{ base: "65px", sm: "80px", md: "120px" }}
+                  h={{ base: "65px", sm: "80px", md: "120px" }}
+                  borderRadius="full"
+                  objectFit="cover"
+                  filter="brightness(1.2) contrast(1.15) saturate(1.1)"
+                />
+                {/* Sparkle effects - Reduced on mobile */}
+                <Box
+                  position="absolute"
+                  top={{ base: "8px", md: "10px" }}
+                  right={{ base: "8px", md: "10px" }}
+                  w={{ base: "4px", md: "6px" }}
+                  h={{ base: "4px", md: "6px" }}
+                  bg="white"
+                  borderRadius="full"
+                  animation="sparkle 2s ease-in-out infinite"
+                  sx={{
+                    '@keyframes sparkle': {
+                      '0%, 100%': { opacity: 0, transform: 'scale(0)' },
+                      '50%': { opacity: 1, transform: 'scale(1)' }
+                    }
+                  }}
+                />
+                <Box
+                  position="absolute"
+                  bottom={{ base: "12px", md: "15px" }}
+                  left={{ base: "12px", md: "15px" }}
+                  w={{ base: "3px", md: "4px" }}
+                  h={{ base: "3px", md: "4px" }}
+                  bg="white"
+                  borderRadius="full"
+                  animation="sparkle 2s ease-in-out infinite 1s"
+                  display={{ base: "none", sm: "block" }}
+                />
+              </Box>
+            </Box>
+            
+            <Box 
+              mt={{ base: "30px", sm: "40px", md: "60px" }} 
+              px={{ base: 4, sm: 6, md: 8 }}
+              maxW="100%"
+              overflow="hidden"
+            >
+              <WordRotationEffect
+                staticText="I help non-tech creatives build"
+                rotatingWords={["smart websites", "clean sites", "useful tools"]}
+                speed={4800}
+                fontSize={{ base: "lg", sm: "xl", md: "3xl", lg: "4xl" }}
+                fontWeight="800"
+                bgGradient="linear(135deg, teal.400, blue.500, purple.500)"
+                bgClip="text"
+                minH={{ base: "60px", sm: "80px", md: "120px" }}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                letterSpacing="-0.01em"
+                lineHeight={{ base: 1.4, sm: 1.3, md: 1.2 }}
+                textAlign="center"
+                maxW="100%"
+                wordBreak="break-word"
+                overflowWrap="break-word"
+                style={{ 
+                  fontDisplay: 'swap',
+                  WebkitFontSmoothing: 'antialiased',
+                  textRendering: 'optimizeLegibility'
+                }}
+              />
+            </Box>
           </Box>
           <Text 
-            fontSize={{ base: "md", sm: "lg", md: "xl" }}
+            fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl" }}
             color={useColorModeValue('gray.600', 'gray.300')}
-            mb={{ base: 8, md: 12 }}
-            maxW={{ base: "100%", sm: "2xl", md: "3xl" }}
+            mb={{ base: 8, sm: 10, md: 12 }}
+            maxW={{ base: "90%", sm: "2xl", md: "3xl" }}
             mx="auto"
-            lineHeight={{ base: 1.6, md: 1.8 }}
-            px={{ base: 2, sm: 4, md: 6 }}
+            lineHeight={{ base: 1.6, sm: 1.7, md: 1.8 }}
+            px={{ base: 4, sm: 6, md: 8 }}
             fontWeight="500"
+            textAlign="center"
+            wordBreak="break-word"
+            overflowWrap="break-word"
           >
             No templates, no agencies, no headaches. Just fast, functional websites that actually work for your business.
           </Text>
-          <VStack spacing={{ base: 4, md: 6 }}>
-            <VStack 
-              spacing={{ base: 3, sm: 4, md: 6 }} 
+          <VStack spacing={{ base: 8, sm: 10, md: 12 }} px={{ base: 6, sm: 8, md: 10 }}>
+            <Flex 
               direction={{ base: "column", sm: "row" }}
+              gap={{ base: 4, sm: 6, md: 8 }}
               justify="center" 
               align="center"
               w="100%"
+              flexWrap="wrap"
             >
-              <NextLink href="#projects" passHref>
-                <Button 
-                  size={{ base: "md", md: "lg" }}
-                  colorScheme="teal" 
-                  rightIcon={<ChevronRightIcon />}
-                  px={{ base: 6, md: 8 }}
-                  py={{ base: 4, md: 6 }}
-                  fontSize={{ base: "sm", md: "md" }}
-                  fontWeight="600"
-                  w={{ base: "full", sm: "auto" }}
-                  maxW={{ base: "280px", sm: "auto" }}
-                >
-                  View My Work
-                </Button>
-              </NextLink>
-              <NextLink href="#contact" passHref>
-                <Button 
-                  size={{ base: "md", md: "lg" }}
-                  variant="outline" 
-                  colorScheme="teal"
-                  px={{ base: 6, md: 8 }}
-                  py={{ base: 4, md: 6 }}
-                  fontSize={{ base: "sm", md: "md" }}
-                  fontWeight="600"
-                  w={{ base: "full", sm: "auto" }}
-                  maxW={{ base: "280px", sm: "auto" }}
-                >
-                  Let's Work Together
-                </Button>
-              </NextLink>
-            </VStack>
+              <Button 
+                as="a"
+                href="#projects"
+                size="hero"
+                variant="solid"
+                rightIcon={<ChevronRightIcon />}
+                w={{ base: "full", sm: "auto" }}
+                maxW={{ base: "280px", sm: "auto" }}
+                minW={{ sm: "180px" }}
+                _hover={{
+                  transform: 'translateY(-4px) scale(1.05)',
+                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4)'
+                }}
+              >
+                View My Work
+              </Button>
+              <Button 
+                as="a"
+                href="#contact"
+                size="hero"
+                variant="glass"
+                w={{ base: "full", sm: "auto" }}
+                maxW={{ base: "280px", sm: "auto" }}
+                minW={{ sm: "200px" }}
+                _hover={{
+                  transform: 'translateY(-4px) scale(1.05)',
+                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2)'
+                }}
+              >
+                Let's Work Together
+              </Button>
+            </Flex>
             <Text 
-              fontSize="sm" 
+              fontSize={{ base: "xs", sm: "sm" }}
               color={useColorModeValue('gray.500', 'gray.400')}
               fontStyle="italic"
+              textAlign="center"
             >
               ✨ Currently available for new projects
             </Text>
@@ -134,7 +304,7 @@ const Home = () => (
 
       {/* About Section */}
       <Section delay={0.2}>
-        <Box py={{ base: 12, sm: 16, md: 20 }} px={{ base: 4, sm: 6, md: 8 }}>
+        <Box py={{ base: 16, sm: 20, md: 24 }} px={{ base: 6, sm: 8, md: 10 }}>
           <Heading 
             as="h2" 
             variant="section-title" 
@@ -145,25 +315,28 @@ const Home = () => (
             A bit about me
           </Heading>
           
-          <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={{ base: 6, md: 8 }} mb={{ base: 8, md: 12 }}>
-            <Box variant="card" position="relative" overflow="hidden">
-              <Box 
-                position="absolute"
-                top={0}
-                left={0}
-                width="100%"
-                height="4px"
-                bg="linear-gradient(90deg, teal.400, teal.500)"
-              />
-              <Heading as="h3" size="md" mb={4} color="teal.500" fontWeight="700">
-                Who I am
-              </Heading>
-              <Text fontSize="md" lineHeight="tall" color={useColorModeValue('gray.700', 'gray.300')}>
-                I've spent years in customer support, dropshipping, and fintech. Now I build websites that solve real problems — because I've been on both sides of "this doesn't work."
-              </Text>
-            </Box>
-            
-            <Box variant="card" position="relative" overflow="hidden">
+          {/* TLDR Section */}
+          <Box 
+            textAlign="center" 
+            mb={{ base: 8, md: 12 }}
+            p={6}
+            bg={useColorModeValue('teal.50', 'teal.900')}
+            borderRadius="xl"
+            borderLeft="4px solid"
+            borderColor="teal.400"
+          >
+            <Text 
+              fontSize={{ base: "lg", md: "xl" }}
+              fontWeight="600"
+              color={useColorModeValue('teal.700', 'teal.300')}
+              fontStyle="italic"
+            >
+              💡 TLDR: Empathy-driven builder with frontline support roots
+            </Text>
+          </Box>
+
+          <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={{ base: 6, sm: 8, md: 10 }} mb={{ base: 10, md: 14 }}>
+            <Box variant="hero-card" position="relative" overflow="hidden">
               <Box 
                 position="absolute"
                 top={0}
@@ -172,15 +345,56 @@ const Home = () => (
                 height="4px"
                 bg="linear-gradient(90deg, blue.400, blue.500)"
               />
-              <Heading as="h3" size="md" mb={4} color="blue.500" fontWeight="700">
-                Why this site exists
-              </Heading>
-              <Text fontSize="md" lineHeight="tall" color={useColorModeValue('gray.700', 'gray.300')}>
-                This isn't a client-hunting page. It's a way to show how I think about problems, build solutions, and communicate ideas. Consider it a working demo.
-              </Text>
+              <VStack align="start" spacing={3}>
+                <Text fontSize="2xl" mb={2}>💳</Text>
+                <Heading as="h3" size="md" mb={2} color="blue.500" fontWeight="700">
+                  Customer Service + Fintech
+                </Heading>
+                <Text fontSize="sm" color={useColorModeValue('blue.600', 'blue.300')} fontWeight="600" mb={3}>
+                  Where empathy meets problem-solving
+                </Text>
+                <Text 
+                  fontSize={{ base: "sm", md: "md" }} 
+                  lineHeight="tall" 
+                  color={useColorModeValue('gray.700', 'gray.300')}
+                  wordBreak="break-word"
+                  overflowWrap="break-word"
+                >
+                  Spent years handling customer escalations in fintech. Learned that behind every "bug report" is a frustrated human who just wants things to work.
+                </Text>
+              </VStack>
             </Box>
             
-            <Box variant="card" position="relative" overflow="hidden">
+            <Box variant="hero-card" position="relative" overflow="hidden">
+              <Box 
+                position="absolute"
+                top={0}
+                left={0}
+                width="100%"
+                height="4px"
+                bg="linear-gradient(90deg, green.400, green.500)"
+              />
+              <VStack align="start" spacing={3}>
+                <Text fontSize="2xl" mb={2}>🚚</Text>
+                <Heading as="h3" size="md" mb={2} color="green.500" fontWeight="700">
+                  Dropshipping + Self-starter
+                </Heading>
+                <Text fontSize="sm" color={useColorModeValue('green.600', 'green.300')} fontWeight="600" mb={3}>
+                  Building systems that scale
+                </Text>
+                <Text 
+                  fontSize={{ base: "sm", md: "md" }} 
+                  lineHeight="tall" 
+                  color={useColorModeValue('gray.700', 'gray.300')}
+                  wordBreak="break-word"
+                  overflowWrap="break-word"
+                >
+                  Ran my own dropshipping operations, built internal tools for tracking profits, managing suppliers, and automating workflows. Nothing teaches you efficiency like your own money on the line.
+                </Text>
+              </VStack>
+            </Box>
+            
+            <Box variant="hero-card" position="relative" overflow="hidden">
               <Box 
                 position="absolute"
                 top={0}
@@ -189,12 +403,24 @@ const Home = () => (
                 height="4px"
                 bg="linear-gradient(90deg, purple.400, purple.500)"
               />
-              <Heading as="h3" size="md" mb={4} color="purple.500" fontWeight="700">
-                What this means for you
-              </Heading>
-              <Text fontSize="md" lineHeight="tall" color={useColorModeValue('gray.700', 'gray.300')}>
-                If you need something built, I probably understand your frustrations. I focus on making things work, not just look pretty.
-              </Text>
+              <VStack align="start" spacing={3}>
+                <Text fontSize="2xl" mb={2}>🤖</Text>
+                <Heading as="h3" size="md" mb={2} color="purple.500" fontWeight="700">
+                  AI + Web3 Explorer
+                </Heading>
+                <Text fontSize="sm" color={useColorModeValue('purple.600', 'purple.300')} fontWeight="600" mb={3}>
+                  Experimenting with tomorrow's tools
+                </Text>
+                <Text 
+                  fontSize={{ base: "sm", md: "md" }} 
+                  lineHeight="tall" 
+                  color={useColorModeValue('gray.700', 'gray.300')}
+                  wordBreak="break-word"
+                  overflowWrap="break-word"
+                >
+                  Currently exploring GPT integrations, prompt engineering, and blockchain applications. Not chasing hype — genuinely curious about tools that could solve real problems.
+                </Text>
+              </VStack>
             </Box>
           </SimpleGrid>
 
@@ -202,8 +428,8 @@ const Home = () => (
             direction={{ base: 'column', md: 'row' }} 
             align="center" 
             justify="center" 
-            gap={10}
-            p={8}
+            gap={{ base: 8, md: 12 }}
+            p={{ base: 6, sm: 8, md: 10 }}
             bg={useColorModeValue('gray.50', 'gray.900')}
             borderRadius="2xl"
             position="relative"
@@ -223,37 +449,26 @@ const Home = () => (
             <Box
               position="relative"
               zIndex={1}
-              borderColor={useColorModeValue('teal.200', 'teal.400')}
-              borderWidth={3}
-              borderStyle="solid"
-              w={{ base: 140, md: 160 }}
-              h={{ base: 140, md: 160 }}
-              borderRadius="full"
-              overflow="hidden"
+              w={{ base: 200, md: 240 }}
+              h={{ base: 200, md: 240 }}
               mx="auto"
               display="flex"
               alignItems="center"
               justifyContent="center"
-              bg="gray.100"
-              boxShadow="0 8px 25px rgba(56, 178, 172, 0.2)"
-              transition="all 0.3s ease"
+              transition="all 0.4s ease"
               _hover={{
-                transform: 'scale(1.05)',
-                boxShadow: '0 12px 35px rgba(56, 178, 172, 0.3)'
+                transform: 'scale(1.05) translateY(-5px)',
+                filter: 'drop-shadow(0 15px 35px rgba(56, 178, 172, 0.3))'
+              }}
+              sx={{
+                '@keyframes float': {
+                  '0%, 100%': { transform: 'translateY(0px)' },
+                  '50%': { transform: 'translateY(-10px)' }
+                },
+                animation: 'float 3s ease-in-out infinite'
               }}
             >
-              <Image
-                src="/images/Tonymumu.jpg"
-                alt="Tony's profile image"
-                width={160}
-                height={160}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center top'
-                }}
-              />
+              <VoxelDog />
             </Box>
             
             <VStack 
@@ -282,7 +497,10 @@ const Home = () => (
                 color={useColorModeValue('gray.500', 'gray.400')}
                 fontSize="sm"
                 fontStyle="italic"
-                maxW="300px"
+                maxW={{ base: "280px", sm: "300px", md: "350px" }}
+                px={{ base: 2, md: 0 }}
+                wordBreak="break-word"
+                overflowWrap="break-word"
               >
                 "Building digital solutions that actually solve problems, not just look pretty."
               </Text>
@@ -304,19 +522,22 @@ const Home = () => (
           </Heading>
           
           <Text 
-            fontSize={{ base: "lg", md: "xl" }}
+            fontSize={{ base: "md", sm: "lg", md: "xl" }}
             textAlign="center" 
             mb={12} 
             color={useColorModeValue('gray.600', 'gray.300')}
-            maxW="4xl"
+            maxW={{ base: "90%", sm: "85%", md: "4xl" }}
             mx="auto"
             lineHeight={1.8}
             fontWeight="500"
+            px={{ base: 4, sm: 6, md: 0 }}
+            wordBreak="break-word"
+            overflowWrap="break-word"
           >
             I help solo creators and business owners launch fast, functional, good-looking websites — without relying on expensive agencies or rigid templates.
           </Text>
 
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} mb={8}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 4, sm: 5, md: 6 }} mb={{ base: 6, md: 8 }}>
             <VStack align="start" spacing={4}>
               <HStack>
                 <CheckIcon color="teal.500" />
@@ -351,7 +572,7 @@ const Home = () => (
           <Box 
             textAlign="center" 
             p={8} 
-            variant="glass"
+            variant="hero-card"
             position="relative"
             overflow="hidden"
             _before={{
@@ -362,7 +583,7 @@ const Home = () => (
               right: 0,
               bottom: 0,
               bg: 'linear-gradient(135deg, teal.400, blue.400)',
-              opacity: 0.1,
+              opacity: 0.15,
               zIndex: 0
             }}
           >
@@ -392,23 +613,38 @@ const Home = () => (
             💼 Projects
           </Heading>
           <Text 
-            fontSize={{ base: "lg", md: "xl" }}
+            fontSize={{ base: "md", sm: "lg", md: "xl" }}
             textAlign="center" 
             mb={12} 
             color={useColorModeValue('gray.600', 'gray.300')}
-            maxW="3xl"
+            maxW={{ base: "90%", sm: "85%", md: "3xl" }}
             mx="auto"
             lineHeight={1.8}
             fontWeight="500"
+            px={{ base: 4, sm: 6, md: 0 }}
+            wordBreak="break-word"
+            overflowWrap="break-word"
           >
             A curated selection of things I've built, broken, and learned from.
           </Text>
           
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} mb={12}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 8, sm: 10, md: 8 }} mb={{ base: 12, sm: 14, md: 12 }}>
             <Box 
-              variant="card"
+              variant="hero-card"
               position="relative"
               overflow="hidden"
+              cursor="pointer"
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              _hover={{
+                transform: 'translateY(-12px) scale(1.02)',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(66, 153, 225, 0.3)',
+                _before: {
+                  height: '8px'
+                },
+                _after: {
+                  opacity: 0.25
+                }
+              }}
               _before={{
                 content: '""',
                 position: 'absolute',
@@ -417,7 +653,8 @@ const Home = () => (
                 width: '100%',
                 height: '4px',
                 bg: 'linear-gradient(90deg, blue.400, blue.600)',
-                zIndex: 1
+                zIndex: 1,
+                transition: 'height 0.4s ease'
               }}
               _after={{
                 content: '""',
@@ -428,7 +665,8 @@ const Home = () => (
                 height: '60px',
                 bg: 'linear-gradient(135deg, blue.400, blue.600)',
                 opacity: 0.1,
-                borderRadius: '0 0 0 60px'
+                borderRadius: '0 0 0 60px',
+                transition: 'opacity 0.4s ease'
               }}
             >
               <Heading as="h3" size="md" mb={4} color="blue.600" fontWeight="700">
@@ -437,13 +675,41 @@ const Home = () => (
               <Text fontSize="sm" color={useColorModeValue('gray.500', 'gray.400')} mb={4} fontWeight="600">
                 Type: Internal tool | Built for: My dropshipping ops (2022–2024)
               </Text>
-              <Text fontSize="md" lineHeight="tall" mb={4} color={useColorModeValue('gray.700', 'gray.300')}>
+              <Text 
+                fontSize={{ base: "sm", md: "md" }} 
+                lineHeight={{ base: "1.7", md: "1.6" }} 
+                mb={4} 
+                color={useColorModeValue('gray.700', 'gray.300')}
+                wordBreak="break-word"
+                overflowWrap="break-word"
+              >
                 A private dashboard to calculate product ROI and campaign performance across multiple suppliers.
               </Text>
-              <VStack align="start" spacing={2} fontSize="sm">
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Automated daily sales tracking via Google Sheets + App Script</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Visualized COGS vs marketing spend, per SKU</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Helped me spot underperforming campaigns 3x faster</Text>
+              <VStack align="start" spacing={3} fontSize={{ base: "xs", md: "sm" }}>
+                <Text 
+                  color={useColorModeValue('gray.600', 'gray.300')}
+                  lineHeight={{ base: "1.6", md: "1.5" }}
+                  wordBreak="break-word"
+                  overflowWrap="break-word"
+                >
+                  • Automated daily sales tracking via Google Sheets + App Script
+                </Text>
+                <Text 
+                  color={useColorModeValue('gray.600', 'gray.300')}
+                  lineHeight={{ base: "1.6", md: "1.5" }}
+                  wordBreak="break-word"
+                  overflowWrap="break-word"
+                >
+                  • Visualized COGS vs marketing spend, per SKU
+                </Text>
+                <Text 
+                  color={useColorModeValue('gray.600', 'gray.300')}
+                  lineHeight={{ base: "1.6", md: "1.5" }}
+                  wordBreak="break-word"
+                  overflowWrap="break-word"
+                >
+                  • Helped me spot underperforming campaigns 3x faster
+                </Text>
                 <Box 
                   p={3} 
                   bg={useColorModeValue('blue.50', 'blue.900')} 
@@ -457,12 +723,52 @@ const Home = () => (
                   </Text>
                 </Box>
               </VStack>
+              
+              {/* Hover Info Overlay */}
+              <Box
+                className="hover-info"
+                position="absolute"
+                bottom="0"
+                left="0"
+                right="0"
+                bg="linear-gradient(to top, rgba(66, 153, 225, 0.95), rgba(66, 153, 225, 0.8))"
+                color="white"
+                p={4}
+                opacity={0}
+                transform="translateY(20px)"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                backdropFilter="blur(15px)"
+                sx={{
+                  '.hero-card:hover &': {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                  }
+                }}
+              >
+                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
+                <Text fontSize="xs" mb={2}>Google Sheets API • App Script • Data Visualization</Text>
+                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
+                  View Project →
+                </Button>
+              </Box>
             </Box>
             
             <Box 
-              variant="card"
+              variant="hero-card"
               position="relative"
               overflow="hidden"
+              cursor="pointer"
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              _hover={{
+                transform: 'translateY(-12px) scale(1.02)',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(56, 178, 172, 0.3)',
+                _before: {
+                  height: '8px'
+                },
+                _after: {
+                  opacity: 0.25
+                }
+              }}
               _before={{
                 content: '""',
                 position: 'absolute',
@@ -471,7 +777,8 @@ const Home = () => (
                 width: '100%',
                 height: '4px',
                 bg: 'linear-gradient(90deg, teal.400, teal.600)',
-                zIndex: 1
+                zIndex: 1,
+                transition: 'height 0.4s ease'
               }}
               _after={{
                 content: '""',
@@ -482,9 +789,29 @@ const Home = () => (
                 height: '60px',
                 bg: 'linear-gradient(135deg, teal.400, teal.600)',
                 opacity: 0.1,
-                borderRadius: '0 0 0 60px'
+                borderRadius: '0 0 0 60px',
+                transition: 'opacity 0.4s ease'
               }}
             >
+              {/* Featured Tag */}
+              <Box
+                position="absolute"
+                top="16px"
+                right="16px"
+                bg="linear-gradient(135deg, teal.400, teal.600)"
+                color="white"
+                px={3}
+                py={1}
+                borderRadius="full"
+                fontSize="xs"
+                fontWeight="bold"
+                textTransform="uppercase"
+                letterSpacing="wider"
+                zIndex={2}
+                boxShadow="0 4px 12px rgba(56, 178, 172, 0.3)"
+              >
+                ⭐ Featured
+              </Box>
               <Heading as="h3" size="md" mb={4} color="teal.600" fontWeight="700">
                 🔧 Portfolio Site
               </Heading>
@@ -511,12 +838,56 @@ const Home = () => (
                   </Text>
                 </Box>
               </VStack>
+              
+              {/* Hover Info Overlay */}
+              <Box
+                className="hover-info"
+                position="absolute"
+                bottom="0"
+                left="0"
+                right="0"
+                bg="linear-gradient(to top, rgba(56, 178, 172, 0.95), rgba(56, 178, 172, 0.8))"
+                color="white"
+                p={4}
+                opacity={0}
+                transform="translateY(20px)"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                backdropFilter="blur(15px)"
+                sx={{
+                  '.hero-card:hover &': {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                  }
+                }}
+              >
+                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
+                <Text fontSize="xs" mb={2}>Next.js • React • Chakra UI • Three.js • Framer Motion</Text>
+                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
+                  You're viewing it! 🎉
+                </Button>
+              </Box>
             </Box>
             
             <Box 
-              variant="card"
+              variant="hero-card"
               position="relative"
               overflow="hidden"
+              cursor="pointer"
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              _hover={{
+                transform: 'translateY(-12px) scale(1.02)',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(159, 122, 234, 0.3)',
+                _before: {
+                  height: '8px'
+                },
+                _after: {
+                  opacity: 0.25
+                },
+                '& .hover-info': {
+                  opacity: 1,
+                  transform: 'translateY(0)'
+                }
+              }}
               _before={{
                 content: '""',
                 position: 'absolute',
@@ -525,7 +896,8 @@ const Home = () => (
                 width: '100%',
                 height: '4px',
                 bg: 'linear-gradient(90deg, purple.400, purple.600)',
-                zIndex: 1
+                zIndex: 1,
+                transition: 'height 0.4s ease'
               }}
               _after={{
                 content: '""',
@@ -536,7 +908,8 @@ const Home = () => (
                 height: '60px',
                 bg: 'linear-gradient(135deg, purple.400, purple.600)',
                 opacity: 0.1,
-                borderRadius: '0 0 0 60px'
+                borderRadius: '0 0 0 60px',
+                transition: 'opacity 0.4s ease'
               }}
             >
               <Heading as="h3" size="md" mb={4} color="purple.600" fontWeight="700">
@@ -565,12 +938,56 @@ const Home = () => (
                   </Text>
                 </Box>
               </VStack>
+              
+              {/* Hover Info Overlay */}
+              <Box
+                className="hover-info"
+                position="absolute"
+                bottom="0"
+                left="0"
+                right="0"
+                bg="linear-gradient(to top, rgba(159, 122, 234, 0.95), rgba(159, 122, 234, 0.8))"
+                color="white"
+                p={4}
+                opacity={0}
+                transform="translateY(20px)"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                backdropFilter="blur(15px)"
+                sx={{
+                  '.hero-card:hover &': {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                  }
+                }}
+              >
+                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
+                <Text fontSize="xs" mb={2}>GPT-4 API • Telegram Bot • Python • Sentiment Analysis</Text>
+                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
+                  View Workflow →
+                </Button>
+              </Box>
             </Box>
             
             <Box 
-              variant="card"
+              variant="hero-card"
               position="relative"
               overflow="hidden"
+              cursor="pointer"
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              _hover={{
+                transform: 'translateY(-12px) scale(1.02)',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(236, 72, 153, 0.3)',
+                _before: {
+                  height: '8px'
+                },
+                _after: {
+                  opacity: 0.25
+                },
+                '& .hover-info': {
+                  opacity: 1,
+                  transform: 'translateY(0)'
+                }
+              }}
               _before={{
                 content: '""',
                 position: 'absolute',
@@ -579,7 +996,8 @@ const Home = () => (
                 width: '100%',
                 height: '4px',
                 bg: 'linear-gradient(90deg, pink.400, pink.600)',
-                zIndex: 1
+                zIndex: 1,
+                transition: 'height 0.4s ease'
               }}
               _after={{
                 content: '""',
@@ -590,7 +1008,8 @@ const Home = () => (
                 height: '60px',
                 bg: 'linear-gradient(135deg, pink.400, pink.600)',
                 opacity: 0.1,
-                borderRadius: '0 0 0 60px'
+                borderRadius: '0 0 0 60px',
+                transition: 'opacity 0.4s ease'
               }}
             >
               <Heading as="h3" size="md" mb={4} color="pink.600" fontWeight="700">
@@ -619,12 +1038,56 @@ const Home = () => (
                   </Text>
                 </Box>
               </VStack>
+              
+              {/* Hover Info Overlay */}
+              <Box
+                className="hover-info"
+                position="absolute"
+                bottom="0"
+                left="0"
+                right="0"
+                bg="linear-gradient(to top, rgba(236, 72, 153, 0.95), rgba(236, 72, 153, 0.8))"
+                color="white"
+                p={4}
+                opacity={0}
+                transform="translateY(20px)"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                backdropFilter="blur(15px)"
+                sx={{
+                  '.hero-card:hover &': {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                  }
+                }}
+              >
+                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
+                <Text fontSize="xs" mb={2}>ChatGPT API • JavaScript • Template Engine • Batch Processing</Text>
+                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
+                  View Tool →
+                </Button>
+              </Box>
             </Box>
             
             <Box 
-              variant="card"
+              variant="hero-card"
               position="relative"
               overflow="hidden"
+              cursor="pointer"
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              _hover={{
+                transform: 'translateY(-12px) scale(1.02)',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(251, 146, 60, 0.3)',
+                _before: {
+                  height: '8px'
+                },
+                _after: {
+                  opacity: 0.25
+                },
+                '& .hover-info': {
+                  opacity: 1,
+                  transform: 'translateY(0)'
+                }
+              }}
               _before={{
                 content: '""',
                 position: 'absolute',
@@ -633,7 +1096,8 @@ const Home = () => (
                 width: '100%',
                 height: '4px',
                 bg: 'linear-gradient(90deg, orange.400, orange.600)',
-                zIndex: 1
+                zIndex: 1,
+                transition: 'height 0.4s ease'
               }}
               _after={{
                 content: '""',
@@ -644,7 +1108,8 @@ const Home = () => (
                 height: '60px',
                 bg: 'linear-gradient(135deg, orange.400, orange.600)',
                 opacity: 0.1,
-                borderRadius: '0 0 0 60px'
+                borderRadius: '0 0 0 60px',
+                transition: 'opacity 0.4s ease'
               }}
             >
               <Heading as="h3" size="md" mb={4} color="orange.600" fontWeight="700">
@@ -673,6 +1138,34 @@ const Home = () => (
                   </Text>
                 </Box>
               </VStack>
+              
+              {/* Hover Info Overlay */}
+              <Box
+                className="hover-info"
+                position="absolute"
+                bottom="0"
+                left="0"
+                right="0"
+                bg="linear-gradient(to top, rgba(251, 146, 60, 0.95), rgba(251, 146, 60, 0.8))"
+                color="white"
+                p={4}
+                opacity={0}
+                transform="translateY(20px)"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                backdropFilter="blur(15px)"
+                sx={{
+                  '.hero-card:hover &': {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                  }
+                }}
+              >
+                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
+                <Text fontSize="xs" mb={2}>JavaScript • Browser APIs • Clipboard API • Local Storage</Text>
+                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
+                  View Utility →
+                </Button>
+              </Box>
             </Box>
           </SimpleGrid>
           
@@ -683,16 +1176,16 @@ const Home = () => (
           </Box>
           
           <Box textAlign="center" mb={12}>
-            <NextLink href="/works" passHref>
+            <NextLink href="/works">
               <Button 
-                colorScheme="teal" 
+                variant="solid"
+                size="hero"
                 rightIcon={<ChevronRightIcon />}
-                size="lg"
                 _hover={{ 
-                  transform: 'translateY(-2px)', 
-                  boxShadow: 'xl'
+                  transform: 'translateY(-4px) scale(1.05)', 
+                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4)'
                 }}
-                transition="all 0.3s ease"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
               >
                 See More Details
               </Button>
@@ -707,8 +1200,7 @@ const Home = () => (
           <Box 
             textAlign="center" 
             p={12} 
-            bg={useColorModeValue('blue.50', 'blue.900')} 
-            borderRadius="2xl"
+            variant="hero-card"
             position="relative"
             overflow="hidden"
             _before={{
@@ -719,7 +1211,7 @@ const Home = () => (
               right: 0,
               bottom: 0,
               bg: 'linear-gradient(135deg, teal.400, blue.500)',
-              opacity: 0.05,
+              opacity: 0.1,
               zIndex: 0
             }}
           >
@@ -755,48 +1247,40 @@ const Home = () => (
                 >
                   Best ways to reach me:
                 </Text>
-                <HStack spacing={8} justify="center" flexWrap="wrap">
-                  <Link href="https://instagram.com/mrtonyyam" isExternal>
-                    <Button 
-                      size="lg" 
-                      colorScheme="blue" 
-                      leftIcon={<IoLogoInstagram />}
-                      variant="solid"
-                      px={8}
-                      py={6}
-                      fontSize="md"
-                      fontWeight="600"
-                      _hover={{
-                        transform: 'translateY(-3px)',
-                        boxShadow: 'xl'
-                      }}
-                      transition="all 0.3s ease"
-                    >
-                      Instagram DM
-                    </Button>
-                  </Link>
-                  <Link href="https://github.com/mrtonymu" isExternal>
-                    <Button 
-                      size="lg" 
-                      variant="outline" 
-                      colorScheme="blue"
-                      leftIcon={<IoLogoGithub />}
-                      px={8}
-                      py={6}
-                      fontSize="md"
-                      fontWeight="600"
-                      _hover={{
-                        transform: 'translateY(-3px)',
-                        boxShadow: 'xl',
-                        bg: useColorModeValue('blue.500', 'blue.400'),
-                        color: 'white'
-                      }}
-                      transition="all 0.3s ease"
-                    >
-                      GitHub
-                    </Button>
-                  </Link>
-                </HStack>
+                <Flex direction={{ base: "column", sm: "row" }} gap={{ base: 4, sm: 6, md: 8 }} justify="center" align="center" flexWrap="wrap">
+                  <Button 
+                    as="a"
+                    href="https://instagram.com/mrtonyyam"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    size="hero"
+                    variant="solid"
+                    leftIcon={<IoLogoInstagram />}
+                    _hover={{
+                      transform: 'translateY(-4px) scale(1.05)',
+                      boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4)'
+                    }}
+                    transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                  >
+                    Instagram DM
+                  </Button>
+                  <Button 
+                    as="a"
+                    href="https://github.com/mrtonymu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    size="hero"
+                    variant="glass"
+                    leftIcon={<IoLogoGithub />}
+                    _hover={{
+                      transform: 'translateY(-4px) scale(1.05)',
+                      boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2)'
+                    }}
+                    transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                  >
+                    GitHub
+                  </Button>
+                </Flex>
               </VStack>
               
               <Text 
@@ -823,38 +1307,40 @@ const Home = () => (
           >
             Connect with me
           </Text>
-          <HStack spacing={6} justify="center" flexWrap="wrap">
-            <Link href="https://github.com/mrtonymu" isExternal>
-              <Button 
-                variant="ghost" 
-                colorScheme="teal" 
-                leftIcon={<IoLogoGithub />}
-                size="lg"
-                _hover={{
-                  transform: 'translateY(-2px)',
-                  bg: useColorModeValue('teal.50', 'teal.900')
-                }}
-                transition="all 0.3s ease"
-              >
-                @MrTonyMu
-              </Button>
-            </Link>
-            <Link href="https://instagram.com/mrtonyyam" isExternal>
-              <Button 
-                variant="ghost" 
-                colorScheme="teal" 
-                leftIcon={<IoLogoInstagram />}
-                size="lg"
-                _hover={{
-                  transform: 'translateY(-2px)',
-                  bg: useColorModeValue('teal.50', 'teal.900')
-                }}
-                transition="all 0.3s ease"
-              >
-                @MrTonyYam
-              </Button>
-            </Link>
-          </HStack>
+          <Flex direction={{ base: "column", sm: "row" }} gap={{ base: 4, sm: 6 }} justify="center" align="center" flexWrap="wrap">
+            <Button 
+              as="a"
+              href="https://github.com/mrtonymu"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="glass"
+              size="mobile"
+              leftIcon={<IoLogoGithub />}
+              _hover={{
+                transform: 'translateY(-3px) scale(1.05)',
+                boxShadow: '0 15px 30px rgba(56, 178, 172, 0.2)'
+              }}
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+            >
+              @MrTonyMu
+            </Button>
+            <Button 
+              as="a"
+              href="https://instagram.com/mrtonyyam"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="glass"
+              size="mobile"
+              leftIcon={<IoLogoInstagram />}
+              _hover={{
+                transform: 'translateY(-3px) scale(1.05)',
+                boxShadow: '0 15px 30px rgba(56, 178, 172, 0.2)'
+              }}
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+            >
+              @MrTonyYam
+            </Button>
+          </Flex>
         </Box>
       </Section>
     </Container>

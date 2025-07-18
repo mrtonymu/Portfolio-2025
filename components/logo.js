@@ -24,19 +24,17 @@ const LogoBox = styled.span`
 const Logo = () => {
   return (
     <Link href="https://tonymumu.vercel.app" scroll={false}>
-      <a>
-        <LogoBox>
-          <FootprintIcon />
-          <Text
-            color={useColorModeValue('gray.800', 'whiteAlpha.900')}
-            fontFamily='M PLUS Rounded 1c", sans-serif'
-            fontWeight="bold"
-            ml={3}
-          >
-            TonyMuMu
-          </Text>
-        </LogoBox>
-      </a>
+      <LogoBox>
+        <FootprintIcon />
+        <Text
+          color={useColorModeValue('gray.800', 'whiteAlpha.900')}
+          fontFamily='M PLUS Rounded 1c", sans-serif'
+          fontWeight="bold"
+          ml={3}
+        >
+          TonyMuMu
+        </Text>
+      </LogoBox>
     </Link>
   )
 }

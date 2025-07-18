@@ -22,7 +22,7 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
   const active = path === href
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
   return (
-    <NextLink href={href} passHref scroll={false}>
+    <NextLink href={href} scroll={false}>
       <Link
         p={{ base: 3, md: 2 }}
         minH={{ base: '44px', md: 'auto' }}
@@ -121,16 +121,16 @@ const Navbar = props => {
                 borderRadius="lg"
               />
               <MenuList>
-                <NextLink href="/" passHref>
+                <NextLink href="/">
                   <MenuItem as={Link}>About</MenuItem>
                 </NextLink>
-                <NextLink href="/#services" passHref>
+                <NextLink href="/#services">
                   <MenuItem as={Link}>Services</MenuItem>
                 </NextLink>
-                <NextLink href="/works" passHref>
+                <NextLink href="/works">
                   <MenuItem as={Link}>Projects</MenuItem>
                 </NextLink>
-                <NextLink href="/#contact" passHref>
+                <NextLink href="/#contact">
                   <MenuItem as={Link}>Contact</MenuItem>
                 </NextLink>
                 <MenuItem

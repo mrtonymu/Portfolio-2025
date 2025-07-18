@@ -13,11 +13,9 @@ const Works = () => (
   <Layout title="Projects">
     <Container maxW="container.lg">
       <Box mb={6}>
-        <NextLink href="/" passHref>
-          <Button leftIcon={<ChevronLeftIcon />} variant="ghost" colorScheme="teal">
-            Back to Home
-          </Button>
-        </NextLink>
+        <Button as={NextLink} href="/" leftIcon={<ChevronLeftIcon />} variant="ghost" colorScheme="teal">
+          Back to Home
+        </Button>
       </Box>
       
       <Heading as="h1" fontSize={32} mb={4}>
@@ -97,11 +95,9 @@ const Works = () => (
         <Text mb={4}>
           I'm always interested in new projects and collaborations. Let's build something useful together.
         </Text>
-        <NextLink href="/#contact" passHref>
-          <Button colorScheme="blue" size="lg">
-            Get In Touch
-          </Button>
-        </NextLink>
+        <Button as={NextLink} href="/#contact" colorScheme="blue" size="lg">
+          Get In Touch
+        </Button>
       </Box>
     </Container>
   </Layout>

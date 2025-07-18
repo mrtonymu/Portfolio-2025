@@ -15,9 +15,7 @@ const NotFound = () => {
       <Text>Looks like somebody got lost.....</Text>
       <Divider my={6} />
       <Box my={6} align="center">
-        <NextLink href="/" passHref>
-          <Button colorScheme="teal">Return to home</Button>
-        </NextLink>
+        <Button as={NextLink} href="/" colorScheme="teal">Return to home</Button>
       </Box>
     </Container>
   )

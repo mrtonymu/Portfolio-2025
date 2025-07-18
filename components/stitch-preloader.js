@@ -86,28 +86,28 @@ const StitchPreloader = ({ onComplete }) => {
     let current = 0
     const timer = setInterval(() => {
       if (current < 10) {
-        // Stage 1: Slow start (1-10%) - ~1.2s
+        // Stage 1: Slow start (1-10%) - ~1.8s (slower for better pacing)
         current += 1
       } else if (current < 70) {
-        // Stage 2: Fast surge (10-70%) - ~1.5s
-        current += 5
+        // Stage 2: Moderate surge (10-70%) - ~2.4s (slower for clarity)
+        current += 3
       } else if (current < 99) {
-        // Stage 3: Slow down (70-99%) - ~1.8s
+        // Stage 3: Slow down (70-99%) - ~2.9s (much slower for dramatic effect)
         current += 1
       } else {
-        // Stage 4: Complete (100%) - ~0.3s
+        // Stage 4: Complete (100%) - ~0.5s
         clearInterval(timer)
         setTimeout(() => {
           setProgress(100)
           setTimeout(() => {
             setIsComplete(true)
-            setTimeout(onComplete, 800)
-          }, 500)
-        }, 300)
+            setTimeout(onComplete, 1000)
+          }, 700)
+        }, 500)
         return
       }
       setProgress(current)
-    }, 100)
+    }, 150)
 
     return () => clearInterval(timer)
   }, [onComplete])
@@ -521,21 +521,24 @@ const StitchPreloader = ({ onComplete }) => {
 
             {/* Cyber Glitch Progress Percentage */}
             <MotionBox
-              fontSize={{ base: "28px", sm: "32px", md: "36px" }}
+              fontSize={{ base: "24px", sm: "28px", md: "32px", lg: "36px" }}
               fontFamily="'Orbitron', 'Courier New', monospace"
               fontWeight="bold"
               color="#ffffff"
               textShadow={{ 
-                base: "0 0 15px rgba(66, 153, 225, 0.9), 0 0 30px rgba(0, 0, 0, 0.9), 3px 3px 6px rgba(0, 0, 0, 1)", 
-                sm: "0 0 20px rgba(66, 153, 225, 0.9), 0 0 35px rgba(0, 0, 0, 0.9), 4px 4px 8px rgba(0, 0, 0, 1)", 
-                md: "0 0 25px rgba(66, 153, 225, 0.9), 0 0 40px rgba(0, 0, 0, 0.9), 5px 5px 10px rgba(0, 0, 0, 1)" 
+                base: "0 0 12px rgba(66, 153, 225, 0.9), 0 0 24px rgba(0, 0, 0, 0.9), 2px 2px 4px rgba(0, 0, 0, 1)", 
+                sm: "0 0 15px rgba(66, 153, 225, 0.9), 0 0 30px rgba(0, 0, 0, 0.9), 3px 3px 6px rgba(0, 0, 0, 1)", 
+                md: "0 0 20px rgba(66, 153, 225, 0.9), 0 0 35px rgba(0, 0, 0, 0.9), 4px 4px 8px rgba(0, 0, 0, 1)", 
+                lg: "0 0 25px rgba(66, 153, 225, 0.9), 0 0 40px rgba(0, 0, 0, 0.9), 5px 5px 10px rgba(0, 0, 0, 1)" 
               }}
               position="relative"
               bg="rgba(0, 0, 0, 0.4)"
-              px={{ base: 4, sm: 5, md: 6 }}
-              py={{ base: 2, sm: 3, md: 4 }}
+              px={{ base: 3, sm: 4, md: 5, lg: 6 }}
+              py={{ base: 1, sm: 2, md: 3, lg: 4 }}
               borderRadius="lg"
               border="2px solid rgba(66, 153, 225, 0.4)"
+              minW={{ base: "80px", sm: "90px", md: "100px" }}
+              textAlign="center"
               animate={{
                 scale: [1, 1.05, 1]
               }}
@@ -580,24 +583,28 @@ const StitchPreloader = ({ onComplete }) => {
 
             {/* Cyber Loading Message with Neural Network Vibes */}
             <MotionBox
-              fontSize={{ base: "14px", sm: "16px", md: "18px" }}
+              fontSize={{ base: "12px", sm: "14px", md: "16px", lg: "18px" }}
               color="#ffffff"
               fontFamily="'Orbitron', 'Courier New', monospace"
               fontWeight="semibold"
-              letterSpacing={{ base: "1px", sm: "1.5px", md: "2px" }}
+              letterSpacing={{ base: "0.5px", sm: "1px", md: "1.5px", lg: "2px" }}
               textAlign="center"
-              lineHeight={{ base: "1.4", sm: "1.5", md: "1.6" }}
+              lineHeight={{ base: "1.3", sm: "1.4", md: "1.5", lg: "1.6" }}
               textShadow={{ 
-                base: "0 0 10px rgba(66, 153, 225, 0.8), 0 0 20px rgba(0, 0, 0, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9)", 
-                sm: "0 0 12px rgba(66, 153, 225, 0.8), 0 0 24px rgba(0, 0, 0, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9)", 
-                md: "0 0 15px rgba(66, 153, 225, 0.8), 0 0 30px rgba(0, 0, 0, 0.8), 3px 3px 6px rgba(0, 0, 0, 0.9)" 
+                base: "0 0 8px rgba(66, 153, 225, 0.8), 0 0 16px rgba(0, 0, 0, 0.8), 1px 1px 3px rgba(0, 0, 0, 0.9)", 
+                sm: "0 0 10px rgba(66, 153, 225, 0.8), 0 0 20px rgba(0, 0, 0, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9)", 
+                md: "0 0 12px rgba(66, 153, 225, 0.8), 0 0 24px rgba(0, 0, 0, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9)", 
+                lg: "0 0 15px rgba(66, 153, 225, 0.8), 0 0 30px rgba(0, 0, 0, 0.8), 3px 3px 6px rgba(0, 0, 0, 0.9)" 
               }}
               position="relative"
               bg="rgba(0, 0, 0, 0.3)"
-              px={{ base: 3, sm: 4, md: 5 }}
-              py={{ base: 2, sm: 3, md: 4 }}
+              px={{ base: 2, sm: 3, md: 4, lg: 5 }}
+              py={{ base: 1, sm: 2, md: 3, lg: 4 }}
               borderRadius="md"
               border="1px solid rgba(66, 153, 225, 0.3)"
+              maxW={{ base: "90vw", sm: "80vw", md: "70vw" }}
+              wordBreak="break-word"
+              overflowWrap="break-word"
               animate={{
                 opacity: [0.9, 1, 0.9]
               }}
