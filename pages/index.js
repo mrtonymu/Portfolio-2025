@@ -54,7 +54,9 @@ const Home = () => (
             right: 0,
             bottom: 0,
             background: 'linear-gradient(135deg, rgba(56, 178, 172, 0.18) 0%, rgba(56, 178, 172, 0.15) 10%, rgba(66, 153, 225, 0.12) 25%, rgba(66, 153, 225, 0.1) 40%, rgba(159, 122, 234, 0.08) 55%, rgba(159, 122, 234, 0.06) 70%, rgba(159, 122, 234, 0.04) 85%, transparent 100%)',
-            zIndex: -3
+            zIndex: -3,
+            transform: 'translateY(0px)',
+            transition: 'transform 0.1s ease-out'
           }}
           _after={{
             content: '""',
@@ -65,7 +67,9 @@ const Home = () => (
             bottom: 0,
             background: 'radial-gradient(ellipse 120% 80% at 50% 30%, rgba(56, 178, 172, 0.12) 0%, rgba(66, 153, 225, 0.08) 35%, rgba(159, 122, 234, 0.05) 65%, transparent 100%)',
             zIndex: -2,
-            animation: 'pulse 6s ease-in-out infinite'
+            animation: 'pulse 6s ease-in-out infinite',
+            transform: 'translateY(0px)',
+            transition: 'transform 0.1s ease-out'
           }}
           sx={{
             '@keyframes pulse': {
@@ -120,6 +124,16 @@ const Home = () => (
                 boxShadow="0 0 40px rgba(56, 178, 172, 0.6), 0 0 80px rgba(56, 178, 172, 0.3), inset 0 0 25px rgba(255, 255, 255, 0.1)"
                 position="relative"
                 overflow="hidden"
+                cursor="pointer"
+                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                _hover={{
+                  transform: 'scale(1.05)',
+                  boxShadow: '0 0 50px rgba(56, 178, 172, 0.7), 0 0 100px rgba(56, 178, 172, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.15)'
+                }}
+                _active={{
+                  transform: 'scale(1.02)',
+                  boxShadow: '0 0 35px rgba(56, 178, 172, 0.6), 0 0 70px rgba(56, 178, 172, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)'
+                }}
                 _before={{
                   content: '""',
                   position: 'absolute',
@@ -223,8 +237,8 @@ const Home = () => (
             </Box>
           </Box>
           <Text 
-            fontSize={{ base: "xs", sm: "sm", md: "lg", lg: "xl" }}
-            color={useColorModeValue('gray.400', 'gray.400')}
+            fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl" }}
+            color={useColorModeValue('gray.500', 'gray.400')}
             mb={{ base: 8, sm: 9, md: 8 }}
             maxW={{ base: "90%", sm: "2xl", md: "3xl" }}
             mx="auto"
@@ -259,18 +273,18 @@ const Home = () => (
                 minH={{ base: "44px", sm: "48px" }}
                 _hover={{
                   transform: 'translateY(-4px) scale(1.05)',
-                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4)'
+                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4), 0 0 0 1px rgba(56, 178, 172, 0.2)'
                 }}
                 _active={{
-                  transform: 'translateY(-2px) scale(1.02)',
-                  boxShadow: '0 10px 20px rgba(56, 178, 172, 0.3)'
+                  transform: 'translateY(-1px) scale(1.02)',
+                  boxShadow: '0 8px 16px rgba(56, 178, 172, 0.3)'
                 }}
                 _focus={{
                   boxShadow: '0 0 0 3px rgba(56, 178, 172, 0.3)'
                 }}
-                transition="all 0.2s ease"
+                transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                🚀 View Work
+                🚀 View My Work
               </Button>
               <Button 
                 as="a"
@@ -283,18 +297,18 @@ const Home = () => (
                 minH={{ base: "44px", sm: "48px" }}
                 _hover={{
                   transform: 'translateY(-4px) scale(1.05)',
-                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2)'
+                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2), 0 0 0 1px rgba(56, 178, 172, 0.15)'
                 }}
                 _active={{
-                  transform: 'translateY(-2px) scale(1.02)',
-                  boxShadow: '0 10px 20px rgba(56, 178, 172, 0.15)'
+                  transform: 'translateY(-1px) scale(1.02)',
+                  boxShadow: '0 8px 16px rgba(56, 178, 172, 0.15)'
                 }}
                 _focus={{
                   boxShadow: '0 0 0 3px rgba(56, 178, 172, 0.3)'
                 }}
-                transition="all 0.2s ease"
+                transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                🤝 Collaborate
+                🤝 Let's Connect
               </Button>
             </Flex>
             <Text 
@@ -313,6 +327,32 @@ const Home = () => (
             >
               💡 Currently available for new projects
             </Text>
+            
+            {/* Mobile Scroll Hint */}
+            <Box 
+              display={{ base: "flex", md: "none" }}
+              flexDirection="column"
+              alignItems="center"
+              mt={8}
+              sx={{
+                '@keyframes bounce': {
+                  '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
+                  '40%': { transform: 'translateY(-10px)' },
+                  '60%': { transform: 'translateY(-5px)' }
+                },
+                animation: 'bounce 2s infinite'
+              }}
+            >
+              <Text 
+                fontSize="xs"
+                color={useColorModeValue('gray.400', 'gray.500')}
+                mb={2}
+                fontWeight="500"
+              >
+                Swipe to explore
+              </Text>
+              <Text fontSize="lg">↓</Text>
+            </Box>
           </VStack>
         </Box>
       </Section>
