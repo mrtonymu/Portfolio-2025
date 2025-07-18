@@ -11,15 +11,53 @@ if (typeof window !== 'undefined') {
 
 function Website({ Component, pageProps, router }) {
   const [isLoading, setIsLoading] = useState(true)
-  const [showPreloader, setShowPreloader] = useState(true)
+  const [showPreloader, setShowPreloader] = useState(false)
 
   useEffect(() => {
-    // Always show preloader on page load/refresh
-    // The preloader will handle its own timing and completion
+    // Check if user should see preloader (new users or users who haven't visited in 3+ days)
+    const checkPreloaderVisibility = () => {
+      try {
+        const lastVisit = localStorage.getItem('lastVisit')
+        const now = new Date().getTime()
+        const threeDaysInMs = 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds
+        
+        if (!lastVisit) {
+          // New user - show preloader
+          setShowPreloader(true)
+          localStorage.setItem('lastVisit', now.toString())
+        } else {
+          const lastVisitTime = parseInt(lastVisit)
+          const timeDifference = now - lastVisitTime
+          
+          if (timeDifference >= threeDaysInMs) {
+            // User hasn't visited in 3+ days - show preloader
+            setShowPreloader(true)
+            localStorage.setItem('lastVisit', now.toString())
+          } else {
+            // User visited recently - skip preloader
+            setShowPreloader(false)
+            setIsLoading(false)
+          }
+        }
+      } catch (error) {
+        // If localStorage is not available, show preloader as fallback
+        console.warn('localStorage not available:', error)
+        setShowPreloader(true)
+      }
+    }
+    
+    checkPreloaderVisibility()
   }, [])
 
   const handlePreloaderComplete = () => {
     setIsLoading(false)
+    // Update last visit time when preloader completes
+    try {
+      const now = new Date().getTime()
+      localStorage.setItem('lastVisit', now.toString())
+    } catch (error) {
+      console.warn('Could not update lastVisit in localStorage:', error)
+    }
     setTimeout(() => {
       setShowPreloader(false)
     }, 300)

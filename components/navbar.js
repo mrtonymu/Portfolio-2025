@@ -23,27 +23,28 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
   const hoverBg = useColorModeValue('gray.100', 'whiteAlpha.200')
   return (
-    <NextLink href={href} scroll={false}>
-      <Link
-        p={{ base: 3, md: 2 }}
-        minH={{ base: '44px', md: 'auto' }}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        borderRadius="md"
-        bg={active ? 'grassTeal' : undefined}
-        color={active ? '#202023' : inactiveColor}
-        target={target}
-        transition="all 0.2s ease"
-        _hover={{
-          bg: active ? 'grassTeal' : hoverBg,
-          transform: 'translateY(-1px)'
-        }}
-        {...props}
-      >
-        {children}
-      </Link>
-    </NextLink>
+    <Link
+      as={NextLink}
+      href={href}
+      scroll={false}
+      p={{ base: 3, md: 2 }}
+      minH={{ base: '44px', md: 'auto' }}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      borderRadius="md"
+      bg={active ? 'grassTeal' : undefined}
+      color={active ? '#202023' : inactiveColor}
+      target={target}
+      transition="all 0.2s ease"
+      _hover={{
+        bg: active ? 'grassTeal' : hoverBg,
+        transform: 'translateY(-1px)'
+      }}
+      {...props}
+    >
+      {children}
+    </Link>
   )
 }
 
@@ -88,6 +89,12 @@ const Navbar = props => {
           <LinkItem href="/works" path={path}>
             Projects
           </LinkItem>
+          <LinkItem href="/posts" path={path}>
+            Posts
+          </LinkItem>
+          <LinkItem href="/guestbook" path={path}>
+            Guestbook
+          </LinkItem>
           <LinkItem href="/#contact" path={path}>
             Contact
           </LinkItem>
@@ -100,8 +107,9 @@ const Navbar = props => {
             alignItems="center"
             style={{ gap: 4 }}
             pl={2}
+            aria-label="Contact me on Instagram"
           >
-            <IoLogoInstagram />
+            <IoLogoInstagram aria-hidden="true" />
             Let&apos;s Talk
           </LinkItem>
         </Stack>
@@ -122,21 +130,28 @@ const Navbar = props => {
                 borderRadius="lg"
               />
               <MenuList>
-                <NextLink href="/">
-                  <MenuItem as={Link}>About</MenuItem>
-                </NextLink>
-                <NextLink href="/#services">
-                  <MenuItem as={Link}>Services</MenuItem>
-                </NextLink>
-                <NextLink href="/works">
-                  <MenuItem as={Link}>Projects</MenuItem>
-                </NextLink>
-                <NextLink href="/#contact">
-                  <MenuItem as={Link}>Contact</MenuItem>
-                </NextLink>
+                <MenuItem as={NextLink} href="/">
+                  About
+                </MenuItem>
+                <MenuItem as={NextLink} href="/#services">
+                  Services
+                </MenuItem>
+                <MenuItem as={NextLink} href="/works">
+                  Projects
+                </MenuItem>
+                <MenuItem as={NextLink} href="/posts">
+                  Posts
+                </MenuItem>
+                <MenuItem as={NextLink} href="/guestbook">
+                  Guestbook
+                </MenuItem>
+                <MenuItem as={NextLink} href="/#contact">
+                  Contact
+                </MenuItem>
                 <MenuItem
                   as={Link}
                   href="https://github.com/mrtonymu/Portfolio"
+                  isExternal
                 >
                   View Source
                 </MenuItem>

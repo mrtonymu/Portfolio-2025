@@ -1,76 +1,120 @@
-import { Container, Heading, SimpleGrid } from '@chakra-ui/react'
+import { Container, Heading, SimpleGrid, Box, Text, Icon } from '@chakra-ui/react'
+import { FiEdit3, FiFileText, FiVideo, FiBookOpen } from 'react-icons/fi'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
-import { GridItem } from '../components/grid-item'
-
-import thumbPortfolio from '../public/images/contents/youtube-how-to-build-portfolio.jpg'
-import thumbHowToUseInkdrop from '../public/images/contents/youtube-how-to-use-inkdrop.jpg'
-import thumbFishWorkflow from '../public/images/contents/youtube-fish-workflow.jpg'
-import thumbMyDeskSetup from '../public/images/contents/youtube-my-desk-setup.jpg'
-import thumb500PaidUsers from '../public/images/contents/blog-500-paid-users.jpg'
-import thumbFinancialGoal from '../public/images/contents/blog-financial-goal.png'
-import thumbHowToPriceYourself from '../public/images/contents/blog-how-to-price-yourself.jpg'
-import thumb50xFaster from '../public/images/contents/youtube-50x-faster.jpg'
 
 const Posts = () => (
   <Layout title="Posts">
     <Container>
       <Heading as="h3" fontSize={20} mb={4}>
-        Popular Posts
+        Posts & Content
       </Heading>
 
       <Section delay={0.1}>
         <SimpleGrid columns={[1, 2, 2]} gap={6}>
-          <GridItem
-            title="How to build a portfolio website"
-            thumbnail={thumbPortfolio}
-            href="https://www.youtube.com/watch?v=bSMZgXzC9AA"
-          />
-          <GridItem
-            title="How to take notes in Markdown efficiently with Inkdrop"
-            thumbnail={thumbHowToUseInkdrop}
-            href="https://www.youtube.com/watch?v=-qBavwqc_mY"
-          />
-          <GridItem
-            title="My Fish workflow"
-            thumbnail={thumbFishWorkflow}
-            href="https://www.youtube.com/watch?v=KKxhf50FIPI"
-          />
-          <GridItem
-            title="My desk setup (Late 2020)"
-            thumbnail={thumbMyDeskSetup}
-            href="https://www.youtube.com/watch?v=1OFDMwDlnOE"
-          />
+          <Box
+            w="100%"
+            textAlign="center"
+            borderRadius="lg"
+            border="2px dashed"
+            borderColor="blue.300"
+            p={8}
+            bg="blue.50"
+            _dark={{ borderColor: 'blue.600', bg: 'blue.900' }}
+            transition="all 0.2s"
+            _hover={{
+              borderColor: 'blue.400',
+              transform: 'translateY(-2px)',
+              shadow: 'lg'
+            }}
+          >
+            <Icon as={FiVideo} boxSize={8} color="blue.400" mb={4} />
+            <Text fontSize="lg" fontWeight="bold" color="blue.600" _dark={{ color: 'blue.300' }} mb={2}>
+              Video Tutorials
+            </Text>
+            <Text fontSize="sm" color="blue.500" _dark={{ color: 'blue.400' }}>
+              Coding tutorials and tech talks coming soon
+            </Text>
+          </Box>
+          
+          <Box
+            w="100%"
+            textAlign="center"
+            borderRadius="lg"
+            border="2px dashed"
+            borderColor="green.300"
+            p={8}
+            bg="green.50"
+            _dark={{ borderColor: 'green.600', bg: 'green.900' }}
+            transition="all 0.2s"
+            _hover={{
+              borderColor: 'green.400',
+              transform: 'translateY(-2px)',
+              shadow: 'lg'
+            }}
+          >
+            <Icon as={FiFileText} boxSize={8} color="green.400" mb={4} />
+            <Text fontSize="lg" fontWeight="bold" color="green.600" _dark={{ color: 'green.300' }} mb={2}>
+              Technical Articles
+            </Text>
+            <Text fontSize="sm" color="green.500" _dark={{ color: 'green.400' }}>
+              In-depth technical posts and guides
+            </Text>
+          </Box>
         </SimpleGrid>
       </Section>
 
       <Section delay={0.3}>
         <SimpleGrid columns={[1, 2, 2]} gap={6}>
-          <GridItem
-            title="How I’ve Attracted The First 500 Paid Users For My SaaS That Costs $5/mo"
-            thumbnail={thumb500PaidUsers}
-            href="https://blog.inkdrop.app/how-ive-attracted-the-first-500-paid-users-for-my-saas-that-costs-5-mo-7a5b94b8e820"
-          />
-          <GridItem
-            title="I stopped setting a financial goal for my SaaS"
-            thumbnail={thumbFinancialGoal}
-            href="https://blog.inkdrop.app/i-stopped-setting-a-financial-goal-for-my-saas-a92c3db65506"
-          />
-        </SimpleGrid>
-      </Section>
-
-      <Section delay={0.5}>
-        <SimpleGrid columns={[1, 2, 2]} gap={6}>
-          <GridItem
-            title="How to Price Yourself as a Freelance Developer"
-            thumbnail={thumbHowToPriceYourself}
-            href="https://blog.inkdrop.app/how-to-price-yourself-as-a-freelance-developer-3453dfd59d91"
-          />
-          <GridItem
-            title="I made my React Native app 50x faster"
-            thumbnail={thumb50xFaster}
-            href="https://www.youtube.com/watch?v=vj723NlrIQc"
-          />
+          <Box
+            w="100%"
+            textAlign="center"
+            borderRadius="lg"
+            border="2px dashed"
+            borderColor="purple.300"
+            p={8}
+            bg="purple.50"
+            _dark={{ borderColor: 'purple.600', bg: 'purple.900' }}
+            transition="all 0.2s"
+            _hover={{
+              borderColor: 'purple.400',
+              transform: 'translateY(-2px)',
+              shadow: 'lg'
+            }}
+          >
+            <Icon as={FiEdit3} boxSize={8} color="purple.400" mb={4} />
+            <Text fontSize="lg" fontWeight="bold" color="purple.600" _dark={{ color: 'purple.300' }} mb={2}>
+              Personal Blog
+            </Text>
+            <Text fontSize="sm" color="purple.500" _dark={{ color: 'purple.400' }}>
+              Personal thoughts and experiences
+            </Text>
+          </Box>
+          
+          <Box
+            w="100%"
+            textAlign="center"
+            borderRadius="lg"
+            border="2px dashed"
+            borderColor="orange.300"
+            p={8}
+            bg="orange.50"
+            _dark={{ borderColor: 'orange.600', bg: 'orange.900' }}
+            transition="all 0.2s"
+            _hover={{
+              borderColor: 'orange.400',
+              transform: 'translateY(-2px)',
+              shadow: 'lg'
+            }}
+          >
+            <Icon as={FiBookOpen} boxSize={8} color="orange.400" mb={4} />
+            <Text fontSize="lg" fontWeight="bold" color="orange.600" _dark={{ color: 'orange.300' }} mb={2}>
+              Learning Resources
+            </Text>
+            <Text fontSize="sm" color="orange.500" _dark={{ color: 'orange.400' }}>
+              Curated learning materials and resources
+            </Text>
+          </Box>
         </SimpleGrid>
       </Section>
     </Container>

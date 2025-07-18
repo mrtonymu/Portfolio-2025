@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://your-domain.com/sitemap.xml
+
+# Disallow crawling of API routes and private files
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow crawling of main pages
+Allow: /
+Allow: /works
+Allow: /posts
+Allow: /guestbook
+Allow: /works/*

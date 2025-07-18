@@ -9,15 +9,33 @@ import {
   Text,
   VStack,
   HStack,
-  Flex
+  Flex,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Badge,
+  Icon,
+  useToast
 } from '@chakra-ui/react'
 import { ChevronRightIcon, CheckIcon } from '@chakra-ui/icons'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useMemo, useCallback, useState } from 'react'
 
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import WordRotationEffect from '../components/typing-effect'
-import { IoLogoInstagram, IoLogoGithub } from 'react-icons/io5'
+import AnimatedAvatar from '../components/animated-avatar'
+import { IoLogoInstagram, IoLogoGithub, IoOpenOutline, IoCodeSlash } from 'react-icons/io5'
 import dynamic from 'next/dynamic'
 
 const VoxelDog = dynamic(() => import('../components/voxel-dog'), {
@@ -28,8 +46,79 @@ const VoxelDog = dynamic(() => import('../components/voxel-dog'), {
 
 const Home = () => {
   const { scrollY } = useScroll()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [selectedProject, setSelectedProject] = useState(null)
+  const toast = useToast()
+  
+  // Transform values for scroll animations
   const backgroundY = useTransform(scrollY, [0, 1000], [0, -100])
   const backgroundOpacity = useTransform(scrollY, [0, 500], [1, 0.3])
+  
+  // Color mode values for accordion buttons
+  const tealExpandedBg = useColorModeValue('teal.50', 'teal.900')
+  const pinkExpandedBg = useColorModeValue('pink.50', 'pink.900')
+  
+  // Color mode values for modal
+  const modalBg = useColorModeValue('white', 'gray.800')
+  const modalBorderColor = useColorModeValue('gray.200', 'gray.600')
+  const modalHeaderBorderColor = useColorModeValue('gray.100', 'gray.700')
+  const modalFooterBorderColor = useColorModeValue('gray.100', 'gray.700')
+  const modalTextColor = useColorModeValue('gray.600', 'gray.300')
+
+  // Project data with detailed information
+  const projectsData = useMemo(() => [
+    {
+      id: 'portfolio',
+      title: '🌟 This Portfolio Site',
+      stack: ['Next.js', 'Chakra UI', 'Framer Motion', 'Three.js'],
+      description: 'Modern portfolio with 3D elements, smooth animations, and responsive design.',
+      features: [
+        'Framer Motion scroll animations',
+        'Three.js 3D dog model integration',
+        'Responsive design with Chakra UI',
+        'Performance optimized with lazy loading'
+      ],
+      liveUrl: '#',
+      githubUrl: 'https://github.com/yourusername/portfolio',
+      color: 'teal',
+      result: '60% faster response time, used for support triage'
+    },
+    {
+      id: 'ai-copilot',
+      title: '🎥 Short-Form AI Co-Pilot',
+      stack: ['ChatGPT API', 'JavaScript', 'Template Engine'],
+      description: 'Prototype to help creators batch-edit & script TikTok/IG Reels using ChatGPT + templates.',
+      features: [
+        'ChatGPT API for automated script generation',
+        'Reusable templates for content types',
+        'Batch processing for multiple concepts'
+      ],
+      liveUrl: null,
+      githubUrl: 'https://github.com/yourusername/ai-copilot',
+      color: 'pink',
+      result: 'Content planning time from hours → minutes'
+    },
+    {
+      id: 'prompt-tool',
+      title: '📦 Mini Prompt Tool',
+      stack: ['JavaScript', 'Browser APIs', 'Clipboard API'],
+      description: 'Lightweight browser tool to organize, clean, and test GPT prompts.',
+      features: [
+        'Grouped reusable prompt templates',
+        'Clipboard export and quick-copy buttons',
+        'Team onboarding with prompt libraries'
+      ],
+      liveUrl: 'https://your-prompt-tool.com',
+      githubUrl: 'https://github.com/yourusername/prompt-tool',
+      color: 'orange',
+      result: 'Standardize prompt testing and knowledge sharing'
+    }
+  ], [])
+
+  const handleProjectClick = useCallback((project) => {
+    setSelectedProject(project)
+    onOpen()
+  }, [onOpen])
 
   return (
     <Layout>
@@ -40,25 +129,39 @@ const Home = () => {
           left: 0,
           right: 0,
           height: '120vh',
-          background: 'linear-gradient(135deg, rgba(56, 178, 172, 0.08) 0%, rgba(66, 153, 225, 0.06) 50%, rgba(159, 122, 234, 0.04) 100%)',
+          background: 'linear-gradient(135deg, rgba(56, 178, 172, 0.06) 0%, rgba(66, 153, 225, 0.04) 50%, rgba(159, 122, 234, 0.02) 100%)',
           zIndex: -10,
           y: backgroundY,
-          opacity: backgroundOpacity
+          opacity: backgroundOpacity,
+          willChange: 'transform, opacity',
+          backfaceVisibility: 'hidden'
         }}
       />
       <Container maxW="container.lg" position="relative">
       {/* Hero Section - Cinematic Enhanced */}
       <Section delay={0.1}>
         <Box 
+          w="100vw"
+          position="relative"
+          left="50%"
+          right="50%"
+          ml="-50vw"
+          mr="-50vw"
           textAlign="center" 
           py={{ base: 16, sm: 20, md: 24, lg: 32 }}
-          px={{ base: 6, sm: 8, md: 10 }}
-          position="relative"
           overflow="hidden"
           minH={{ base: '85vh', md: '90vh' }}
           display="flex"
           flexDirection="column"
           justifyContent="center"
+          bg={useColorModeValue(
+            'linear-gradient(135deg, #f7fafc 0%, rgba(56, 178, 172, 0.03) 50%, #edf2f7 100%)',
+            'linear-gradient(135deg, #1a202c 0%, rgba(56, 178, 172, 0.08) 50%, #2d3748 100%)'
+          )}
+          boxShadow={useColorModeValue(
+            '0 10px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+            '0 10px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+          )}
           _before={{
             content: '""',
             position: 'absolute',
@@ -66,10 +169,10 @@ const Home = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'linear-gradient(135deg, rgba(56, 178, 172, 0.18) 0%, rgba(56, 178, 172, 0.15) 10%, rgba(66, 153, 225, 0.12) 25%, rgba(66, 153, 225, 0.1) 40%, rgba(159, 122, 234, 0.08) 55%, rgba(159, 122, 234, 0.06) 70%, rgba(159, 122, 234, 0.04) 85%, transparent 100%)',
+            background: 'linear-gradient(135deg, rgba(56, 178, 172, 0.12) 0%, rgba(66, 153, 225, 0.08) 50%, rgba(159, 122, 234, 0.04) 100%)',
             zIndex: -3,
-            transform: 'translateY(0px)',
-            transition: 'transform 0.1s ease-out'
+            willChange: 'transform',
+            backfaceVisibility: 'hidden'
           }}
           _after={{
             content: '""',
@@ -78,11 +181,11 @@ const Home = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'radial-gradient(ellipse 120% 80% at 50% 30%, rgba(56, 178, 172, 0.12) 0%, rgba(66, 153, 225, 0.08) 35%, rgba(159, 122, 234, 0.05) 65%, transparent 100%)',
+            background: 'radial-gradient(ellipse 100% 60% at 50% 30%, rgba(56, 178, 172, 0.08) 0%, rgba(66, 153, 225, 0.04) 50%, transparent 80%)',
             zIndex: -2,
-            animation: 'pulse 6s ease-in-out infinite',
-            transform: 'translateY(0px)',
-            transition: 'transform 0.1s ease-out'
+            animation: 'pulse 8s ease-in-out infinite',
+            willChange: 'opacity',
+            backfaceVisibility: 'hidden'
           }}
           sx={{
             '@keyframes pulse': {
@@ -95,133 +198,37 @@ const Home = () => {
             }
           }}
         >
-          {/* Floating Particles */}
-          {[...Array(6)].map((_, i) => (
-            <Box
-              key={i}
-              position="absolute"
-              w={{ base: '4px', md: '6px' }}
-              h={{ base: '4px', md: '6px' }}
-              bg="rgba(56, 178, 172, 0.6)"
-              borderRadius="full"
-              top={`${20 + i * 15}%`}
-              left={`${10 + i * 15}%`}
-              animation={`float ${3 + i * 0.5}s ease-in-out infinite ${i * 0.2}s`}
-              zIndex={-1}
-              display={{ base: 'none', md: 'block' }}
-            />
-          ))}
-          <Box mb={{ base: 6, sm: 8, md: 10 }} position="relative">
-            {/* Animated Stitch Avatar - Central Character Moment */}
-            <Box
-              position="absolute"
-              top={{ base: "-40px", sm: "-60px", md: "-100px" }}
-              left="0"
-              right="0"
-              zIndex={10}
-              display="flex"
-              justifyContent="center"
-              px={{ base: 4, sm: 6, md: 8 }}
-            >
-
+          {/* Content Container */}
+          <Box maxW="6xl" mx="auto" px={{ base: 6, sm: 8, md: 10 }} w="100%" position="relative">
+            {/* Optimized Floating Particles */}
+            {[...Array(4)].map((_, i) => (
               <Box
-                w={{ base: "96px", sm: "110px", md: "160px" }}
-                h={{ base: "96px", sm: "110px", md: "160px" }}
+                key={i}
+                position="absolute"
+                w={{ base: '3px', md: '5px' }}
+                h={{ base: '3px', md: '5px' }}
+                bg="rgba(56, 178, 172, 0.5)"
                 borderRadius="full"
-                bg="rgba(255, 255, 255, 0.1)"
-                backdropFilter="blur(15px)"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                border="3px solid rgba(56, 178, 172, 0.4)"
-                boxShadow="0 0 40px rgba(56, 178, 172, 0.6), 0 0 80px rgba(56, 178, 172, 0.3), inset 0 0 25px rgba(255, 255, 255, 0.1)"
-                position="relative"
-                overflow="hidden"
-                cursor="pointer"
-                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
-                _hover={{
-                  transform: 'scale(1.05)',
-                  boxShadow: '0 0 50px rgba(56, 178, 172, 0.7), 0 0 100px rgba(56, 178, 172, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.15)'
+                top={`${25 + i * 20}%`}
+                left={`${15 + i * 20}%`}
+                animation={`float ${3 + i * 0.5}s ease-in-out infinite ${i * 0.3}s`}
+                zIndex={-1}
+                display={{ base: 'none', lg: 'block' }}
+                style={{
+                  willChange: 'transform',
+                  backfaceVisibility: 'hidden'
                 }}
-                _active={{
-                  transform: 'scale(1.02)',
-                  boxShadow: '0 0 35px rgba(56, 178, 172, 0.6), 0 0 70px rgba(56, 178, 172, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)'
-                }}
-                _before={{
-                  content: '""',
-                  position: 'absolute',
-                  top: '-3px',
-                  left: '-3px',
-                  right: '-3px',
-                  bottom: '-3px',
-                  background: 'conic-gradient(from 0deg, transparent, rgba(56, 178, 172, 0.8), transparent, rgba(66, 153, 225, 0.8), transparent)',
-                  borderRadius: 'full',
-                  zIndex: -1,
-                  animation: 'spin 4s linear infinite'
-                }}
-                sx={{
-                  '@keyframes spin': {
-                    '0%': { transform: 'rotate(0deg)' },
-                    '100%': { transform: 'rotate(360deg)' }
-                  },
-                  '@keyframes scaleIn': {
-                    '0%': { transform: 'scale(0)', opacity: 0 },
-                    '50%': { transform: 'scale(1.15)', opacity: 0.8 },
-                    '100%': { transform: 'scale(1)', opacity: 1 }
-                  },
-                  '@keyframes pulse': {
-                    '0%, 100%': { transform: 'translateY(-50%) scale(1)', opacity: 0.6 },
-                    '50%': { transform: 'translateY(-50%) scale(1.1)', opacity: 0.8 }
-                  },
-                  animation: 'scaleIn 1.5s ease-out 0.5s both'
-                }}
-              >
-                <Box
-                  as="img"
-                  src="https://media.giphy.com/media/fRFK42AiiLDgs/giphy.gif"
-                  alt="Stitch Avatar"
-                  w={{ base: "70px", sm: "80px", md: "120px" }}
-                  h={{ base: "70px", sm: "80px", md: "120px" }}
-                  borderRadius="full"
-                  objectFit="cover"
-                  filter="brightness(1.2) contrast(1.15) saturate(1.1)"
-                />
-                {/* Sparkle effects - Reduced on mobile */}
-                <Box
-                  position="absolute"
-                  top={{ base: "8px", md: "10px" }}
-                  right={{ base: "8px", md: "10px" }}
-                  w={{ base: "4px", md: "6px" }}
-                  h={{ base: "4px", md: "6px" }}
-                  bg="white"
-                  borderRadius="full"
-                  animation="sparkle 2s ease-in-out infinite"
-                  sx={{
-                    '@keyframes sparkle': {
-                      '0%, 100%': { opacity: 0, transform: 'scale(0)' },
-                      '50%': { opacity: 1, transform: 'scale(1)' }
-                    }
-                  }}
-                />
-                <Box
-                  position="absolute"
-                  bottom={{ base: "12px", md: "15px" }}
-                  left={{ base: "12px", md: "15px" }}
-                  w={{ base: "3px", md: "4px" }}
-                  h={{ base: "3px", md: "4px" }}
-                  bg="white"
-                  borderRadius="full"
-                  animation="sparkle 2s ease-in-out infinite 1s"
-                  display={{ base: "none", sm: "block" }}
-                />
-              </Box>
-            </Box>
+              />
+            ))}
+          <Box mb={{ base: 6, sm: 8, md: 10 }} position="relative">
+            {/* Optimized Animated Avatar Component */}
+            <AnimatedAvatar />
             
             <Box 
               mt={{ base: "35px", sm: "40px", md: "35px" }} 
               px={{ base: 4, sm: 6, md: 8 }}
               maxW="100%"
-              overflow="hidden"
+              overflow="visible"
             >
               <WordRotationEffect
                 staticText="I help non-tech creatives build"
@@ -367,6 +374,7 @@ const Home = () => {
               <Text fontSize="lg">↓</Text>
             </Box>
           </VStack>
+          </Box>
         </Box>
       </Section>
 
@@ -402,6 +410,104 @@ const Home = () => {
               💡 TLDR: Empathy-driven builder with frontline support roots
             </Text>
           </Box>
+
+          {/* Two-column layout: 3D Dog Model + Bio */}
+          <Flex 
+            direction={{ base: 'column', lg: 'row' }} 
+            align="center" 
+            justify="center" 
+            gap={{ base: 8, lg: 12 }}
+            mb={{ base: 10, md: 14 }}
+            p={{ base: 6, sm: 8, md: 10 }}
+            bg={useColorModeValue('gray.50', 'gray.900')}
+            borderRadius="3xl"
+            boxShadow="lg"
+            position="relative"
+            overflow="hidden"
+            _before={{
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              bg: 'linear-gradient(135deg, teal.500, blue.500)',
+              opacity: 0.05,
+              zIndex: 0
+            }}
+          >
+            {/* 3D Dog Model - Left Side */}
+            <Box
+              position="relative"
+              zIndex={1}
+              w={{ base: 200, sm: 240, lg: 280 }}
+              h={{ base: 200, sm: 240, lg: 280 }}
+              flexShrink={0}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              transition="all 0.4s ease"
+              _hover={{
+                transform: 'scale(1.05) translateY(-5px)',
+                filter: 'drop-shadow(0 15px 35px rgba(56, 178, 172, 0.3))'
+              }}
+              sx={{
+                '@keyframes float': {
+                  '0%, 100%': { transform: 'translateY(0px)' },
+                  '50%': { transform: 'translateY(-10px)' }
+                },
+                animation: 'float 3s ease-in-out infinite'
+              }}
+            >
+              <VoxelDog />
+            </Box>
+            
+            {/* Bio Text - Right Side */}
+            <VStack 
+              align={{ base: 'center', lg: 'start' }} 
+              spacing={6}
+              textAlign={{ base: 'center', lg: 'left' }}
+              position="relative"
+              zIndex={1}
+              flex={1}
+              maxW={{ base: '100%', lg: '500px' }}
+            >
+              <Text fontWeight="800" fontSize="3xl" color={useColorModeValue('gray.800', 'white')}>Tony Yam</Text>
+              <Text 
+                color={useColorModeValue('teal.600', 'teal.300')} 
+                fontSize="xl"
+                fontWeight="600"
+              >
+                Freelance Web Developer
+              </Text>
+              <Text 
+                color={useColorModeValue('gray.600', 'gray.300')}
+                fontSize="lg"
+                fontWeight="500"
+              >
+                📍 Kuala Lumpur, Malaysia
+              </Text>
+              <Text 
+                color={useColorModeValue('gray.600', 'gray.300')}
+                fontSize="md"
+                lineHeight="relaxed"
+                fontWeight="500"
+                maxW={{ base: '100%', lg: '400px' }}
+              >
+                Building digital solutions that actually solve problems, not just look pretty. 
+                I help solo creators and business owners launch fast, functional websites without 
+                the agency overhead or template limitations.
+              </Text>
+              <Text 
+                color={useColorModeValue('gray.400', 'gray.400')}
+                fontSize="sm"
+                fontStyle="italic"
+                maxW={{ base: '100%', lg: '400px' }}
+              >
+                &ldquo;Every great website starts with understanding the human behind the screen.&rdquo;
+              </Text>
+            </VStack>
+          </Flex>
 
           <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={{ base: 6, sm: 8, md: 10 }} mb={{ base: 10, md: 14 }} maxW={{ base: "90%", sm: "100%" }} mx="auto">
             <Box variant="hero-card" position="relative" overflow="hidden" borderRadius="xl" boxShadow="lg">
@@ -492,100 +598,18 @@ const Home = () => {
             </Box>
           </SimpleGrid>
 
-          <Flex 
-            direction={{ base: 'column', md: 'row' }} 
-            align="center" 
-            justify="center" 
-            gap={{ base: 8, md: 12 }}
-            p={{ base: 6, sm: 8, md: 10 }}
-            bg={useColorModeValue('gray.50', 'gray.900')}
-            borderRadius="xl"
-            boxShadow="lg"
-            position="relative"
-            overflow="hidden"
-            _before={{
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              bg: 'linear-gradient(135deg, teal.500, blue.500)',
-              opacity: 0.05,
-              zIndex: 0
-            }}
-          >
-            <Box
-              position="relative"
-              zIndex={1}
-              w={{ base: 180, sm: 200, md: 240 }}
-              h={{ base: 180, sm: 200, md: 240 }}
-              mx="auto"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              transition="all 0.4s ease"
-              _hover={{
-                transform: 'scale(1.05) translateY(-5px)',
-                filter: 'drop-shadow(0 15px 35px rgba(56, 178, 172, 0.3))'
-              }}
-              sx={{
-                '@keyframes float': {
-                  '0%, 100%': { transform: 'translateY(0px)' },
-                  '50%': { transform: 'translateY(-10px)' }
-                },
-                animation: 'float 3s ease-in-out infinite'
-              }}
-            >
-              <VoxelDog />
-            </Box>
-            
-            <VStack 
-              align={{ base: 'center', md: 'start' }} 
-              spacing={4}
-              textAlign={{ base: 'center', md: 'left' }}
-              position="relative"
-              zIndex={1}
-            >
-              <Text fontWeight="800" fontSize="2xl" color={useColorModeValue('gray.800', 'white')}>Tony Yam</Text>
-              <Text 
-                color={useColorModeValue('teal.600', 'teal.300')} 
-                fontSize="lg"
-                fontWeight="600"
-              >
-                Freelance Web Developer
-              </Text>
-              <Text 
-                color={useColorModeValue('gray.600', 'gray.300')}
-                fontSize="md"
-                fontWeight="500"
-              >
-                📍 Kuala Lumpur, Malaysia
-              </Text>
-              <Text 
-                color={useColorModeValue('gray.400', 'gray.400')}
-                fontSize="sm"
-                fontStyle="italic"
-                maxW={{ base: "280px", sm: "300px", md: "350px" }}
-                px={{ base: 2, md: 0 }}
-                wordBreak="break-word"
-                overflowWrap="break-word"
-              >
-                &ldquo;Building digital solutions that actually solve problems, not just look pretty.&rdquo;
-              </Text>
-            </VStack>
-          </Flex>
+
         </Box>
       </Section>
 
       {/* Services Section */}
       <Section delay={0.3}>
-        <Box pt={10} pb={12} id="services">
+        <Box variant="section-container" id="services">
           <Heading 
             as="h2" 
-            variant="section-title" 
-            textAlign="center"
-            mb={8}
+            variant="section-title"
+            bgGradient="linear(to-r, teal.400, blue.500)"
+            bgClip="text"
           >
             💡 From 0 to Launch — Custom Website Building
           </Heading>
@@ -606,7 +630,11 @@ const Home = () => {
             I help solo creators and business owners launch fast, functional, good-looking websites — without relying on expensive agencies or rigid templates.
           </Text>
 
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 4, sm: 5, md: 6 }} mb={{ base: 6, md: 8 }}>
+          <SimpleGrid 
+            columns={{ base: 1, md: 2 }} 
+            spacing={{ base: 6, md: 8, lg: 10 }} 
+            mb={{ base: 8, md: 12 }}
+          >
             <VStack align="start" spacing={4}>
               <HStack>
                 <CheckIcon color="teal.500" />
@@ -640,10 +668,14 @@ const Home = () => {
 
           <Box 
             textAlign="center" 
-            p={8} 
+            p={{ base: 6, md: 8, lg: 10 }} 
             variant="hero-card"
             position="relative"
             overflow="hidden"
+            minHeight={{ base: '120px', md: '140px' }}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
             _before={{
               content: '""',
               position: 'absolute',
@@ -672,12 +704,12 @@ const Home = () => {
 
       {/* Projects Section */}
       <Section delay={0.4}>
-        <Box pt={10} pb={12} id="projects">
+        <Box variant="section-container" id="projects">
           <Heading 
             as="h2" 
-            variant="section-title" 
-            textAlign="center"
-            mb={8}
+            variant="section-title"
+            bgGradient="linear(to-r, purple.400, pink.400)"
+            bgClip="text"
           >
             💼 Projects
           </Heading>
@@ -697,30 +729,22 @@ const Home = () => {
             A curated selection of things I&apos;ve built, broken, and learned from.
           </Text>
           
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 8, sm: 10, md: 8 }} mb={{ base: 12, sm: 14, md: 12 }}>
+          <SimpleGrid 
+            columns={{ base: 1, md: 2, lg: 3 }} 
+            spacing={{ base: 6, md: 8, lg: 10 }} 
+            mb={{ base: 12, md: 16 }}
+          >
             <Box 
-              variant="hero-card"
-              position="relative"
-              overflow="hidden"
+              variant="project-card"
               cursor="pointer"
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-              _hover={{
-                transform: 'translateY(-12px) scale(1.02)',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(66, 153, 225, 0.3)',
-                _before: {
-                  height: '8px'
-                },
-                _after: {
-                  opacity: 0.25
-                }
-              }}
+              onClick={() => handleProjectClick(projectsData[2])}
               _before={{
                 content: '""',
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100%',
-                height: '4px',
+                height: '3px',
                 bg: 'linear-gradient(90deg, blue.400, blue.600)',
                 zIndex: 1,
                 transition: 'height 0.4s ease'
@@ -730,112 +754,78 @@ const Home = () => {
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '60px',
-                height: '60px',
+                width: '40px',
+                height: '40px',
                 bg: 'linear-gradient(135deg, blue.400, blue.600)',
-                opacity: 0.1,
-                borderRadius: '0 0 0 60px',
+                opacity: 0.15,
+                borderRadius: '0 0 0 40px',
                 transition: 'opacity 0.4s ease'
               }}
+              _hover={{
+                _before: {
+                  height: '6px'
+                },
+                _after: {
+                  opacity: 0.3
+                }
+              }}
             >
-              <Heading as="h3" size="md" mb={4} color="blue.600" fontWeight="700">
+              <Heading as="h3" size="sm" mb={3} color="blue.400" fontWeight="700">
                 📊 Profit Tracker Dashboard
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
-                Type: Internal tool | Built for: My dropshipping ops (2022–2024)
+              <Text fontSize="xs" color="gray.400" mb={3} fontWeight="600">
+                Internal tool | Dropshipping ops
               </Text>
               <Text 
-                fontSize={{ base: "sm", md: "md" }} 
-                lineHeight={{ base: "1.7", md: "1.6" }} 
-                mb={4} 
-                color={useColorModeValue('gray.700', 'gray.300')}
+                fontSize="sm" 
+                lineHeight="1.6" 
+                mb={3} 
+                color="gray.300"
                 wordBreak="break-word"
                 overflowWrap="break-word"
               >
-                A private dashboard to calculate product ROI and campaign performance across multiple suppliers.
+                Private dashboard for product ROI and campaign performance tracking.
               </Text>
-              <VStack align="start" spacing={3} fontSize={{ base: "xs", md: "sm" }}>
-                <Text 
-                  color={useColorModeValue('gray.600', 'gray.300')}
-                  lineHeight={{ base: "1.6", md: "1.5" }}
-                  wordBreak="break-word"
-                  overflowWrap="break-word"
-                >
-                  • Automated daily sales tracking via Google Sheets + App Script
-                </Text>
-                <Text 
-                  color={useColorModeValue('gray.600', 'gray.300')}
-                  lineHeight={{ base: "1.6", md: "1.5" }}
-                  wordBreak="break-word"
-                  overflowWrap="break-word"
-                >
-                  • Visualized COGS vs marketing spend, per SKU
-                </Text>
-                <Text 
-                  color={useColorModeValue('gray.600', 'gray.300')}
-                  lineHeight={{ base: "1.6", md: "1.5" }}
-                  wordBreak="break-word"
-                  overflowWrap="break-word"
-                >
-                  • Helped me spot underperforming campaigns 3x faster
-                </Text>
-                <Box 
-                  p={3} 
-                  bg={useColorModeValue('blue.50', 'blue.900')} 
-                  borderRadius="md" 
-                  mt={2}
-                  borderLeft="4px solid"
-                  borderColor="blue.400"
-                >
-                  <Text fontWeight="700" color={useColorModeValue('blue.700', 'blue.300')}>
-                    Impact: Tracked $50,000+ in total transactions and improved decision-making speed by 60%
-                  </Text>
-                </Box>
+              <VStack align="start" spacing={2} fontSize="xs">
+                <Text color="gray.400">• Automated sales tracking via Google Sheets</Text>
+                <Text color="gray.400">• COGS vs marketing spend visualization</Text>
+                <Text color="gray.400">• 3x faster campaign optimization</Text>
               </VStack>
-              
-              {/* Hover Info Overlay */}
-              <Box
-                className="hover-info"
-                position="absolute"
-                bottom="0"
-                left="0"
-                right="0"
-                bg="linear-gradient(to top, rgba(66, 153, 225, 0.95), rgba(66, 153, 225, 0.8))"
-                color="white"
-                p={4}
-                opacity={0}
-                transform="translateY(20px)"
-                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                backdropFilter="blur(15px)"
-                sx={{
-                  '.hero-card:hover &': {
-                    opacity: 1,
-                    transform: 'translateY(0)'
-                  }
-                }}
+              <Box 
+                mt={4}
+                p={3} 
+                bg="blue.900" 
+                borderRadius="md" 
+                borderLeft="3px solid"
+                borderColor="blue.400"
               >
-                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
-                <Text fontSize="xs" mb={2}>Google Sheets API • App Script • Data Visualization</Text>
-                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
-                  View Project →
-                </Button>
+                <Text fontSize="xs" fontWeight="600" color="blue.300">
+                  Impact: $50K+ tracked, 60% faster decisions
+                </Text>
               </Box>
+
             </Box>
             
             <Box 
-              variant="hero-card"
+              bg={useColorModeValue('gray.900', 'gray.800')}
+              borderRadius="2xl"
+              p={6}
               position="relative"
               overflow="hidden"
               cursor="pointer"
               transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              border="1px solid"
+              borderColor={useColorModeValue('gray.700', 'gray.600')}
+              onClick={() => handleProjectClick(projectsData[0])}
               _hover={{
-                transform: 'translateY(-12px) scale(1.02)',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(56, 178, 172, 0.3), 0 0 20px rgba(56, 178, 172, 0.2)',
+                transform: 'translateY(-8px) scale(1.03)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(56, 178, 172, 0.4)',
+                borderColor: 'teal.400',
                 _before: {
-                  height: '8px'
+                  height: '6px'
                 },
                 _after: {
-                  opacity: 0.25
+                  opacity: 0.3
                 }
               }}
               _before={{
@@ -844,7 +834,7 @@ const Home = () => {
                 top: 0,
                 left: 0,
                 width: '100%',
-                height: '4px',
+                height: '3px',
                 bg: 'linear-gradient(90deg, teal.400, teal.600)',
                 zIndex: 1,
                 transition: 'height 0.4s ease'
@@ -854,59 +844,57 @@ const Home = () => {
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '60px',
-                height: '60px',
+                width: '40px',
+                height: '40px',
                 bg: 'linear-gradient(135deg, teal.400, teal.600)',
-                opacity: 0.1,
-                borderRadius: '0 0 0 60px',
+                opacity: 0.15,
+                borderRadius: '0 0 0 40px',
                 transition: 'opacity 0.4s ease'
               }}
             >
               {/* Featured Tag */}
               <Box
                 position="absolute"
-                top="16px"
-                right="16px"
+                top="12px"
+                right="12px"
                 bg="linear-gradient(135deg, teal.400, teal.600)"
                 color="white"
-                px={3}
+                px={2}
                 py={1}
                 borderRadius="full"
                 fontSize="xs"
                 fontWeight="bold"
-                textTransform="uppercase"
-                letterSpacing="wider"
                 zIndex={2}
                 boxShadow="0 4px 12px rgba(56, 178, 172, 0.3)"
               >
                 ⭐ Featured
               </Box>
-              <Heading as="h3" size="md" mb={4} color="teal.600" fontWeight="700">
+              <Heading as="h3" size="sm" mb={3} color="teal.400" fontWeight="700">
                 🔧 Portfolio Site
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
-                Tech stack: Next.js, React, Chakra UI, Three.js
+              <Text fontSize="xs" color="gray.400" mb={3} fontWeight="600">
+                Next.js, React, Chakra UI, Three.js
               </Text>
-              <Text fontSize="md" lineHeight="relaxed" mb={4} color={useColorModeValue('gray.600', 'gray.300')}>
-                This site — built as both a learning journey and a proof of capability.
+              <Text fontSize="sm" lineHeight="1.6" mb={3} color="gray.300">
+                This site — built as both a learning journey and proof of capability.
               </Text>
-              <VStack align="start" spacing={2} fontSize="sm">
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Implemented rotating 3D dog using Three.js</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Refactored layout and animation logic for performance</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Broke the whole build once (twice actually), and fixed it from scratch</Text>
-                <Box 
-                  p={3} 
-                  bg={useColorModeValue('teal.50', 'teal.900')} 
-                  borderRadius="md" 
-                  mt={2}
-                  borderLeft="4px solid"
-                  borderColor="teal.400"
-                >
-                  <Text fontStyle="italic" color={useColorModeValue('teal.700', 'teal.300')} fontWeight="600">
-                    Lessons: version control, visual rhythm, responsive UI, and when to stop tweaking 😅
-                  </Text>
-                </Box>
+              <VStack align="start" spacing={2} fontSize="xs">
+                <Text color="gray.400">• 3D dog model with Three.js</Text>
+                <Text color="gray.400">• Performance-optimized animations</Text>
+                <Text color="gray.400">• Responsive design patterns</Text>
               </VStack>
+              <Box 
+                mt={4}
+                p={3} 
+                bg="teal.900" 
+                borderRadius="md" 
+                borderLeft="3px solid"
+                borderColor="teal.400"
+              >
+                <Text fontSize="xs" fontWeight="600" color="teal.300">
+                  Lessons: version control, visual rhythm, when to stop tweaking 😅
+                </Text>
+              </Box>
               
               {/* Hover Info Overlay */}
               <Box
@@ -938,23 +926,25 @@ const Home = () => {
             </Box>
             
             <Box 
-              variant="hero-card"
+              bg={useColorModeValue('gray.900', 'gray.800')}
+              borderRadius="2xl"
+              p={6}
               position="relative"
               overflow="hidden"
               cursor="pointer"
               transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              border="1px solid"
+              borderColor={useColorModeValue('gray.700', 'gray.600')}
+              onClick={() => handleProjectClick(projectsData[1])}
               _hover={{
-                transform: 'translateY(-12px) scale(1.02)',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(159, 122, 234, 0.3)',
+                transform: 'translateY(-8px) scale(1.03)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(159, 122, 234, 0.4)',
+                borderColor: 'purple.400',
                 _before: {
-                  height: '8px'
+                  height: '6px'
                 },
                 _after: {
-                  opacity: 0.25
-                },
-                '& .hover-info': {
-                  opacity: 1,
-                  transform: 'translateY(0)'
+                  opacity: 0.3
                 }
               }}
               _before={{
@@ -963,7 +953,7 @@ const Home = () => {
                 top: 0,
                 left: 0,
                 width: '100%',
-                height: '4px',
+                height: '3px',
                 bg: 'linear-gradient(90deg, purple.400, purple.600)',
                 zIndex: 1,
                 transition: 'height 0.4s ease'
@@ -973,88 +963,63 @@ const Home = () => {
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '60px',
-                height: '60px',
+                width: '40px',
+                height: '40px',
                 bg: 'linear-gradient(135deg, purple.400, purple.600)',
-                opacity: 0.1,
-                borderRadius: '0 0 0 60px',
+                opacity: 0.15,
+                borderRadius: '0 0 0 40px',
                 transition: 'opacity 0.4s ease'
               }}
             >
-              <Heading as="h3" size="md" mb={4} color="purple.600" fontWeight="700">
+              <Heading as="h3" size="sm" mb={3} color="purple.400" fontWeight="700">
                 🤖 GPT-Powered Support Flow
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
-                Type: Workflow experiment | Built for: Fintech role @ DeCard (2025)
+              <Text fontSize="xs" color="gray.400" mb={3} fontWeight="600">
+                GPT-4, Telegram Bot API, Python
               </Text>
-              <Text fontSize="md" lineHeight="relaxed" mb={4} color={useColorModeValue('gray.600', 'gray.300')}>
-                Tested how GPT prompts can streamline tier-1 customer support tasks.
+              <Text fontSize="sm" lineHeight="1.6" mb={3} color="gray.300">
+                Workflow experiment for Fintech — testing GPT prompts to streamline tier-1 support.
               </Text>
-              <VStack align="start" spacing={2} fontSize="sm">
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Trained GPT-4 to handle refund, OTP, and KYC queries</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Reduced response time from 3 minutes to {'<1 minute'}</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Simulated sentiment-based prioritization in Telegram Bot</Text>
-                <Box 
-                  p={3} 
-                  bg={useColorModeValue('purple.50', 'purple.900')} 
-                  borderRadius="md" 
-                  mt={2}
-                  borderLeft="4px solid"
-                  borderColor="purple.400"
-                >
-                  <Text fontWeight="700" color={useColorModeValue('purple.700', 'purple.300')}>
-                    Result: Helped cut first-response time by ~60%, used internally for support triage
-                  </Text>
-                </Box>
+              <VStack align="start" spacing={2} fontSize="xs">
+                <Text color="gray.400">• GPT-4 training for refund/OTP/KYC queries</Text>
+                <Text color="gray.400">• Response time: 3min → &lt;1min</Text>
+                <Text color="gray.400">• Sentiment-based prioritization</Text>
               </VStack>
-              
-              {/* Hover Info Overlay */}
-              <Box
-                className="hover-info"
-                position="absolute"
-                bottom="0"
-                left="0"
-                right="0"
-                bg="linear-gradient(to top, rgba(159, 122, 234, 0.95), rgba(159, 122, 234, 0.8))"
-                color="white"
-                p={4}
-                opacity={0}
-                transform="translateY(20px)"
-                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                backdropFilter="blur(15px)"
-                sx={{
-                  '.hero-card:hover &': {
-                    opacity: 1,
-                    transform: 'translateY(0)'
-                  }
-                }}
+              <Box 
+                mt={4}
+                p={3} 
+                bg="purple.900" 
+                borderRadius="md" 
+                borderLeft="3px solid"
+                borderColor="purple.400"
               >
-                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
-                <Text fontSize="xs" mb={2}>GPT-4 API • Telegram Bot • Python • Sentiment Analysis</Text>
-                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
-                  View Workflow →
-                </Button>
+                <Text fontSize="xs" fontWeight="600" color="purple.300">
+                  Result: 60% faster response time, used for support triage
+                </Text>
               </Box>
+
             </Box>
             
             <Box 
-              variant="hero-card"
+              bg={useColorModeValue('gray.900', 'gray.800')}
+              borderRadius="2xl"
+              p={6}
               position="relative"
               overflow="hidden"
               cursor="pointer"
               transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              border="1px solid"
+              borderColor={useColorModeValue('gray.700', 'gray.600')}
+              onClick={() => handleProjectClick(projectsData[1])}
               _hover={{
-                transform: 'translateY(-12px) scale(1.02)',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(236, 72, 153, 0.3)',
+                transform: 'translateY(-8px) scale(1.03)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(236, 72, 153, 0.4)',
+                borderColor: 'pink.400',
                 _before: {
-                  height: '8px'
+                  height: '6px'
                 },
                 _after: {
-                  opacity: 0.25
-                },
-                '& .hover-info': {
-                  opacity: 1,
-                  transform: 'translateY(0)'
+                  opacity: 0.3
                 }
               }}
               _before={{
@@ -1063,7 +1028,7 @@ const Home = () => {
                 top: 0,
                 left: 0,
                 width: '100%',
-                height: '4px',
+                height: '3px',
                 bg: 'linear-gradient(90deg, pink.400, pink.600)',
                 zIndex: 1,
                 transition: 'height 0.4s ease'
@@ -1073,88 +1038,63 @@ const Home = () => {
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '60px',
-                height: '60px',
+                width: '40px',
+                height: '40px',
                 bg: 'linear-gradient(135deg, pink.400, pink.600)',
-                opacity: 0.1,
-                borderRadius: '0 0 0 60px',
+                opacity: 0.15,
+                borderRadius: '0 0 0 40px',
                 transition: 'opacity 0.4s ease'
               }}
             >
-              <Heading as="h3" size="md" mb={4} color="pink.600" fontWeight="700">
+              <Heading as="h3" size="sm" mb={3} color="pink.400" fontWeight="700">
                 🎥 Short-Form AI Co-Pilot
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
-                Type: Side tool | Built for: Content creator friends (2024)
+              <Text fontSize="xs" color="gray.400" mb={3} fontWeight="600">
+                ChatGPT API, JavaScript, Template Engine
               </Text>
-              <Text fontSize="md" lineHeight="relaxed" mb={4} color={useColorModeValue('gray.600', 'gray.300')}>
-                Prototyped to help friends batch-edit & script TikTok/IG Reels faster using ChatGPT + templates.
+              <Text fontSize="sm" lineHeight="1.6" mb={3} color="gray.300">
+                Prototype to help creators batch-edit & script TikTok/IG Reels using ChatGPT + templates.
               </Text>
-              <VStack align="start" spacing={2} fontSize="sm">
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Integrated ChatGPT API for automated script generation</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Created reusable templates for different content types</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Added batch processing for multiple video concepts</Text>
-                <Box 
-                  p={3} 
-                  bg={useColorModeValue('pink.50', 'pink.900')} 
-                  borderRadius="md" 
-                  mt={2}
-                  borderLeft="4px solid"
-                  borderColor="pink.400"
-                >
-                  <Text fontStyle="italic" color={useColorModeValue('pink.700', 'pink.300')} fontWeight="600">
-                    Result: Reduced content planning time from hours to minutes for creator workflows
-                  </Text>
-                </Box>
+              <VStack align="start" spacing={2} fontSize="xs">
+                <Text color="gray.400">• ChatGPT API for automated script generation</Text>
+                <Text color="gray.400">• Reusable templates for content types</Text>
+                <Text color="gray.400">• Batch processing for multiple concepts</Text>
               </VStack>
-              
-              {/* Hover Info Overlay */}
-              <Box
-                className="hover-info"
-                position="absolute"
-                bottom="0"
-                left="0"
-                right="0"
-                bg="linear-gradient(to top, rgba(236, 72, 153, 0.95), rgba(236, 72, 153, 0.8))"
-                color="white"
-                p={4}
-                opacity={0}
-                transform="translateY(20px)"
-                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                backdropFilter="blur(15px)"
-                sx={{
-                  '.hero-card:hover &': {
-                    opacity: 1,
-                    transform: 'translateY(0)'
-                  }
-                }}
+              <Box 
+                mt={4}
+                p={3} 
+                bg="pink.900" 
+                borderRadius="md" 
+                borderLeft="3px solid"
+                borderColor="pink.400"
               >
-                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
-                <Text fontSize="xs" mb={2}>ChatGPT API • JavaScript • Template Engine • Batch Processing</Text>
-                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
-                  View Tool →
-                </Button>
+                <Text fontSize="xs" fontWeight="600" color="pink.300">
+                  Result: Content planning time from hours → minutes
+                </Text>
               </Box>
+
             </Box>
             
             <Box 
-              variant="hero-card"
+              bg={useColorModeValue('gray.900', 'gray.800')}
+              borderRadius="2xl"
+              p={6}
               position="relative"
               overflow="hidden"
               cursor="pointer"
               transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              border="1px solid"
+              borderColor={useColorModeValue('gray.700', 'gray.600')}
+              onClick={() => handleProjectClick(projectsData[2])}
               _hover={{
-                transform: 'translateY(-12px) scale(1.02)',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(251, 146, 60, 0.3)',
+                transform: 'translateY(-8px) scale(1.03)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(251, 146, 60, 0.4)',
+                borderColor: 'orange.400',
                 _before: {
-                  height: '8px'
+                  height: '6px'
                 },
                 _after: {
-                  opacity: 0.25
-                },
-                '& .hover-info': {
-                  opacity: 1,
-                  transform: 'translateY(0)'
+                  opacity: 0.3
                 }
               }}
               _before={{
@@ -1163,7 +1103,7 @@ const Home = () => {
                 top: 0,
                 left: 0,
                 width: '100%',
-                height: '4px',
+                height: '3px',
                 bg: 'linear-gradient(90deg, orange.400, orange.600)',
                 zIndex: 1,
                 transition: 'height 0.4s ease'
@@ -1173,78 +1113,57 @@ const Home = () => {
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '60px',
-                height: '60px',
+                width: '40px',
+                height: '40px',
                 bg: 'linear-gradient(135deg, orange.400, orange.600)',
-                opacity: 0.1,
-                borderRadius: '0 0 0 60px',
+                opacity: 0.15,
+                borderRadius: '0 0 0 40px',
                 transition: 'opacity 0.4s ease'
               }}
             >
-              <Heading as="h3" size="md" mb={4} color="orange.600" fontWeight="700">
+              <Heading as="h3" size="sm" mb={3} color="orange.400" fontWeight="700">
                 📦 Mini Prompt Tool
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
-                Type: Side utility | Built for: Personal workflow improvement (2024)
+              <Text fontSize="xs" color="gray.400" mb={3} fontWeight="600">
+                JavaScript, Browser APIs, Clipboard API
               </Text>
-              <Text fontSize="md" lineHeight="relaxed" mb={4} color={useColorModeValue('gray.600', 'gray.300')}>
-                A lightweight browser tool to organize, clean, and test GPT prompts.
+              <Text fontSize="sm" lineHeight="1.6" mb={3} color="gray.300">
+                Lightweight browser tool to organize, clean, and test GPT prompts.
               </Text>
-              <VStack align="start" spacing={2} fontSize="sm">
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Grouped reusable prompt templates for different support cases</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Added clipboard export and quick-copy buttons</Text>
-                <Text color={useColorModeValue('gray.600', 'gray.300')}>• Used internally to onboard new team members with prompt libraries</Text>
-                <Box 
-                  p={3} 
-                  bg={useColorModeValue('orange.50', 'orange.900')} 
-                  borderRadius="md" 
-                  mt={2}
-                  borderLeft="4px solid"
-                  borderColor="orange.400"
-                >
-                  <Text fontStyle="italic" color={useColorModeValue('orange.700', 'orange.300')} fontWeight="600">
-                    Why: To standardize prompt testing and knowledge sharing across team
-                  </Text>
-                </Box>
+              <VStack align="start" spacing={2} fontSize="xs">
+                <Text color="gray.400">• Grouped reusable prompt templates</Text>
+                <Text color="gray.400">• Clipboard export and quick-copy buttons</Text>
+                <Text color="gray.400">• Team onboarding with prompt libraries</Text>
               </VStack>
-              
-              {/* Hover Info Overlay */}
-              <Box
-                className="hover-info"
-                position="absolute"
-                bottom="0"
-                left="0"
-                right="0"
-                bg="linear-gradient(to top, rgba(251, 146, 60, 0.95), rgba(251, 146, 60, 0.8))"
-                color="white"
-                p={4}
-                opacity={0}
-                transform="translateY(20px)"
-                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                backdropFilter="blur(15px)"
-                sx={{
-                  '.hero-card:hover &': {
-                    opacity: 1,
-                    transform: 'translateY(0)'
-                  }
-                }}
+              <Box 
+                mt={4}
+                p={3} 
+                bg="orange.900" 
+                borderRadius="md" 
+                borderLeft="3px solid"
+                borderColor="orange.400"
               >
-                <Text fontSize="sm" fontWeight="bold" mb={2}>💡 Tech Used:</Text>
-                <Text fontSize="xs" mb={2}>JavaScript • Browser APIs • Clipboard API • Local Storage</Text>
-                <Button size="xs" variant="outline" colorScheme="whiteAlpha" mt={2}>
-                  View Utility →
-                </Button>
+                <Text fontSize="xs" fontWeight="600" color="orange.300">
+                  Why: Standardize prompt testing and knowledge sharing
+                </Text>
               </Box>
+
             </Box>
           </SimpleGrid>
           
-          <Box textAlign="center" mb={4}>
-            <Text fontSize="md" color={useColorModeValue('gray.600', 'gray.300')}>
+          <Box textAlign="center" mb={{ base: 6, md: 8 }}>
+            <Text 
+              fontSize={{ base: 'md', md: 'lg' }} 
+              color={useColorModeValue('gray.600', 'gray.300')}
+              maxW="2xl"
+              mx="auto"
+              lineHeight="relaxed"
+            >
               Want a walkthrough of any project? DM me — I&apos;d be happy to share a Loom or repo.
             </Text>
           </Box>
           
-          <Box textAlign="center" mb={12}>
+          <Box textAlign="center" mb={{ base: 12, md: 16 }}>
             <NextLink href="/works">
               <Button 
                 variant="solid"
@@ -1265,10 +1184,10 @@ const Home = () => {
 
       {/* CTA Section */}
       <Section delay={0.5}>
-        <Box pt={10} pb={12} id="contact">
+        <Box variant="section-container" id="contact">
           <Box 
             textAlign="center" 
-            p={12} 
+            p={{ base: 8, md: 12, lg: 16 }} 
             variant="hero-card"
             position="relative"
             overflow="hidden"
@@ -1287,11 +1206,10 @@ const Home = () => {
             <Box position="relative" zIndex={1}>
               <Heading 
                 as="h2" 
-                size="2xl" 
-                mb={6}
+                variant="section-title"
                 bgGradient="linear(to-r, teal.400, blue.500)"
                 bgClip="text"
-                fontWeight="800"
+                mb={{ base: 6, md: 8 }}
               >
                 Want to connect?
               </Heading>
@@ -1373,39 +1291,51 @@ const Home = () => {
 
       {/* What I'm Currently Exploring Section */}
       <Section delay={0.6}>
-        <Box pt={10} pb={12}>
-          <Heading 
-            as="h2" 
-            size="xl" 
-            mb={8} 
-            textAlign="center"
-            bgGradient="linear(to-r, teal.400, blue.500)"
-            bgClip="text"
-            fontWeight="700"
-          >
-            🧠 What I&apos;m currently exploring
-          </Heading>
-          
-          <Box 
-            maxW="4xl" 
-            mx="auto" 
-            p={8} 
-            variant="hero-card"
-            position="relative"
-            overflow="hidden"
-            _before={{
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              bg: 'linear-gradient(135deg, purple.400, teal.400)',
-              opacity: 0.05,
-              zIndex: 0
-            }}
-          >
-            <Box position="relative" zIndex={1}>
+        <Box 
+          bg="black" 
+          variant="section-container"
+          position="relative"
+          overflow="hidden"
+          _before={{
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            bg: 'linear-gradient(135deg, purple.400, teal.400)',
+            opacity: 0.1,
+            zIndex: 0
+          }}
+        >
+          <Box position="relative" zIndex={1} maxW="6xl" mx="auto">
+            <Heading 
+              as="h2" 
+              variant="section-title"
+              bgGradient="linear(to-r, teal.400, blue.500)"
+              bgClip="text"
+            >
+              🧠 What I&apos;m currently exploring
+            </Heading>
+            
+            <Box 
+              maxW="4xl" 
+              mx="auto" 
+              p={8} 
+              bg="gray.900"
+              borderRadius="2xl"
+              border="1px solid"
+              borderColor="gray.700"
+              position="relative"
+              overflow="hidden"
+              boxShadow="0 25px 50px rgba(0, 0, 0, 0.5)"
+              _hover={{
+                transform: 'translateY(-4px)',
+                boxShadow: '0 30px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 178, 172, 0.3)'
+              }}
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+            >
+              <Box position="relative" zIndex={1}>
               <Text 
                 fontSize={{ base: "md", md: "lg" }} 
                 lineHeight="relaxed" 
@@ -1426,24 +1356,27 @@ const Home = () => {
                 On the side, I&apos;ve been thinking about how to blend &ldquo;utility + play&rdquo; — particularly in creative or Web3 tool spaces.
               </Text>
               
-              <Button 
-                variant="ghost" 
-                mt={4}
-                size="lg"
-                fontStyle="italic"
-                color={useColorModeValue('teal.700', 'teal.300')}
-                fontWeight="600"
-                _hover={{
-                  transform: 'scale(1.02)',
-                  boxShadow: '0 8px 25px rgba(56, 178, 172, 0.15)'
-                }}
-                _active={{
-                  transform: 'scale(0.98)'
-                }}
-                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
-              >
-                Still rough, but if you&apos;re into that kind of thing — let&apos;s jam. ✨
-              </Button>
+                <Box textAlign="center" mt={4}>
+                  <Button 
+                    variant="ghost" 
+                    size="lg"
+                    fontStyle="italic"
+                    color="teal.300"
+                    fontWeight="600"
+                    _hover={{
+                      transform: 'scale(1.02)',
+                      boxShadow: '0 8px 25px rgba(56, 178, 172, 0.25)',
+                      bg: 'rgba(56, 178, 172, 0.1)'
+                    }}
+                    _active={{
+                      transform: 'scale(0.98)'
+                    }}
+                    transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                  >
+                    Still rough, but if you&apos;re into that kind of thing — let&apos;s jam. ✨
+                  </Button>
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -1451,71 +1384,281 @@ const Home = () => {
 
       {/* FAQ Section */}
       <Section delay={0.7}>
-        <Box pt={10} pb={12}>
+        <Box variant="section-container">
           <Heading 
             as="h2" 
-            size="xl" 
-            mb={8} 
-            textAlign="center"
+            variant="section-title"
             bgGradient="linear(to-r, purple.400, pink.400)"
             bgClip="text"
-            fontWeight="700"
           >
             💬 Frequently Asked
           </Heading>
           
-          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} maxW="6xl" mx="auto">
-            <Box 
-              p={6} 
-              variant="hero-card"
-              textAlign="center"
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-              _hover={{
-                transform: 'translateY(-8px) scale(1.02)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
-              }}
-            >
-              <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('purple.600', 'purple.300')}>Do you freelance?</Text>
-              <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
-                Yes — on select projects that excite me.
-              </Text>
-            </Box>
-            
-            <Box 
-              p={6} 
-              variant="hero-card"
-              textAlign="center"
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-              _hover={{
-                transform: 'translateY(-8px) scale(1.02)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
-              }}
-            >
-              <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('teal.600', 'teal.300')}>Can we collaborate?</Text>
-              <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
-                Absolutely. Especially if it&apos;s fun, weird, or meaningful.
-              </Text>
-            </Box>
-            
-            <Box 
-              p={6} 
-              variant="hero-card"
-              textAlign="center"
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-              _hover={{
-                transform: 'translateY(-8px) scale(1.02)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
-              }}
-            >
-              <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('pink.600', 'pink.300')}>Tools I use daily?</Text>
-              <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
-                VS Code, Framer, ChatGPT, Figma, and lots of caffeine.
-              </Text>
-            </Box>
-          </SimpleGrid>
+          <Box maxW="4xl" mx="auto">
+            <Accordion allowMultiple>
+              <AccordionItem 
+                border="1px solid"
+                borderColor={useColorModeValue('gray.200', 'gray.700')}
+                borderRadius="xl"
+                mb={{ base: 4, md: 6 }}
+                bg={useColorModeValue('white', 'gray.800')}
+                _hover={{
+                  borderColor: 'purple.400',
+                  transform: 'translateY(-3px)',
+                  boxShadow: '0 12px 35px rgba(159, 122, 234, 0.2)'
+                }}
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              >
+                <AccordionButton 
+                  p={{ base: 4, md: 6 }}
+                  _hover={{ bg: 'transparent' }}
+                  _expanded={{ 
+                    bg: useColorModeValue('purple.50', 'purple.900'),
+                    borderBottomRadius: 0
+                  }}
+                >
+                  <Box flex="1" textAlign="left">
+                    <HStack spacing={3}>
+                      <Text fontSize="2xl">❓</Text>
+                      <Text fontSize="lg" fontWeight="bold" color={useColorModeValue('purple.600', 'purple.300')}>
+                        Do you freelance?
+                      </Text>
+                    </HStack>
+                  </Box>
+                  <AccordionIcon color={useColorModeValue('purple.600', 'purple.300')} />
+                </AccordionButton>
+                <AccordionPanel 
+                  pb={{ base: 4, md: 6 }} 
+                  px={{ base: 4, md: 6 }}
+                  bg={useColorModeValue('purple.50', 'purple.900')}
+                  borderBottomRadius="xl"
+                >
+                  <Text 
+                    fontSize={{ base: 'sm', md: 'md' }} 
+                    color={useColorModeValue('gray.700', 'gray.300')} 
+                    lineHeight="relaxed" 
+                    ml={{ base: 8, md: 12 }}
+                  >
+                    Yes — on select projects that excite me. I&apos;m particularly drawn to work that involves creative problem-solving, AI integration, or building tools that genuinely help people.
+                  </Text>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem 
+                border="1px solid"
+                borderColor={useColorModeValue('gray.200', 'gray.700')}
+                borderRadius="xl"
+                mb={4}
+                bg={useColorModeValue('white', 'gray.800')}
+                _hover={{
+                  borderColor: 'teal.400',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 8px 25px rgba(56, 178, 172, 0.15)'
+                }}
+                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+              >
+                <AccordionButton 
+                  p={6}
+                  _hover={{ bg: 'transparent' }}
+                  _expanded={{ 
+                    bg: tealExpandedBg,
+                    borderBottomRadius: 0
+                  }}
+                >
+                  <Box flex="1" textAlign="left">
+                    <HStack spacing={3}>
+                      <Text fontSize="2xl">💡</Text>
+                      <Text fontSize="lg" fontWeight="bold" color={useColorModeValue('teal.600', 'teal.300')}>
+                        Can we collaborate?
+                      </Text>
+                    </HStack>
+                  </Box>
+                  <AccordionIcon color={useColorModeValue('teal.600', 'teal.300')} />
+                </AccordionButton>
+                <AccordionPanel 
+                  pb={6} 
+                  px={6}
+                  bg={useColorModeValue('teal.50', 'teal.900')}
+                  borderBottomRadius="xl"
+                >
+                  <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed" ml={12}>
+                    Absolutely! Especially if it&apos;s fun, weird, or meaningful. I love working on projects that push boundaries, solve real problems, or explore new ways of thinking about user experience.
+                  </Text>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem 
+                border="1px solid"
+                borderColor={useColorModeValue('gray.200', 'gray.700')}
+                borderRadius="xl"
+                mb={4}
+                bg={useColorModeValue('white', 'gray.800')}
+                _hover={{
+                  borderColor: 'pink.400',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 8px 25px rgba(236, 72, 153, 0.15)'
+                }}
+                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+              >
+                <AccordionButton 
+                  p={6}
+                  _hover={{ bg: 'transparent' }}
+                  _expanded={{ 
+                    bg: pinkExpandedBg,
+                    borderBottomRadius: 0
+                  }}
+                >
+                  <Box flex="1" textAlign="left">
+                    <HStack spacing={3}>
+                      <Text fontSize="2xl">⚙️</Text>
+                      <Text fontSize="lg" fontWeight="bold" color={useColorModeValue('pink.600', 'pink.300')}>
+                        Tools I use daily?
+                      </Text>
+                    </HStack>
+                  </Box>
+                  <AccordionIcon color={useColorModeValue('pink.600', 'pink.300')} />
+                </AccordionButton>
+                <AccordionPanel 
+                  pb={6} 
+                  px={6}
+                  bg={useColorModeValue('pink.50', 'pink.900')}
+                  borderBottomRadius="xl"
+                >
+                  <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed" ml={12}>
+                    VS Code for development, Framer for prototyping, ChatGPT for brainstorming and problem-solving, Figma for design work, and lots of caffeine to fuel the creative process. ☕
+                  </Text>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </Box>
         </Box>
       </Section>
     </Container>
+
+    {/* Project Details Modal */}
+    <Modal isOpen={isOpen} onClose={onClose} size="xl" isCentered>
+      <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(10px)" />
+      <ModalContent 
+        bg={modalBg}
+        borderRadius="2xl"
+        border="1px solid"
+        borderColor={modalBorderColor}
+        maxW="90vw"
+        mx={4}
+      >
+        <ModalHeader 
+          pb={2}
+          borderBottom="1px solid"
+          borderColor={modalHeaderBorderColor}
+        >
+          <Text fontSize="xl" fontWeight="bold">
+            {selectedProject?.title}
+          </Text>
+        </ModalHeader>
+        <ModalCloseButton />
+        <ModalBody py={6}>
+          {selectedProject && (
+            <VStack align="start" spacing={4}>
+              <Text fontSize="md" color={modalTextColor} lineHeight="relaxed">
+                {selectedProject.description}
+              </Text>
+              
+              <Box>
+                <Text fontSize="sm" fontWeight="bold" mb={2} color={`${selectedProject.color}.400`}>
+                  Tech Stack:
+                </Text>
+                <Flex wrap="wrap" gap={2}>
+                  {selectedProject.stack.map((tech, index) => (
+                    <Badge 
+                      key={index}
+                      colorScheme={selectedProject.color}
+                      variant="subtle"
+                      px={3}
+                      py={1}
+                      borderRadius="full"
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </Flex>
+              </Box>
+              
+              <Box>
+                <Text fontSize="sm" fontWeight="bold" mb={2} color={`${selectedProject.color}.400`}>
+                  Key Features:
+                </Text>
+                <VStack align="start" spacing={1}>
+                  {selectedProject.features.map((feature, index) => (
+                    <Text key={index} fontSize="sm" color={modalTextColor}>
+                      • {feature}
+                    </Text>
+                  ))}
+                </VStack>
+              </Box>
+              
+              <Box 
+                p={4} 
+                bg={`${selectedProject.color}.900`} 
+                borderRadius="md" 
+                borderLeft="3px solid"
+                borderColor={`${selectedProject.color}.400`}
+                w="full"
+              >
+                <Text fontSize="sm" fontWeight="600" color={`${selectedProject.color}.300`}>
+                  Result: {selectedProject.result}
+                </Text>
+              </Box>
+            </VStack>
+          )}
+        </ModalBody>
+        <ModalFooter borderTop="1px solid" borderColor={modalFooterBorderColor}>
+          <HStack spacing={3}>
+            {selectedProject?.liveUrl && (
+              <Button 
+                onClick={() => {
+                  toast({
+                    title: '🚧 Coming Soon!',
+                    description: 'This project will be available soon.',
+                    status: 'info',
+                    duration: 3000,
+                    isClosable: true,
+                    position: 'top'
+                  })
+                }}
+                leftIcon={<Icon as={IoOpenOutline} aria-hidden="true" />}
+                colorScheme={selectedProject?.color}
+                variant="solid"
+                size="sm"
+                aria-label={`View live demo of ${selectedProject?.title}`}
+              >
+                Live Demo
+              </Button>
+            )}
+            {selectedProject?.githubUrl && (
+              <Button 
+                onClick={() => {
+                  toast({
+                    title: '🚧 Coming Soon!',
+                    description: 'This project will be available soon.',
+                    status: 'info',
+                    duration: 3000,
+                    isClosable: true,
+                    position: 'top'
+                  })
+                }}
+                leftIcon={<Icon as={IoCodeSlash} aria-hidden="true" />}
+                variant="outline"
+                colorScheme={selectedProject?.color}
+                size="sm"
+                aria-label={`View source code of ${selectedProject?.title}`}
+              >
+                View Code
+              </Button>
+            )}
+          </HStack>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
     </Layout>
   )
 }

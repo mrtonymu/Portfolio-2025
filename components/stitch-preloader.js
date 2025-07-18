@@ -373,8 +373,8 @@ const StitchPreloader = ({ onComplete }) => {
                   as="img"
                   src={currentStageData.gif}
                   alt={`Stitch Loading ${progress}%`}
-                  w={{ base: "90px", sm: "115px", md: "140px" }}
-                  h={{ base: "90px", sm: "115px", md: "140px" }}
+                  w={{ base: "100px", sm: "120px", md: "160px", lg: "180px" }}
+                  h={{ base: "100px", sm: "120px", md: "160px", lg: "180px" }}
                   borderRadius="full"
                   objectFit="cover"
                   animate={{

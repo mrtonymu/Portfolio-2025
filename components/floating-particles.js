@@ -1,10 +1,17 @@
-import { Box } from '@chakra-ui/react'
+import { Box, useBreakpointValue } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 
 const MotionBox = motion(Box)
 
 const FloatingParticles = ({ count = 20 }) => {
-  const particles = Array.from({ length: count }, (_, i) => ({
+  // 响应式粒子数量：移动端减少到2-3个，桌面端保持原数量
+  const responsiveCount = useBreakpointValue({ 
+    base: 3, // 移动端
+    sm: 5,   // 小屏幕
+    md: 8,   // 中等屏幕
+    lg: count // 大屏幕使用传入的count
+  })
+  const particles = Array.from({ length: responsiveCount }, (_, i) => ({
     id: i,
     size: Math.random() * 4 + 2,
     x: Math.random() * 100,
@@ -38,14 +45,16 @@ const FloatingParticles = ({ count = 20 }) => {
           animate={{
             y: [-20, 20, -20],
             x: [-10, 10, -10],
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.8, 0.3]
+            scale: [1, 1.1, 1], // 减少缩放幅度
+            opacity: [0.2, 0.6, 0.2] // 降低透明度，减少视觉干扰
           }}
           transition={{
             duration: particle.duration,
             delay: particle.delay,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
+            // 优化性能：减少重绘
+            type: "tween"
           }}
         />
       ))}
