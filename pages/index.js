@@ -608,8 +608,6 @@ const Home = () => {
           <Heading 
             as="h2" 
             variant="section-title"
-            bgGradient="linear(to-r, teal.400, blue.500)"
-            bgClip="text"
           >
             💡 From 0 to Launch — Custom Website Building
           </Heading>
@@ -708,8 +706,6 @@ const Home = () => {
           <Heading 
             as="h2" 
             variant="section-title"
-            bgGradient="linear(to-r, purple.400, pink.400)"
-            bgClip="text"
           >
             💼 Projects
           </Heading>
@@ -807,20 +803,10 @@ const Home = () => {
             </Box>
             
             <Box 
-              bg={useColorModeValue('gray.900', 'gray.800')}
-              borderRadius="2xl"
-              p={6}
-              position="relative"
-              overflow="hidden"
+              variant="project-card"
               cursor="pointer"
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-              border="1px solid"
-              borderColor={useColorModeValue('gray.700', 'gray.600')}
               onClick={() => handleProjectClick(projectsData[0])}
               _hover={{
-                transform: 'translateY(-8px) scale(1.03)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(56, 178, 172, 0.4)',
-                borderColor: 'teal.400',
                 _before: {
                   height: '6px'
                 },
@@ -926,20 +912,10 @@ const Home = () => {
             </Box>
             
             <Box 
-              bg={useColorModeValue('gray.900', 'gray.800')}
-              borderRadius="2xl"
-              p={6}
-              position="relative"
-              overflow="hidden"
+              variant="project-card"
               cursor="pointer"
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-              border="1px solid"
-              borderColor={useColorModeValue('gray.700', 'gray.600')}
               onClick={() => handleProjectClick(projectsData[1])}
               _hover={{
-                transform: 'translateY(-8px) scale(1.03)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(159, 122, 234, 0.4)',
-                borderColor: 'purple.400',
                 _before: {
                   height: '6px'
                 },
@@ -1001,20 +977,10 @@ const Home = () => {
             </Box>
             
             <Box 
-              bg={useColorModeValue('gray.900', 'gray.800')}
-              borderRadius="2xl"
-              p={6}
-              position="relative"
-              overflow="hidden"
+              variant="project-card"
               cursor="pointer"
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-              border="1px solid"
-              borderColor={useColorModeValue('gray.700', 'gray.600')}
               onClick={() => handleProjectClick(projectsData[1])}
               _hover={{
-                transform: 'translateY(-8px) scale(1.03)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(236, 72, 153, 0.4)',
-                borderColor: 'pink.400',
                 _before: {
                   height: '6px'
                 },
@@ -1076,20 +1042,10 @@ const Home = () => {
             </Box>
             
             <Box 
-              bg={useColorModeValue('gray.900', 'gray.800')}
-              borderRadius="2xl"
-              p={6}
-              position="relative"
-              overflow="hidden"
+              variant="project-card"
               cursor="pointer"
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-              border="1px solid"
-              borderColor={useColorModeValue('gray.700', 'gray.600')}
               onClick={() => handleProjectClick(projectsData[2])}
               _hover={{
-                transform: 'translateY(-8px) scale(1.03)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(251, 146, 60, 0.4)',
-                borderColor: 'orange.400',
                 _before: {
                   height: '6px'
                 },
@@ -1312,10 +1268,8 @@ const Home = () => {
             <Heading 
               as="h2" 
               variant="section-title"
-              bgGradient="linear(to-r, teal.400, blue.500)"
-              bgClip="text"
             >
-              🧠 What I&apos;m currently exploring
+              🧠 What I'm currently exploring
             </Heading>
             
             <Box 
@@ -1388,8 +1342,6 @@ const Home = () => {
           <Heading 
             as="h2" 
             variant="section-title"
-            bgGradient="linear(to-r, purple.400, pink.400)"
-            bgClip="text"
           >
             💬 Frequently Asked
           </Heading>
