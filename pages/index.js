@@ -1269,7 +1269,7 @@ const Home = () => {
               as="h2" 
               variant="section-title"
             >
-              🧠 What I'm currently exploring
+              🧠 What I&apos;m currently exploring
             </Heading>
             
             <Box 
