@@ -53,7 +53,7 @@ const Home = () => (
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'radial-gradient(ellipse 150% 100% at 50% 0%, rgba(56, 178, 172, 0.2) 0%, rgba(66, 153, 225, 0.15) 25%, rgba(159, 122, 234, 0.1) 50%, transparent 80%)',
+            background: 'linear-gradient(180deg, rgba(56, 178, 172, 0.15) 0%, rgba(56, 178, 172, 0.12) 15%, rgba(66, 153, 225, 0.1) 30%, rgba(66, 153, 225, 0.08) 45%, rgba(159, 122, 234, 0.06) 60%, rgba(159, 122, 234, 0.04) 75%, rgba(159, 122, 234, 0.02) 90%, transparent 100%)',
             zIndex: -3
           }}
           _after={{
@@ -97,27 +97,33 @@ const Home = () => (
               display={{ base: 'none', md: 'block' }}
             />
           ))}
-          <Box mb={{ base: 10, sm: 12, md: 16 }} position="relative">
+          <Box mb={{ base: 6, sm: 8, md: 10 }} position="relative">
             {/* Animated Stitch Avatar - Central Character Moment */}
             <Box
               position="absolute"
               top={{ base: "-60px", sm: "-70px", md: "-100px" }}
-              left="50%"
-              transform="translateX(-50%)"
+              left="0"
+              right="0"
               zIndex={10}
+              display="flex"
+              justifyContent="center"
+              px={{ base: 4, sm: 6, md: 8 }}
             >
-              {/* Radial background gradient for depth */}
+              {/* Enhanced radial background gradient for depth - smoother transitions */}
               <Box
                 position="absolute"
                 top="50%"
-                left="50%"
-                transform="translate(-50%, -50%)"
-                w={{ base: "200px", sm: "250px", md: "350px" }}
-                h={{ base: "200px", sm: "250px", md: "350px" }}
-                bg="radial-gradient(circle, rgba(56, 178, 172, 0.15) 0%, rgba(66, 153, 225, 0.1) 40%, transparent 70%)"
+                left="0"
+                right="0"
+                transform="translateY(-50%)"
+                w={{ base: "300px", sm: "400px", md: "500px" }}
+                h={{ base: "300px", sm: "400px", md: "500px" }}
+                bg="radial-gradient(ellipse 120% 100% at center, rgba(56, 178, 172, 0.2) 0%, rgba(56, 178, 172, 0.15) 20%, rgba(66, 153, 225, 0.12) 35%, rgba(66, 153, 225, 0.08) 50%, rgba(159, 122, 234, 0.05) 65%, rgba(159, 122, 234, 0.02) 80%, transparent 95%)"
                 borderRadius="full"
                 zIndex={-1}
                 animation="pulse 4s ease-in-out infinite"
+                mx="auto"
+                filter="blur(1px)"
               />
               <Box
                 w={{ base: "90px", sm: "110px", md: "160px" }}
@@ -150,13 +156,13 @@ const Home = () => (
                     '100%': { transform: 'rotate(360deg)' }
                   },
                   '@keyframes scaleIn': {
-                    '0%': { transform: 'translateX(-50%) scale(0)', opacity: 0 },
-                    '50%': { transform: 'translateX(-50%) scale(1.15)', opacity: 0.8 },
-                    '100%': { transform: 'translateX(-50%) scale(1)', opacity: 1 }
+                    '0%': { transform: 'scale(0)', opacity: 0 },
+                    '50%': { transform: 'scale(1.15)', opacity: 0.8 },
+                    '100%': { transform: 'scale(1)', opacity: 1 }
                   },
                   '@keyframes pulse': {
-                    '0%, 100%': { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.6 },
-                    '50%': { transform: 'translate(-50%, -50%) scale(1.1)', opacity: 0.8 }
+                    '0%, 100%': { transform: 'translateY(-50%) scale(1)', opacity: 0.6 },
+                    '50%': { transform: 'translateY(-50%) scale(1.1)', opacity: 0.8 }
                   },
                   animation: 'scaleIn 1.5s ease-out 0.5s both'
                 }}
@@ -203,7 +209,7 @@ const Home = () => (
             </Box>
             
             <Box 
-              mt={{ base: "30px", sm: "40px", md: "60px" }} 
+              mt={{ base: "20px", sm: "25px", md: "35px" }} 
               px={{ base: 4, sm: 6, md: 8 }}
               maxW="100%"
               overflow="hidden"
@@ -237,7 +243,7 @@ const Home = () => (
           <Text 
             fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl" }}
             color={useColorModeValue('gray.600', 'gray.300')}
-            mb={{ base: 8, sm: 10, md: 12 }}
+            mb={{ base: 6, sm: 7, md: 8 }}
             maxW={{ base: "90%", sm: "2xl", md: "3xl" }}
             mx="auto"
             lineHeight={{ base: 1.6, sm: 1.7, md: 1.8 }}
@@ -249,7 +255,7 @@ const Home = () => (
           >
             No templates, no agencies, no headaches. Just fast, functional websites that actually work for your business.
           </Text>
-          <VStack spacing={{ base: 8, sm: 10, md: 12 }} px={{ base: 6, sm: 8, md: 10 }}>
+          <VStack spacing={{ base: 6, sm: 8, md: 10 }} px={{ base: 6, sm: 8, md: 10 }}>
             <Flex 
               direction={{ base: "column", sm: "row" }}
               gap={{ base: 4, sm: 6, md: 8 }}
