@@ -238,7 +238,7 @@ const Home = () => (
           </Box>
           <Text 
             fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl" }}
-            color={useColorModeValue('gray.500', 'gray.400')}
+            color={useColorModeValue('gray.400', 'gray.400')}
             mb={{ base: 8, sm: 9, md: 8 }}
             maxW={{ base: "90%", sm: "2xl", md: "3xl" }}
             mx="auto"
@@ -313,7 +313,7 @@ const Home = () => (
             </Flex>
             <Text 
               fontSize={{ base: "xs", sm: "sm" }}
-              color={useColorModeValue('gray.500', 'gray.400')}
+              color={useColorModeValue('gray.400', 'gray.400')}
               fontStyle="italic"
               textAlign="center"
               mt={{ base: 4, sm: 2, md: 0 }}
@@ -345,7 +345,7 @@ const Home = () => (
             >
               <Text 
                 fontSize="xs"
-                color={useColorModeValue('gray.400', 'gray.500')}
+                color={useColorModeValue('gray.400', 'gray.400')}
                 mb={2}
                 fontWeight="500"
               >
@@ -410,8 +410,8 @@ const Home = () => (
                 </Text>
                 <Text 
                   fontSize={{ base: "sm", md: "md" }} 
-                  lineHeight="tall" 
-                  color={useColorModeValue('gray.700', 'gray.300')}
+                  lineHeight="relaxed" 
+                  color={useColorModeValue('gray.600', 'gray.300')}
                   wordBreak="break-word"
                   overflowWrap="break-word"
                 >
@@ -439,8 +439,8 @@ const Home = () => (
                 </Text>
                 <Text 
                   fontSize={{ base: "sm", md: "md" }} 
-                  lineHeight="tall" 
-                  color={useColorModeValue('gray.700', 'gray.300')}
+                  lineHeight="relaxed" 
+                  color={useColorModeValue('gray.600', 'gray.300')}
                   wordBreak="break-word"
                   overflowWrap="break-word"
                 >
@@ -468,8 +468,8 @@ const Home = () => (
                 </Text>
                 <Text 
                   fontSize={{ base: "sm", md: "md" }} 
-                  lineHeight="tall" 
-                  color={useColorModeValue('gray.700', 'gray.300')}
+                  lineHeight="relaxed" 
+                  color={useColorModeValue('gray.600', 'gray.300')}
                   wordBreak="break-word"
                   overflowWrap="break-word"
                 >
@@ -550,7 +550,7 @@ const Home = () => (
                 📍 Kuala Lumpur, Malaysia
               </Text>
               <Text 
-                color={useColorModeValue('gray.500', 'gray.400')}
+                color={useColorModeValue('gray.400', 'gray.400')}
                 fontSize="sm"
                 fontStyle="italic"
                 maxW={{ base: "280px", sm: "300px", md: "350px" }}
@@ -728,7 +728,7 @@ const Home = () => (
               <Heading as="h3" size="md" mb={4} color="blue.600" fontWeight="700">
                 📊 Profit Tracker Dashboard
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.500', 'gray.400')} mb={4} fontWeight="600">
+              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
                 Type: Internal tool | Built for: My dropshipping ops (2022–2024)
               </Text>
               <Text 
@@ -817,7 +817,7 @@ const Home = () => (
               transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
               _hover={{
                 transform: 'translateY(-12px) scale(1.02)',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(56, 178, 172, 0.3)',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(56, 178, 172, 0.3), 0 0 20px rgba(56, 178, 172, 0.2)',
                 _before: {
                   height: '8px'
                 },
@@ -871,10 +871,10 @@ const Home = () => (
               <Heading as="h3" size="md" mb={4} color="teal.600" fontWeight="700">
                 🔧 Portfolio Site
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.500', 'gray.400')} mb={4} fontWeight="600">
+              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
                 Tech stack: Next.js, React, Chakra UI, Three.js
               </Text>
-              <Text fontSize="md" lineHeight="tall" mb={4} color={useColorModeValue('gray.700', 'gray.300')}>
+              <Text fontSize="md" lineHeight="relaxed" mb={4} color={useColorModeValue('gray.600', 'gray.300')}>
                 This site — built as both a learning journey and a proof of capability.
               </Text>
               <VStack align="start" spacing={2} fontSize="sm">
@@ -971,10 +971,10 @@ const Home = () => (
               <Heading as="h3" size="md" mb={4} color="purple.600" fontWeight="700">
                 🤖 GPT-Powered Support Flow
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.500', 'gray.400')} mb={4} fontWeight="600">
+              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
                 Type: Workflow experiment | Built for: Fintech role @ DeCard (2025)
               </Text>
-              <Text fontSize="md" lineHeight="tall" mb={4} color={useColorModeValue('gray.700', 'gray.300')}>
+              <Text fontSize="md" lineHeight="relaxed" mb={4} color={useColorModeValue('gray.600', 'gray.300')}>
                 Tested how GPT prompts can streamline tier-1 customer support tasks.
               </Text>
               <VStack align="start" spacing={2} fontSize="sm">
@@ -1071,10 +1071,10 @@ const Home = () => (
               <Heading as="h3" size="md" mb={4} color="pink.600" fontWeight="700">
                 🎥 Short-Form AI Co-Pilot
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.500', 'gray.400')} mb={4} fontWeight="600">
+              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
                 Type: Side tool | Built for: Content creator friends (2024)
               </Text>
-              <Text fontSize="md" lineHeight="tall" mb={4} color={useColorModeValue('gray.700', 'gray.300')}>
+              <Text fontSize="md" lineHeight="relaxed" mb={4} color={useColorModeValue('gray.600', 'gray.300')}>
                 Prototyped to help friends batch-edit & script TikTok/IG Reels faster using ChatGPT + templates.
               </Text>
               <VStack align="start" spacing={2} fontSize="sm">
@@ -1171,10 +1171,10 @@ const Home = () => (
               <Heading as="h3" size="md" mb={4} color="orange.600" fontWeight="700">
                 📦 Mini Prompt Tool
               </Heading>
-              <Text fontSize="sm" color={useColorModeValue('gray.500', 'gray.400')} mb={4} fontWeight="600">
+              <Text fontSize="sm" color={useColorModeValue('gray.400', 'gray.400')} mb={4} fontWeight="600">
                 Type: Side utility | Built for: Personal workflow improvement (2024)
               </Text>
-              <Text fontSize="md" lineHeight="tall" mb={4} color={useColorModeValue('gray.700', 'gray.300')}>
+              <Text fontSize="md" lineHeight="relaxed" mb={4} color={useColorModeValue('gray.600', 'gray.300')}>
                 A lightweight browser tool to organize, clean, and test GPT prompts.
               </Text>
               <VStack align="start" spacing={2} fontSize="sm">
@@ -1252,7 +1252,7 @@ const Home = () => (
 
       {/* CTA Section */}
       <Section delay={0.5}>
-        <Box py={16} id="contact">
+        <Box pt={10} pb={12} id="contact">
           <Box 
             textAlign="center" 
             p={12} 
@@ -1289,7 +1289,7 @@ const Home = () => (
                 color={useColorModeValue('gray.600', 'gray.300')} 
                 maxW="3xl" 
                 mx="auto"
-                lineHeight="tall"
+                lineHeight="relaxed"
                 fontWeight="500"
               >
                 If you're working on something interesting, need a second pair of eyes on a project, or just want to chat about building things — I'm always up for a conversation.
@@ -1298,7 +1298,7 @@ const Home = () => (
               <VStack spacing={6} mb={8}>
                 <Text 
                   fontSize="lg" 
-                  color={useColorModeValue('gray.500', 'gray.400')}
+                  color={useColorModeValue('gray.400', 'gray.400')}
                   fontWeight="600"
                 >
                   Best ways to reach me:
@@ -1314,7 +1314,10 @@ const Home = () => (
                     leftIcon={<IoLogoInstagram />}
                     _hover={{
                       transform: 'translateY(-4px) scale(1.05)',
-                      boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4)'
+                      boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4), 0 0 30px rgba(56, 178, 172, 0.3)'
+                    }}
+                    _active={{
+                      transform: 'translateY(-2px) scale(1.02)'
                     }}
                     transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
                   >
@@ -1330,7 +1333,10 @@ const Home = () => (
                     leftIcon={<IoLogoGithub />}
                     _hover={{
                       transform: 'translateY(-4px) scale(1.05)',
-                      boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2)'
+                      boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2), 0 0 25px rgba(56, 178, 172, 0.15)'
+                    }}
+                    _active={{
+                      transform: 'translateY(-2px) scale(1.02)'
                     }}
                     transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
                   >
@@ -1341,7 +1347,7 @@ const Home = () => (
               
               <Text 
                 fontSize="md" 
-                color={useColorModeValue('gray.500', 'gray.400')} 
+                color={useColorModeValue('gray.400', 'gray.400')} 
                 fontStyle="italic"
                 fontWeight="500"
               >
@@ -1352,51 +1358,147 @@ const Home = () => (
         </Box>
       </Section>
 
-      {/* Social Links */}
+      {/* What I'm Currently Exploring Section */}
       <Section delay={0.6}>
-        <Box py={12} textAlign="center">
-          <Text 
-            mb={6} 
-            color={useColorModeValue('gray.600', 'gray.400')}
-            fontSize="lg"
-            fontWeight="600"
+        <Box pt={10} pb={12}>
+          <Heading 
+            as="h2" 
+            size="xl" 
+            mb={8} 
+            textAlign="center"
+            bgGradient="linear(to-r, teal.400, blue.500)"
+            bgClip="text"
+            fontWeight="700"
           >
-            Connect with me
-          </Text>
-          <Flex direction={{ base: "column", sm: "row" }} gap={{ base: 4, sm: 6 }} justify="center" align="center" flexWrap="wrap">
-            <Button 
-              as="a"
-              href="https://github.com/mrtonymu"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="glass"
-              size="mobile"
-              leftIcon={<IoLogoGithub />}
-              _hover={{
-                transform: 'translateY(-3px) scale(1.05)',
-                boxShadow: '0 15px 30px rgba(56, 178, 172, 0.2)'
-              }}
+            🧠 What I'm currently exploring
+          </Heading>
+          
+          <Box 
+            maxW="4xl" 
+            mx="auto" 
+            p={8} 
+            variant="hero-card"
+            position="relative"
+            overflow="hidden"
+            _before={{
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              bg: 'linear-gradient(135deg, purple.400, teal.400)',
+              opacity: 0.05,
+              zIndex: 0
+            }}
+          >
+            <Box position="relative" zIndex={1}>
+              <Text 
+                fontSize={{ base: "md", md: "lg" }} 
+                lineHeight="relaxed" 
+                mb={6}
+                color={useColorModeValue('gray.600', 'gray.300')}
+                fontWeight="500"
+              >
+                Right now, I'm diving into how AI tools like ChatGPT, Midjourney, and Groq can empower non-tech creatives. I'm also experimenting with lightweight motion (Framer Motion, GSAP), better mobile-first layout strategies, and human-friendly microcopy that adds emotion to UIs.
+              </Text>
+              
+              <Text 
+                fontSize={{ base: "md", md: "lg" }} 
+                lineHeight="relaxed" 
+                mb={6}
+                color={useColorModeValue('gray.600', 'gray.300')}
+                fontWeight="500"
+              >
+                On the side, I'm exploring how to balance "utility + play" — especially in creative or Web3 tool spaces.
+              </Text>
+              
+              <Box 
+                p={4} 
+                bg={useColorModeValue('teal.50', 'teal.900')} 
+                borderRadius="lg" 
+                borderLeft="4px solid"
+                borderColor="teal.400"
+                textAlign="center"
+              >
+                <Text 
+                  fontSize={{ base: "md", md: "lg" }} 
+                  fontStyle="italic" 
+                  color={useColorModeValue('teal.700', 'teal.300')} 
+                  fontWeight="600"
+                >
+                  Still rough, but if you're into that kind of thing — let's jam. ✨
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Section>
+
+      {/* Quick Q&A Section */}
+      <Section delay={0.7}>
+        <Box pt={10} pb={12}>
+          <Heading 
+            as="h2" 
+            size="xl" 
+            mb={8} 
+            textAlign="center"
+            bgGradient="linear(to-r, purple.400, pink.400)"
+            bgClip="text"
+            fontWeight="700"
+          >
+            💡 Quick Qs
+          </Heading>
+          
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} maxW="6xl" mx="auto">
+            <Box 
+              p={6} 
+              variant="hero-card"
+              textAlign="center"
               transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-            >
-              @MrTonyMu
-            </Button>
-            <Button 
-              as="a"
-              href="https://instagram.com/mrtonyyam"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="glass"
-              size="mobile"
-              leftIcon={<IoLogoInstagram />}
               _hover={{
-                transform: 'translateY(-3px) scale(1.05)',
-                boxShadow: '0 15px 30px rgba(56, 178, 172, 0.2)'
+                transform: 'translateY(-8px) scale(1.02)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
               }}
-              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
             >
-              @MrTonyYam
-            </Button>
-          </Flex>
+              <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('purple.600', 'purple.300')}>Do you freelance?</Text>
+              <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
+                Yes, on select projects that excite me.
+              </Text>
+            </Box>
+            
+            <Box 
+              p={6} 
+              variant="hero-card"
+              textAlign="center"
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              _hover={{
+                transform: 'translateY(-8px) scale(1.02)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
+              }}
+            >
+              <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('teal.600', 'teal.300')}>Can we collaborate?</Text>
+              <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
+                Definitely — especially on fun or meaningful side-projects.
+              </Text>
+            </Box>
+            
+            <Box 
+              p={6} 
+              variant="hero-card"
+              textAlign="center"
+              transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+              _hover={{
+                transform: 'translateY(-8px) scale(1.02)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
+              }}
+            >
+              <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('pink.600', 'pink.300')}>Tools I use daily?</Text>
+              <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
+                VS Code, ChatGPT, Framer, and Twitter.
+              </Text>
+            </Box>
+          </SimpleGrid>
         </Box>
       </Section>
     </Container>
