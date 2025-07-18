@@ -14,6 +14,7 @@ import {
   Flex
 } from '@chakra-ui/react'
 import { ChevronRightIcon, CheckIcon } from '@chakra-ui/icons'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Paragraph from '../components/paragraph'
 import { BioSection, BioYear } from '../components/bio'
 import Layout from '../components/layouts/article'
@@ -31,9 +32,27 @@ const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
 })
 
-const Home = () => (
-  <Layout>
-    <Container maxW="container.lg">
+const Home = () => {
+  const { scrollY } = useScroll()
+  const backgroundY = useTransform(scrollY, [0, 1000], [0, -100])
+  const backgroundOpacity = useTransform(scrollY, [0, 500], [1, 0.3])
+
+  return (
+    <Layout>
+      <motion.div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '120vh',
+          background: 'linear-gradient(135deg, rgba(56, 178, 172, 0.08) 0%, rgba(66, 153, 225, 0.06) 50%, rgba(159, 122, 234, 0.04) 100%)',
+          zIndex: -10,
+          y: backgroundY,
+          opacity: backgroundOpacity
+        }}
+      />
+      <Container maxW="container.lg" position="relative">
       {/* Hero Section - Cinematic Enhanced */}
       <Section delay={0.1}>
         <Box 
@@ -1400,7 +1419,7 @@ const Home = () => (
                 color={useColorModeValue('gray.600', 'gray.300')}
                 fontWeight="500"
               >
-                Right now, I'm diving into how AI tools like ChatGPT, Midjourney, and Groq can empower non-tech creatives. I'm also experimenting with lightweight motion (Framer Motion, GSAP), better mobile-first layout strategies, and human-friendly microcopy that adds emotion to UIs.
+                Lately, I've been diving into how AI tools like ChatGPT, Midjourney, and Groq are reshaping creative workflows — especially for non-devs. I'm also experimenting with lightweight motion (Framer Motion, GSAP), mobile-first layout strategies, and emotion-driven microcopy in UIs.
               </Text>
               
               <Text 
@@ -1410,32 +1429,33 @@ const Home = () => (
                 color={useColorModeValue('gray.600', 'gray.300')}
                 fontWeight="500"
               >
-                On the side, I'm exploring how to balance "utility + play" — especially in creative or Web3 tool spaces.
+                On the side, I've been thinking about how to blend "utility + play" — particularly in creative or Web3 tool spaces.
               </Text>
               
-              <Box 
-                p={4} 
-                bg={useColorModeValue('teal.50', 'teal.900')} 
-                borderRadius="lg" 
-                borderLeft="4px solid"
-                borderColor="teal.400"
-                textAlign="center"
+              <Button 
+                variant="ghost" 
+                mt={4}
+                size="lg"
+                fontStyle="italic"
+                color={useColorModeValue('teal.700', 'teal.300')}
+                fontWeight="600"
+                _hover={{
+                  transform: 'scale(1.02)',
+                  boxShadow: '0 8px 25px rgba(56, 178, 172, 0.15)'
+                }}
+                _active={{
+                  transform: 'scale(0.98)'
+                }}
+                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                <Text 
-                  fontSize={{ base: "md", md: "lg" }} 
-                  fontStyle="italic" 
-                  color={useColorModeValue('teal.700', 'teal.300')} 
-                  fontWeight="600"
-                >
-                  Still rough, but if you're into that kind of thing — let's jam. ✨
-                </Text>
-              </Box>
+                Still rough, but if you're into that kind of thing — let's jam. ✨
+              </Button>
             </Box>
           </Box>
         </Box>
       </Section>
 
-      {/* Quick Q&A Section */}
+      {/* FAQ Section */}
       <Section delay={0.7}>
         <Box pt={10} pb={12}>
           <Heading 
@@ -1447,7 +1467,7 @@ const Home = () => (
             bgClip="text"
             fontWeight="700"
           >
-            💡 Quick Qs
+            💬 Frequently Asked
           </Heading>
           
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} maxW="6xl" mx="auto">
@@ -1463,7 +1483,7 @@ const Home = () => (
             >
               <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('purple.600', 'purple.300')}>Do you freelance?</Text>
               <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
-                Yes, on select projects that excite me.
+                Yes — on select projects that excite me.
               </Text>
             </Box>
             
@@ -1479,7 +1499,7 @@ const Home = () => (
             >
               <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('teal.600', 'teal.300')}>Can we collaborate?</Text>
               <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
-                Definitely — especially on fun or meaningful side-projects.
+                Absolutely. Especially if it's fun, weird, or meaningful.
               </Text>
             </Box>
             
@@ -1495,15 +1515,16 @@ const Home = () => (
             >
               <Text fontSize="lg" fontWeight="bold" mb={3} color={useColorModeValue('pink.600', 'pink.300')}>Tools I use daily?</Text>
               <Text fontSize="md" color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed">
-                VS Code, ChatGPT, Framer, and Twitter.
+                VS Code, Framer, ChatGPT, Figma, and lots of caffeine.
               </Text>
             </Box>
           </SimpleGrid>
         </Box>
       </Section>
     </Container>
-  </Layout>
-)
+    </Layout>
+  )
+}
 
 export default Home
 export { getServerSideProps } from '../components/chakra'
