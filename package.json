@@ -1,0 +1,48 @@
+{
+  "name": "tonymumu-homepage",
+  "version": "1.0.0",
+  "description": "Tony's website",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "start": "next start",
+    "prettier": "prettier --write .",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "update-browserslist": "npx update-browserslist-db@latest",
+    "analyze": "ANALYZE=true npm run build"
+  },
+  "keywords": [],
+  "author": "Tonymumu",
+  "license": "MIT",
+  "dependencies": {
+    "@chakra-ui/icons": "^2.0.19",
+    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/system": "^2.6.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.16.4",
+    "next": "^13.5.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
+    "three": "^0.157.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.11",
+    "@types/three": "^0.157.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^13.5.6",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not op_mini all"
+  ]
+}
