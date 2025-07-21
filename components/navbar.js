@@ -63,11 +63,13 @@ const Navbar = props => {
     >
       <Container
         display="flex"
-        p={{ base: 3, md: 2 }}
+        p={{ base: 4, md: 2 }}
+        pt={{ base: 5, md: 2 }}
         maxW={{ base: "100%", md: "container.md" }}
         wrap="wrap"
         align="center"
         justify="space-between"
+        gap={{ base: 4, md: 0 }}
       >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="lg" letterSpacing={'tighter'}>

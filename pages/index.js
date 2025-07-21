@@ -148,9 +148,10 @@ const Home = () => {
           ml="-50vw"
           mr="-50vw"
           textAlign="center" 
-          py={{ base: 16, sm: 20, md: 24, lg: 32 }}
+          py={{ base: 20, sm: 24, md: 24, lg: 32 }}
+          px={{ base: 4, sm: 6, md: 8 }}
           overflow="hidden"
-          minH={{ base: '85vh', md: '90vh' }}
+          minH={{ base: '90vh', md: '90vh' }}
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -226,28 +227,29 @@ const Home = () => {
             
             <Box 
               mt={{ base: "35px", sm: "40px", md: "35px" }} 
-              px={{ base: 4, sm: 6, md: 8 }}
+              px={{ base: 6, sm: 8, md: 8 }}
               maxW="100%"
               overflow="visible"
             >
               <WordRotationEffect
-                staticText="I help non-tech creatives build"
+                staticText="I help non-creatives build"
                 rotatingWords={["smart websites", "clean sites", "useful tools"]}
                 speed={4800}
-                fontSize={{ base: "xl", sm: "xl", md: "2xl", lg: "4xl" }}
+                fontSize={{ base: "xl", sm: "2xl", md: "2xl", lg: "4xl" }}
                 fontWeight="800"
                 bgGradient="linear(135deg, teal.400, blue.500, purple.500)"
                 bgClip="text"
-                minH={{ base: "50px", sm: "70px", md: "120px" }}
+                minH={{ base: "60px", sm: "80px", md: "120px" }}
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
                 letterSpacing="-0.01em"
-                lineHeight={{ base: 1.4, sm: 1.3, md: 1.2 }}
+                lineHeight={{ base: 1.3, sm: 1.25, md: 1.2 }}
                 textAlign="center"
-                maxW="100%"
-                wordBreak="break-word"
-                overflowWrap="break-word"
+                maxW={{ base: "95%", sm: "100%" }}
+                mx="auto"
+                wordBreak="keep-all"
+                overflowWrap="normal"
                 style={{ 
                   fontDisplay: 'swap',
                   WebkitFontSmoothing: 'antialiased',
@@ -257,30 +259,31 @@ const Home = () => {
             </Box>
           </Box>
           <Text 
-            fontSize={{ base: "17px", sm: "md", md: "lg", lg: "xl" }}
+            fontSize={{ base: "lg", sm: "lg", md: "lg", lg: "xl" }}
             color={useColorModeValue('gray.400', 'gray.400')}
-            mb={{ base: 8, sm: 9, md: 8 }}
-            maxW={{ base: "90%", sm: "2xl", md: "3xl" }}
+            mb={{ base: 10, sm: 10, md: 8 }}
+            maxW={{ base: "95%", sm: "2xl", md: "3xl" }}
             mx="auto"
-            lineHeight="relaxed"
-            px={{ base: 6, sm: 6, md: 8 }}
-            py={{ base: 2, sm: 2, md: 2 }}
+            lineHeight={{ base: "1.6", sm: "1.5", md: "relaxed" }}
+            px={{ base: 8, sm: 8, md: 8 }}
+            py={{ base: 3, sm: 3, md: 2 }}
             fontWeight="500"
             textAlign="center"
-            wordBreak="break-word"
+            wordBreak="normal"
             overflowWrap="break-word"
             tracking="normal"
           >
             No templates, no agencies, no headaches. Just fast, functional websites that actually work for your business.
           </Text>
-          <VStack spacing={{ base: 8, sm: 10, md: 10 }} px={{ base: 6, sm: 8, md: 10 }}>
+          <VStack spacing={{ base: 10, sm: 10, md: 10 }} px={{ base: 8, sm: 8, md: 10 }}>
             <Flex 
-              direction={{ base: "column", sm: "row" }}
-              gap={{ base: 4, sm: 6, md: 8 }}
+              direction={{ base: "column", sm: "column", md: "row" }}
+              gap={{ base: 5, sm: 5, md: 8 }}
               justify="center" 
               align="center"
               w="100%"
-              flexWrap="wrap"
+              maxW={{ base: "320px", sm: "400px", md: "100%" }}
+              mx="auto"
             >
               <Button 
                 as="a"
@@ -288,12 +291,12 @@ const Home = () => {
                 size="hero"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
-                w={{ base: "full", sm: "auto" }}
-                maxW={{ base: "280px", sm: "auto" }}
-                minW={{ base: "full", sm: "180px" }}
-                minH={{ base: "48px", sm: "48px" }}
-                px={{ base: 8, sm: 6 }}
-                py={{ base: 4, sm: 3 }}
+                w={{ base: "full", sm: "full", md: "auto" }}
+                maxW={{ base: "100%", sm: "100%", md: "auto" }}
+                minW={{ base: "full", sm: "full", md: "200px" }}
+                minH={{ base: "52px", sm: "52px", md: "48px" }}
+                px={{ base: 8, sm: 8, md: 6 }}
+                py={{ base: 4, sm: 4, md: 3 }}
                 _hover={{
                   transform: 'translateY(-4px) scale(1.05)',
                   boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4), 0 0 0 1px rgba(56, 178, 172, 0.2)'
@@ -314,12 +317,12 @@ const Home = () => {
                 href="#contact"
                 size="hero"
                 variant="glass"
-                w={{ base: "full", sm: "auto" }}
-                maxW={{ base: "280px", sm: "auto" }}
-                minW={{ base: "full", sm: "200px" }}
-                minH={{ base: "48px", sm: "48px" }}
-                px={{ base: 8, sm: 6 }}
-                py={{ base: 4, sm: 3 }}
+                w={{ base: "full", sm: "full", md: "auto" }}
+                maxW={{ base: "100%", sm: "100%", md: "auto" }}
+                minW={{ base: "full", sm: "full", md: "220px" }}
+                minH={{ base: "52px", sm: "52px", md: "48px" }}
+                px={{ base: 8, sm: 8, md: 6 }}
+                py={{ base: 4, sm: 4, md: 3 }}
                 _hover={{
                   transform: 'translateY(-4px) scale(1.05)',
                   boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2), 0 0 0 1px rgba(56, 178, 172, 0.15)'
@@ -385,7 +388,7 @@ const Home = () => {
 
       {/* About Section */}
       <Section delay={0.2}>
-        <Box pt={{ base: 16, md: 10 }} pb={{ base: 20, md: 12 }} px={{ base: 6, sm: 8, md: 10 }}>
+        <Box pt={{ base: 20, md: 16 }} pb={{ base: 24, md: 16 }} px={{ base: 8, sm: 10, md: 12 }}>
           <Heading 
             as="h2" 
             variant="section-title" 
@@ -1282,7 +1285,7 @@ const Home = () => {
             <Box 
               maxW="4xl" 
               mx="auto" 
-              p={8} 
+              p={{ base: 10, md: 8 }}
               bg="gray.900"
               borderRadius="2xl"
               border="1px solid"
@@ -1298,21 +1301,25 @@ const Home = () => {
             >
               <Box position="relative" zIndex={1}>
               <Text 
-                fontSize={{ base: "md", md: "lg" }} 
-                lineHeight="relaxed" 
-                mb={6}
+                fontSize={{ base: "lg", md: "lg", lg: "xl" }} 
+                lineHeight={{ base: "1.7", md: "1.6" }}
+                mb={{ base: 8, md: 6 }}
                 color={useColorModeValue('gray.600', 'gray.300')}
                 fontWeight="500"
+                maxW={{ base: "100%", md: "90%" }}
+                mx="auto"
               >
                 Lately, I&apos;ve been diving into how AI tools like ChatGPT, Midjourney, and Groq are reshaping creative workflows — especially for non-devs. I&apos;m also experimenting with lightweight motion (Framer Motion, GSAP), mobile-first layout strategies, and emotion-driven microcopy in UIs.
               </Text>
               
               <Text 
-                fontSize={{ base: "md", md: "lg" }} 
-                lineHeight="relaxed" 
-                mb={6}
+                fontSize={{ base: "lg", md: "lg", lg: "xl" }} 
+                lineHeight={{ base: "1.7", md: "1.6" }}
+                mb={{ base: 8, md: 6 }}
                 color={useColorModeValue('gray.600', 'gray.300')}
                 fontWeight="500"
+                maxW={{ base: "100%", md: "90%" }}
+                mx="auto"
               >
                 On the side, I&apos;ve been thinking about how to blend &ldquo;utility + play&rdquo; — particularly in creative or Web3 tool spaces.
               </Text>
@@ -1345,7 +1352,7 @@ const Home = () => {
 
       {/* FAQ Section */}
       <Section delay={0.7}>
-        <Box variant="section-container" pt={{ base: 16, md: 12 }} pb={{ base: 20, md: 16 }}>
+        <Box variant="section-container" pt={{ base: 20, md: 16 }} pb={{ base: 24, md: 20 }} px={{ base: 4, sm: 6, md: 8 }}>
           <Heading 
             as="h2" 
             variant="section-title"
@@ -1353,13 +1360,13 @@ const Home = () => {
             💬 Frequently Asked
           </Heading>
           
-          <Box maxW="4xl" mx="auto">
-            <Accordion allowMultiple>
+          <Box maxW="4xl" mx="auto" px={{ base: 4, sm: 6, md: 0 }}>
+            <Accordion allowMultiple spacing={{ base: 6, md: 8 }}>
               <AccordionItem 
                 border="1px solid"
                 borderColor={useColorModeValue('gray.200', 'gray.700')}
                 borderRadius="xl"
-                mb={{ base: 4, md: 6 }}
+                mb={{ base: 6, md: 8 }}
                 bg={useColorModeValue('white', 'gray.800')}
                 _hover={{
                   borderColor: 'purple.400',
@@ -1369,7 +1376,7 @@ const Home = () => {
                 transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
               >
                 <AccordionButton 
-                  p={{ base: 4, md: 6 }}
+                  p={{ base: 6, md: 6 }}
                   _hover={{ bg: 'transparent' }}
                   _expanded={{ 
                     bg: useColorModeValue('purple.50', 'purple.900'),
@@ -1387,17 +1394,17 @@ const Home = () => {
                   <AccordionIcon color={useColorModeValue('purple.600', 'purple.300')} />
                 </AccordionButton>
                 <AccordionPanel 
-                  pt={{ base: 4, md: 4 }}
-                  pb={{ base: 6, md: 6 }} 
-                  px={{ base: 4, md: 6 }}
+                  pt={{ base: 6, md: 6 }}
+                  pb={{ base: 8, md: 8 }} 
+                  px={{ base: 6, md: 8 }}
                   bg={useColorModeValue('purple.50', 'purple.900')}
                   borderBottomRadius="xl"
                 >
                   <Text 
-                    fontSize={{ base: '17px', md: 'md' }} 
+                    fontSize={{ base: 'lg', md: 'lg' }} 
                     color={useColorModeValue('gray.700', 'gray.300')} 
-                    lineHeight="relaxed" 
-                    ml={{ base: 8, md: 12 }}
+                    lineHeight={{ base: '1.6', md: '1.5' }}
+                    ml={{ base: 6, md: 10 }}
                   >
                     Yes — on select projects that excite me. I&apos;m particularly drawn to work that involves creative problem-solving, AI integration, or building tools that genuinely help people.
                   </Text>
@@ -1408,7 +1415,7 @@ const Home = () => {
                 border="1px solid"
                 borderColor={useColorModeValue('gray.200', 'gray.700')}
                 borderRadius="xl"
-                mb={4}
+                mb={{ base: 6, md: 8 }}
                 bg={useColorModeValue('white', 'gray.800')}
                 _hover={{
                   borderColor: 'teal.400',
@@ -1418,7 +1425,7 @@ const Home = () => {
                 transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
               >
                 <AccordionButton 
-                  p={{ base: 4, md: 6 }}
+                  p={{ base: 6, md: 6 }}
                   _hover={{ bg: 'transparent' }}
                   _expanded={{ 
                     bg: tealExpandedBg,
@@ -1436,13 +1443,13 @@ const Home = () => {
                   <AccordionIcon color={useColorModeValue('teal.600', 'teal.300')} />
                 </AccordionButton>
                 <AccordionPanel 
-                  pt={{ base: 4, md: 4 }}
-                  pb={{ base: 6, md: 6 }} 
-                  px={{ base: 4, md: 6 }}
+                  pt={{ base: 6, md: 6 }}
+                  pb={{ base: 8, md: 8 }} 
+                  px={{ base: 6, md: 8 }}
                   bg={useColorModeValue('teal.50', 'teal.900')}
                   borderBottomRadius="xl"
                 >
-                  <Text fontSize={{ base: '17px', md: 'md' }} color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed" ml={{ base: 8, md: 12 }}>
+                  <Text fontSize={{ base: 'lg', md: 'lg' }} color={useColorModeValue('gray.700', 'gray.300')} lineHeight={{ base: '1.6', md: '1.5' }} ml={{ base: 6, md: 10 }}>
                     Absolutely! Especially if it&apos;s fun, weird, or meaningful. I love working on projects that push boundaries, solve real problems, or explore new ways of thinking about user experience.
                   </Text>
                 </AccordionPanel>
@@ -1452,7 +1459,7 @@ const Home = () => {
                 border="1px solid"
                 borderColor={useColorModeValue('gray.200', 'gray.700')}
                 borderRadius="xl"
-                mb={4}
+                mb={{ base: 6, md: 8 }}
                 bg={useColorModeValue('white', 'gray.800')}
                 _hover={{
                   borderColor: 'pink.400',
@@ -1462,7 +1469,7 @@ const Home = () => {
                 transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
               >
                 <AccordionButton 
-                  p={{ base: 4, md: 6 }}
+                  p={{ base: 6, md: 6 }}
                   _hover={{ bg: 'transparent' }}
                   _expanded={{ 
                     bg: pinkExpandedBg,
@@ -1480,13 +1487,13 @@ const Home = () => {
                   <AccordionIcon color={useColorModeValue('pink.600', 'pink.300')} />
                 </AccordionButton>
                 <AccordionPanel 
-                  pt={{ base: 4, md: 4 }}
-                  pb={{ base: 6, md: 6 }} 
-                  px={{ base: 4, md: 6 }}
+                  pt={{ base: 6, md: 6 }}
+                  pb={{ base: 8, md: 8 }} 
+                  px={{ base: 6, md: 8 }}
                   bg={useColorModeValue('pink.50', 'pink.900')}
                   borderBottomRadius="xl"
                 >
-                  <Text fontSize={{ base: '17px', md: 'md' }} color={useColorModeValue('gray.700', 'gray.300')} lineHeight="relaxed" ml={{ base: 8, md: 12 }}>
+                  <Text fontSize={{ base: 'lg', md: 'lg' }} color={useColorModeValue('gray.700', 'gray.300')} lineHeight={{ base: '1.6', md: '1.5' }} ml={{ base: 6, md: 10 }}>
                     VS Code for development, Framer for prototyping, ChatGPT for brainstorming and problem-solving, Figma for design work, and lots of caffeine to fuel the creative process. ☕
                   </Text>
                 </AccordionPanel>
