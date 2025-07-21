@@ -22,25 +22,25 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+        cache: 'npm'
     
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: npm ci
     
     - name: Update browserslist database
-      run: yarn update-browserslist
+      run: npm run update-browserslist
     
     - name: Run ESLint
-      run: yarn lint
+      run: npm run lint
     
     - name: Run Prettier check
-      run: yarn prettier --check .
+      run: npm run prettier -- --check .
     
     - name: Type check
-      run: yarn type-check
+      run: npm run type-check
     
     - name: Build application
-      run: yarn build
+      run: npm run build
       env:
         NEXT_TELEMETRY_DISABLED: 1
     
@@ -65,13 +65,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18.x'
-        cache: 'yarn'
+        cache: 'npm'
     
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: npm ci
     
     - name: Build application
-      run: yarn build
+      run: npm run build
       env:
         NEXT_TELEMETRY_DISABLED: 1
     
