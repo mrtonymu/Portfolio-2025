@@ -1217,7 +1217,7 @@ const Home = () => {
                 transition: 'opacity 0.4s ease'
               }}
             >
-              {/* Featured Tag */}
+              {/* Featured Tag - Hidden on mobile to avoid hamburger menu overlap */}
               <Box
                 position="absolute"
                 top="12px"
@@ -1231,6 +1231,7 @@ const Home = () => {
                 fontWeight="bold"
                 zIndex={2}
                 boxShadow="0 4px 12px rgba(56, 178, 172, 0.3)"
+                display={{ base: "none", md: "block" }}
               >
                 ⭐ Featured
               </Box>
