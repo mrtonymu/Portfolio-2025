@@ -12,6 +12,7 @@ const VoxelDog = () => {
   const refContainer = useRef()
   const [loading, setLoading] = useState(true)
   const refRenderer = useRef()
+  const refCamera = useRef()
   const urlDogGLB = `${process.env.NODE_ENV === 'production' ? 'https://tonymumu.vercel.app/' : ''}/dog.glb`
 
   const handleWindowResize = useCallback(() => {
@@ -22,6 +23,36 @@ const VoxelDog = () => {
       const scH = container.clientHeight
 
       renderer.setSize(scW, scH)
+      
+      // Update camera scaling on resize
+       const { current: camera } = refCamera
+       if (camera) {
+         const isMobile = scW < 768
+         const isTablet = scW >= 768 && scW < 1024
+         const aspectRatio = scW / scH
+         
+         const baseSize = Math.min(scW, scH)
+         let scale
+         
+         if (isMobile) {
+           scale = baseSize * 0.006 + 3.2
+         } else if (isTablet) {
+           scale = baseSize * 0.005 + 3.8
+         } else {
+           scale = baseSize * 0.004 + 4.2
+         }
+         
+         scale = Math.max(3.0, Math.min(scale, 8.0))
+         
+         const scaleX = scale * Math.min(1, aspectRatio)
+         const scaleY = scale * Math.min(1, 1 / aspectRatio)
+         
+         camera.left = -scaleX
+         camera.right = scaleX
+         camera.top = scaleY
+         camera.bottom = -scaleY
+         camera.updateProjectionMatrix()
+       }
     }
   }, [])
 
@@ -50,28 +81,41 @@ const VoxelDog = () => {
         20 * Math.cos(0.2 * Math.PI)
       )
 
-      // Improved responsive scaling
+      // Improved responsive scaling with aspect ratio consideration
       const isMobile = scW < 768
       const isTablet = scW >= 768 && scW < 1024
+      const aspectRatio = scW / scH
       
+      // Base scale calculation that considers both dimensions
+      const baseSize = Math.min(scW, scH)
       let scale
+      
       if (isMobile) {
-        scale = Math.min(scW, scH) * 0.008 + 3.5
+        scale = baseSize * 0.006 + 3.2
       } else if (isTablet) {
-        scale = scH * 0.006 + 4.2
+        scale = baseSize * 0.005 + 3.8
       } else {
-        scale = scH * 0.005 + 4.8
+        scale = baseSize * 0.004 + 4.2
       }
+      
+      // Clamp scale to prevent extreme stretching
+      scale = Math.max(3.0, Math.min(scale, 8.0))
+      
+      // Adjust for aspect ratio to prevent stretching
+      const scaleX = scale * Math.min(1, aspectRatio)
+      const scaleY = scale * Math.min(1, 1 / aspectRatio)
+      
       const camera = new THREE.OrthographicCamera(
-        -scale,
-        scale,
-        scale,
-        -scale,
+        -scaleX,
+        scaleX,
+        scaleY,
+        -scaleY,
         0.01,
         50000
       )
       camera.position.copy(initialCameraPosition)
       camera.lookAt(target)
+      refCamera.current = camera
 
       const ambientLight = new THREE.AmbientLight(0xcccccc, 1)
       scene.add(ambientLight)

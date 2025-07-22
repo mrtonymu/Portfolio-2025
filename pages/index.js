@@ -278,9 +278,10 @@ const Home = () => {
           ml="-50vw"
           mr="-50vw"
           textAlign="center" 
-          py={{ lg: 32 }}
+          pt={{ lg: 20 }}
+          pb={{ lg: 32 }}
           overflow="hidden"
-          minH="90vh"
+          minH="100vh"
           flexDirection="column"
           justifyContent="center"
           bg={heroBg}
@@ -483,7 +484,8 @@ const Home = () => {
           ml="-50vw"
           mr="-50vw"
           textAlign="center" 
-          py={20}
+          pt={20}
+          pb={20}
           px={6}
           overflow="hidden"
           minH="100vh"

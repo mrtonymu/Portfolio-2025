@@ -34,7 +34,7 @@ const Main = ({ children, router }) => {
       <Container 
         maxW={{ base: "100%", sm: "container.sm", md: "container.md", lg: "container.lg" }}
         px={{ base: 4, sm: 6, md: 8 }}
-        pt={{ base: 16, md: 20 }}
+        pt={{ base: 0, md: 0 }}
       >
         {children}
 

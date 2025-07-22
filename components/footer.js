@@ -25,18 +25,16 @@ const Footer = () => {
       right="50%"
       ml="-50vw"
       mr="-50vw"
-      pt={{ base: 12, md: 16 }} 
+      pt={{ base: 16, md: 20 }} 
       pb={{ base: 12, md: 12 }} 
       textAlign="center"
-      borderTop="1px solid"
-      borderColor={useColorModeValue('gray.200', 'gray.700')}
       bg={useColorModeValue(
-        'linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)',
-        'linear-gradient(135deg, #1a202c 0%, #2d3748 100%)'
+        'linear-gradient(180deg, rgba(247, 250, 252, 0.8) 0%, rgba(237, 242, 247, 0.95) 50%, #edf2f7 100%)',
+        'linear-gradient(180deg, rgba(26, 32, 44, 0.8) 0%, rgba(45, 55, 72, 0.95) 50%, #2d3748 100%)'
       )}
       boxShadow={useColorModeValue(
-        '0 -10px 40px rgba(0, 0, 0, 0.05)',
-        '0 -10px 40px rgba(0, 0, 0, 0.3)'
+        '0 -20px 60px rgba(0, 0, 0, 0.03)',
+        '0 -20px 60px rgba(0, 0, 0, 0.2)'
       )}
       _before={{
         content: '""',
@@ -44,10 +42,24 @@ const Footer = () => {
         top: 0,
         left: 0,
         right: 0,
-        height: '1px',
+        height: '60px',
         bg: useColorModeValue(
-          'linear-gradient(90deg, transparent, rgba(56, 178, 172, 0.3), transparent)',
-          'linear-gradient(90deg, transparent, rgba(56, 178, 172, 0.5), transparent)'
+          'linear-gradient(180deg, transparent 0%, rgba(247, 250, 252, 0.3) 50%, rgba(237, 242, 247, 0.6) 100%)',
+          'linear-gradient(180deg, transparent 0%, rgba(26, 32, 44, 0.3) 50%, rgba(45, 55, 72, 0.6) 100%)'
+        ),
+        zIndex: -1
+      }}
+      _after={{
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '200px',
+        height: '2px',
+        bg: useColorModeValue(
+          'linear-gradient(90deg, transparent, rgba(56, 178, 172, 0.4), transparent)',
+          'linear-gradient(90deg, transparent, rgba(56, 178, 172, 0.6), transparent)'
         )
       }}
     >
