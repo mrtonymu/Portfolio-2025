@@ -381,7 +381,7 @@ const Home = () => {
               fontWeight="600"
               lineHeight="relaxed"
             >
-              Hi! I'm Tony. I build fast websites for curious minds like yours.
+              Hi! I&apos;m Tony. I build fast websites for curious minds like yours.
             </Text>
             
             {/* Mobile Avatar */}
@@ -1575,7 +1575,7 @@ const Home = () => {
               fontWeight="500"
               textAlign="center"
             >
-              Currently diving into AI tools like ChatGPT and how they're reshaping creative workflows for non-devs.
+              Currently diving into AI tools like ChatGPT and how they&apos;re reshaping creative workflows for non-devs.
             </Text>
             
             {/* Mobile Bullet Points */}
