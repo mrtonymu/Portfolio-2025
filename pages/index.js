@@ -575,7 +575,7 @@ const Home = () => {
             {/* Mobile Title - Larger and Centered */}
             <Box mb={8} px={4}>
               <Text
-                fontSize="2xl"
+                fontSize={{ base: "xl", sm: "2xl" }}
                 fontWeight="800"
                 bgGradient="linear(135deg, teal.400, blue.500, purple.500)"
                 bgClip="text"
@@ -595,7 +595,7 @@ const Home = () => {
                 staticText=""
                 rotatingWords={["smart websites", "clean sites", "useful tools"]}
                 speed={4800}
-                fontSize="2xl"
+                fontSize={{ base: "xl", sm: "2xl" }}
                 fontWeight="800"
                 bgGradient={heroGradient}
                 bgClip="text"
@@ -606,6 +606,8 @@ const Home = () => {
                 letterSpacing="-0.01em"
                 lineHeight={1.3}
                 textAlign="center"
+                maxW="100%"
+                px={2}
                 style={{ 
                   fontDisplay: 'swap',
                   WebkitFontSmoothing: 'antialiased',
@@ -829,6 +831,7 @@ const Home = () => {
                   alt="Tony Yam"
                   borderRadius="full"
                   objectFit="cover"
+                  objectPosition="center top"
                   w="200px"
                   h="200px"
                   fallbackSrc="/images/tony.jpeg"
@@ -1720,8 +1723,8 @@ const Home = () => {
         <Box 
           display={{ base: 'block', lg: 'none' }}
           variant="section-container"
-          pt={12}
-          pb={16}
+          pt={8}
+          pb={12}
           px={6}
         >
           <Heading 
@@ -1756,9 +1759,9 @@ const Home = () => {
           >
             {/* Mobile Shortened Content */}
             <Text 
-              fontSize="xl"
+              fontSize={{ base: "lg", sm: "xl" }}
               lineHeight="relaxed" 
-              mb={5}
+              mb={6}
               color={grayLightColor}
               fontWeight="500"
               textAlign="center"
@@ -1774,7 +1777,7 @@ const Home = () => {
               <HStack spacing={2} w="full">
                 <Text fontSize="md" flexShrink={0}>🤖</Text>
                 <Text 
-                  fontSize="xs"
+                  fontSize={{ base: "sm", sm: "md" }}
                   color={grayMediumColor}
                   flex={1}
                 >
@@ -1784,7 +1787,7 @@ const Home = () => {
               <HStack spacing={2} w="full">
                 <Text fontSize="md" flexShrink={0}>📱</Text>
                 <Text 
-                  fontSize="xs"
+                  fontSize={{ base: "sm", sm: "md" }}
                   color={grayMediumColor}
                   flex={1}
                 >
@@ -1794,7 +1797,7 @@ const Home = () => {
               <HStack spacing={2} w="full">
                 <Text fontSize="md" flexShrink={0}>✨</Text>
                 <Text 
-                  fontSize="xs"
+                  fontSize={{ base: "sm", sm: "md" }}
                   color={grayMediumColor}
                   flex={1}
                 >

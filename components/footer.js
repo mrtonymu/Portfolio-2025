@@ -19,6 +19,8 @@ const Footer = () => {
   return (
     <Box 
       as="footer"
+      id="contact"
+      scrollMarginTop="80px"
       w="100vw"
       position="relative"
       left="50%"
