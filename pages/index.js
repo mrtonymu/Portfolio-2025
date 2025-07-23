@@ -825,13 +825,13 @@ const Home = () => {
               {/* Mobile: Show static image, Desktop: Show 3D model */}
               <Box display={{ base: 'block', md: 'none' }}>
                 <Image
-                  src="/images/Tonymumu.jpg"
+                  src="/images/tony.jpeg"
                   alt="Tony Yam"
                   borderRadius="full"
                   objectFit="cover"
                   w="200px"
                   h="200px"
-                  fallbackSrc="/images/Tonymumu.jpg"
+                  fallbackSrc="/images/tony.jpeg"
                 />
               </Box>
               <Box display={{ base: 'none', md: 'block' }}>
@@ -981,7 +981,7 @@ const Home = () => {
 
       {/* Services Section */}
       <Section delay={0.3}>
-        <Box variant="section-container" id="services">
+        <Box variant="section-container" id="services" scrollMarginTop="80px">
           <Heading 
             as="h2" 
             variant="section-title"
@@ -1079,7 +1079,7 @@ const Home = () => {
 
       {/* Projects Section */}
       <Section delay={0.4}>
-        <Box variant="section-container" id="projects" pt={{ base: 16, md: 12 }} pb={{ base: 20, md: 16 }}>
+        <Box variant="section-container" id="projects" pt={{ base: 16, md: 12 }} pb={{ base: 20, md: 16 }} scrollMarginTop="80px">
           <Heading 
             as="h2" 
             variant="section-title"
@@ -1520,7 +1520,7 @@ const Home = () => {
 
       {/* CTA Section */}
       <Section delay={0.5}>
-        <Box variant="section-container" id="contact">
+        <Box variant="section-container" id="contact" scrollMarginTop="80px">
           <Box 
             textAlign="center" 
             p={{ base: 8, md: 12, lg: 16 }} 
@@ -1720,15 +1720,15 @@ const Home = () => {
         <Box 
           display={{ base: 'block', lg: 'none' }}
           variant="section-container"
-          pt={16}
-          pb={20}
+          pt={12}
+          pb={16}
           px={6}
         >
           <Heading 
             as="h2" 
             fontSize="2xl"
             textAlign="center"
-            mb={8}
+            mb={6}
             fontWeight="800"
             display="flex"
             alignItems="center"
@@ -1747,7 +1747,7 @@ const Home = () => {
           <Box 
             maxW="sm" 
             mx="auto" 
-            p={4} 
+            p={5} 
             bg={whiteBg}
             borderRadius="xl"
             border="1px solid"
@@ -1756,18 +1756,21 @@ const Home = () => {
           >
             {/* Mobile Shortened Content */}
             <Text 
-              fontSize="lg"
+              fontSize="xl"
               lineHeight="relaxed" 
-              mb={4}
+              mb={5}
               color={grayLightColor}
               fontWeight="500"
               textAlign="center"
+              bgGradient="linear(to-br, purple.100, teal.100)"
+              bgClip="text"
+              letterSpacing="tight"
             >
               Currently diving into AI tools like ChatGPT and how they&apos;re reshaping creative workflows for non-devs.
             </Text>
             
             {/* Mobile Bullet Points */}
-            <VStack align="start" spacing={2} mb={4} px={0}>
+            <VStack align="start" spacing={3} mb={4} px={0}>
               <HStack spacing={2} w="full">
                 <Text fontSize="md" flexShrink={0}>🤖</Text>
                 <Text 

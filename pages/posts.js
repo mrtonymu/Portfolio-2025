@@ -27,12 +27,23 @@ const Posts = () => (
               transform: 'translateY(-2px)',
               shadow: 'lg'
             }}
+            display="flex"
+            flexDirection="column"
+            minHeight={{ base: '200px', md: '220px' }}
           >
             <Icon as={FiVideo} boxSize={8} color="blue.400" mb={4} />
             <Text fontSize="lg" fontWeight="bold" color="blue.600" _dark={{ color: 'blue.300' }} mb={2}>
               Video Tutorials
             </Text>
-            <Text fontSize="sm" color="blue.500" _dark={{ color: 'blue.400' }}>
+            <Text 
+              fontSize="sm" 
+              color="blue.500" 
+              _dark={{ color: 'blue.400' }}
+              flex="1"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
               Coding tutorials and tech talks in development
             </Text>
           </Box>
@@ -52,12 +63,23 @@ const Posts = () => (
               transform: 'translateY(-2px)',
               shadow: 'lg'
             }}
+            display="flex"
+            flexDirection="column"
+            minHeight={{ base: '200px', md: '220px' }}
           >
             <Icon as={FiFileText} boxSize={8} color="green.400" mb={4} />
             <Text fontSize="lg" fontWeight="bold" color="green.600" _dark={{ color: 'green.300' }} mb={2}>
               Technical Articles
             </Text>
-            <Text fontSize="sm" color="green.500" _dark={{ color: 'green.400' }}>
+            <Text 
+              fontSize="sm" 
+              color="green.500" 
+              _dark={{ color: 'green.400' }}
+              flex="1"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
               In-depth technical posts and guides
             </Text>
           </Box>
@@ -81,12 +103,23 @@ const Posts = () => (
               transform: 'translateY(-2px)',
               shadow: 'lg'
             }}
+            display="flex"
+            flexDirection="column"
+            minHeight={{ base: '200px', md: '220px' }}
           >
             <Icon as={FiEdit3} boxSize={8} color="purple.400" mb={4} />
             <Text fontSize="lg" fontWeight="bold" color="purple.600" _dark={{ color: 'purple.300' }} mb={2}>
               Personal Blog
             </Text>
-            <Text fontSize="sm" color="purple.500" _dark={{ color: 'purple.400' }}>
+            <Text 
+              fontSize="sm" 
+              color="purple.500" 
+              _dark={{ color: 'purple.400' }}
+              flex="1"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
               Personal thoughts and experiences
             </Text>
           </Box>
@@ -106,12 +139,23 @@ const Posts = () => (
               transform: 'translateY(-2px)',
               shadow: 'lg'
             }}
+            display="flex"
+            flexDirection="column"
+            minHeight={{ base: '200px', md: '220px' }}
           >
             <Icon as={FiBookOpen} boxSize={8} color="orange.400" mb={4} />
             <Text fontSize="lg" fontWeight="bold" color="orange.600" _dark={{ color: 'orange.300' }} mb={2}>
               Learning Resources
             </Text>
-            <Text fontSize="sm" color="orange.500" _dark={{ color: 'orange.400' }}>
+            <Text 
+              fontSize="sm" 
+              color="orange.500" 
+              _dark={{ color: 'orange.400' }}
+              flex="1"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
               Curated learning materials and resources
             </Text>
           </Box>

@@ -115,31 +115,35 @@ const Guestbook = () => {
             mb={8}
           >
             <form onSubmit={handleSubmit}>
-              <VStack spacing={4}>
-                <SimpleGrid columns={[1, 2]} gap={4} w="100%">
+              <VStack spacing={{ base: 6, md: 5 }}>
+                <SimpleGrid columns={[1, 2]} gap={{ base: 6, md: 5 }} w="100%">
                   <FormControl>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel mb={2}>Name</FormLabel>
                     <Input
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Your name (optional)"
+                      p={{ base: 6, md: 4 }}
+                      size="lg"
                     />
                   </FormControl>
                   <FormControl>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel mb={2}>Email</FormLabel>
                     <Input
                       name="email"
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="your@email.com (optional)"
+                      p={{ base: 6, md: 4 }}
+                      size="lg"
                     />
                   </FormControl>
                 </SimpleGrid>
                 
                 <FormControl isRequired>
-                  <FormLabel>Message</FormLabel>
+                  <FormLabel mb={2}>Message</FormLabel>
                   <Textarea
                     name="message"
                     value={formData.message}
@@ -147,6 +151,8 @@ const Guestbook = () => {
                     placeholder="Your message, question, or feedback..."
                     rows={4}
                     resize="vertical"
+                    p={{ base: 6, md: 4 }}
+                    size="lg"
                   />
                 </FormControl>
                 
@@ -170,12 +176,12 @@ const Guestbook = () => {
             Recent Messages
           </Heading>
           
-          <VStack spacing={4} align="stretch">
+          <VStack spacing={{ base: 6, md: 5 }} align="stretch">
             {sampleMessages.map((msg) => (
               <Box
                 key={msg.id}
                 bg={bgColor}
-                p={4}
+                p={{ base: 6, md: 5 }}
                 borderRadius="lg"
                 border="1px"
                 borderColor={borderColor}

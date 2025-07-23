@@ -184,7 +184,7 @@ const Footer = () => {
             w="full"
             size="lg"
             fontSize="md"
-            px={6}
+            px={8}
             py={4}
             mb={6}
             borderRadius="xl"
@@ -201,8 +201,10 @@ const Footer = () => {
             }}
             transition="all 0.3s ease"
             textAlign="center"
+            whiteSpace="nowrap"
           >
-            🚀 Currently Available for New Projects
+            <Text as="span" verticalAlign="middle">🚀</Text>
+            <Text as="span" ml={2}>Currently Available for New Projects</Text>
           </Button>
           
           {/* Mobile Social Links - Vertically Stacked */}
