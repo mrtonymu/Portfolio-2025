@@ -55,11 +55,9 @@ const Home = () => {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const toast = useToast()
   
-  // 智能加载状态管理
   useEffect(() => {
     let contentLoaded = false
     
-    // 检查关键内容是否加载完成
     const checkContentLoaded = () => {
       const images = document.querySelectorAll('img')
       const loadedImages = Array.from(images).filter(img => img.complete)
@@ -71,7 +69,6 @@ const Home = () => {
       return false
     }
 
-    // 最小加载时间800ms，最大2.5秒
     const minTimer = setTimeout(() => {
       if (checkContentLoaded() || contentLoaded) {
         setIsLoading(false)
@@ -82,7 +79,6 @@ const Home = () => {
       setIsLoading(false)
     }, 2500)
 
-    // 监听图片加载完成
     const handleLoad = () => {
       if (checkContentLoaded()) {
         contentLoaded = true
@@ -90,10 +86,8 @@ const Home = () => {
       }
     }
 
-    // 监听所有图片加载
     document.addEventListener('load', handleLoad, true)
     
-    // 页面可见性变化时重新检查
     const handleVisibilityChange = () => {
       if (!document.hidden && checkContentLoaded()) {
         setIsLoading(false)
@@ -110,7 +104,6 @@ const Home = () => {
      }
    }, [])
 
-   // 监听滚动位置，控制"回到顶部"按钮显示
    useEffect(() => {
      const handleScroll = () => {
        setShowScrollTop(window.scrollY > 400)
@@ -120,7 +113,6 @@ const Home = () => {
      return () => window.removeEventListener('scroll', handleScroll)
    }, [])
 
-   // 回到顶部功能
    const scrollToTop = useCallback(() => {
      window.scrollTo({
        top: 0,
@@ -128,23 +120,16 @@ const Home = () => {
      })
    }, [])
   
-  // Transform values for scroll animations
   const backgroundY = useTransform(scrollY, [0, 1000], [0, -100])
   const backgroundOpacity = useTransform(scrollY, [0, 500], [1, 0.3])
-  
-  // Color mode values - ALL useColorModeValue calls must be at component top level
   const tealExpandedBg = useColorModeValue('teal.50', 'teal.900')
   const pinkExpandedBg = useColorModeValue('pink.50', 'pink.900')
   const purpleExpandedBg = useColorModeValue('purple.50', 'purple.900')
-  
-  // Color mode values for modal
   const modalBg = useColorModeValue('white', 'gray.800')
   const modalBorderColor = useColorModeValue('gray.200', 'gray.600')
   const modalHeaderBorderColor = useColorModeValue('gray.100', 'gray.700')
   const modalFooterBorderColor = useColorModeValue('gray.100', 'gray.700')
   const modalTextColor = useColorModeValue('gray.600', 'gray.300')
-  
-  // Hero section colors
   const heroBg = useColorModeValue(
     'linear-gradient(135deg, #f7fafc 0%, rgba(56, 178, 172, 0.03) 50%, #edf2f7 100%)',
     'linear-gradient(135deg, #1a202c 0%, rgba(56, 178, 172, 0.08) 50%, #2d3748 100%)'
@@ -153,8 +138,6 @@ const Home = () => {
     '0 10px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
     '0 10px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
   )
-  
-  // Text colors
   const grayTextColor = useColorModeValue('gray.400', 'gray.400')
   const tealTextColor = useColorModeValue('teal.600', 'teal.300')
   const grayMediumColor = useColorModeValue('gray.600', 'gray.400')
@@ -165,8 +148,6 @@ const Home = () => {
   const greenTextColor = useColorModeValue('green.600', 'green.300')
   const purpleTextColor = useColorModeValue('purple.600', 'purple.300')
   const pinkTextColor = useColorModeValue('pink.600', 'pink.300')
-  
-  // Background colors
   const mobileBg = useColorModeValue(
     'linear-gradient(135deg, #f7fafc 0%, rgba(56, 178, 172, 0.03) 50%, #edf2f7 100%)',
     'linear-gradient(135deg, #1a202c 0%, rgba(56, 178, 172, 0.08) 50%, #2d3748 100%)'
@@ -174,27 +155,18 @@ const Home = () => {
   const aboutBg = useColorModeValue('teal.50', 'teal.900')
   const grayBg = useColorModeValue('gray.50', 'gray.900')
   const whiteBg = useColorModeValue('white', 'gray.800')
-  
-  // Skeleton colors
   const skeletonStartColor = useColorModeValue('gray.100', 'gray.700')
   const skeletonEndColor = useColorModeValue('gray.300', 'gray.600')
-  
-  // Border colors
   const grayBorderColor = useColorModeValue('gray.200', 'gray.700')
-  
-  // FAQ specific colors
   const purpleBorderColor = useColorModeValue('purple.300', 'purple.500')
   const tealBorderColor = useColorModeValue('teal.300', 'teal.500')
   const pinkBorderColor = useColorModeValue('pink.300', 'pink.500')
-  
-  // Scroll indicator color
   const scrollIndicatorColor = useColorModeValue('gray.400', 'gray.500')
   const heroGradient = useColorModeValue(
     "linear(135deg, teal.600, blue.600, purple.600)",
     "linear(135deg, teal.300, blue.300, purple.300)"
   )
 
-  // Project data with detailed information
   const projectsData = useMemo(() => [
     {
       id: 'portfolio',
@@ -267,7 +239,7 @@ const Home = () => {
         }}
       />
       <Container maxW="container.lg" position="relative">
-      {/* Desktop Hero Section */}
+      
       <Section delay={0.1}>
         <Box 
           display={{ base: 'none', lg: 'flex' }}
@@ -322,9 +294,9 @@ const Home = () => {
             }
           }}
         >
-          {/* Desktop Content Container */}
+
           <Box maxW="6xl" mx="auto" px={{ md: 10 }} w="100%" position="relative">
-            {/* Optimized Floating Particles */}
+  
             {[...Array(4)].map((_, i) => (
               <Box
                 key={i}
@@ -344,7 +316,7 @@ const Home = () => {
               />
             ))}
           <Box mb={10} position="relative">
-            {/* Optimized Animated Avatar Component */}
+
             <AnimatedAvatar />
             
             <Box 
@@ -474,7 +446,7 @@ const Home = () => {
           </Box>
         </Box>
         
-        {/* Mobile Hero Section - Completely Separate Design */}
+
         <Box 
           display={{ base: 'flex', lg: 'none' }}
           w="100vw"
@@ -493,9 +465,9 @@ const Home = () => {
           justifyContent="center"
           bg={mobileBg}
         >
-          {/* Mobile Content Container */}
+
           <Box maxW="sm" mx="auto" w="100%" position="relative">
-            {/* Mobile Friendly Intro */}
+  
             <Box maxW="280px" mx="auto" mb={6}>
               <Text 
                 fontSize={{ base: "base", md: "xl" }}
@@ -523,7 +495,7 @@ const Home = () => {
               </Text>
             </Box>
             
-            {/* Mobile Avatar */}
+
             <Box mb={8} position="relative" display="flex" justifyContent="center">
               {isLoading ? (
                 <Skeleton
@@ -573,7 +545,7 @@ const Home = () => {
               )}
             </Box>
             
-            {/* Mobile Title - Larger and Centered */}
+
             <Box mb={8} px={4} maxW="320px" mx="auto">
               <Text
                 fontSize={{ base: "xl", sm: "2xl" }}
@@ -621,7 +593,7 @@ const Home = () => {
               </Box>
             </Box>
             
-            {/* Mobile Subheading - Enlarged */}
+
             <Text 
               fontSize="lg"
               color={grayMediumColor}
@@ -633,7 +605,7 @@ const Home = () => {
               No templates, no agencies, no headaches. Just fast, functional websites that actually work for your business.
             </Text>
             
-            {/* Mobile Buttons - Vertically Stacked with Touch-Friendly Design */}
+
             <VStack spacing={4} mb={8}>
               {isLoading ? (
                 <>
@@ -709,7 +681,7 @@ const Home = () => {
               )}
             </VStack>
             
-            {/* Mobile Status - Full Width */}
+
             <Button 
               variant="outline"
               colorScheme="teal"
@@ -731,7 +703,7 @@ const Home = () => {
               💡 Currently available for new projects
             </Button>
             
-            {/* Mobile Scroll Hint - Minimal Down Arrow */}
+
             <Box 
               mt={12}
               sx={{
@@ -748,7 +720,7 @@ const Home = () => {
         </Box>
       </Section>
 
-      {/* About Section */}
+
       <Section delay={0.2}>
         <Box pt={{ base: 16, md: 10 }} pb={{ base: 20, md: 12 }} px={{ base: 6, sm: 8, md: 10 }}>
           <Heading 
@@ -761,7 +733,7 @@ const Home = () => {
             A bit about me
           </Heading>
           
-          {/* TLDR Section */}
+  
           <Box 
             textAlign="center" 
             mb={{ base: 8, md: 12 }}
@@ -781,7 +753,7 @@ const Home = () => {
             </Text>
           </Box>
 
-          {/* Two-column layout: 3D Dog Model + Bio */}
+
           <Flex 
             direction={{ base: 'column', lg: 'row' }} 
             align="center" 
@@ -806,7 +778,7 @@ const Home = () => {
               zIndex: 0
             }}
           >
-            {/* 3D Dog Model - Left Side */}
+
             <Box
               position="relative"
               zIndex={1}
@@ -829,7 +801,7 @@ const Home = () => {
                 animation: 'float 3s ease-in-out infinite'
               }}
             >
-              {/* Mobile: Show static image, Desktop: Show 3D model */}
+
               <Box display={{ base: 'block', md: 'none' }}>
                 <Image
                   src="/images/tony.jpeg"
@@ -848,7 +820,7 @@ const Home = () => {
               </Box>
             </Box>
             
-            {/* Bio Text - Right Side */}
+
             <VStack 
               align={{ base: 'center', lg: 'start' }} 
               spacing={6}
@@ -988,7 +960,7 @@ const Home = () => {
         </Box>
       </Section>
 
-      {/* Services Section */}
+
       <Section delay={0.3}>
         <Box variant="section-container" id="services" scrollMarginTop="80px">
           <Heading 
@@ -1086,7 +1058,7 @@ const Home = () => {
         </Box>
       </Section>
 
-      {/* Projects Section */}
+
       <Section delay={0.4}>
         <Box variant="section-container" id="projects" pt={{ base: 16, md: 12 }} pb={{ base: 20, md: 16 }} scrollMarginTop="80px">
           <Heading 
@@ -1226,7 +1198,7 @@ const Home = () => {
                 transition: 'opacity 0.4s ease'
               }}
             >
-              {/* Featured Tag - Hidden on mobile to avoid hamburger menu overlap */}
+              
               <Box
                 position="absolute"
                 top="12px"
@@ -1271,7 +1243,7 @@ const Home = () => {
                 </Text>
               </Box>
               
-              {/* Hover Info Overlay */}
+              
               <Box
                 className="hover-info"
                 position="absolute"
@@ -1527,7 +1499,7 @@ const Home = () => {
         </Box>
       </Section>
 
-      {/* CTA Section */}
+
       <Section delay={0.5}>
         <Box variant="section-container" id="contact" scrollMarginTop="80px">
           <Box 
@@ -1634,7 +1606,7 @@ const Home = () => {
         </Box>
       </Section>
 
-      {/* Desktop What I'm Currently Exploring Section */}
+
       <Section delay={0.6}>
         <Box 
           display={{ base: 'none', lg: 'block' }}
@@ -1725,7 +1697,7 @@ const Home = () => {
           </Box>
         </Box>
         
-        {/* Mobile What I'm Currently Exploring Section - Redesigned */}
+  
         <Box 
           display={{ base: 'block', lg: 'none' }}
           variant="section-container"
@@ -1753,9 +1725,9 @@ const Home = () => {
             </Text>
           </Heading>
           
-          {/* Full-width flowing format */}
+  
           <Box maxW="md" mx="auto">
-            {/* Main paragraph with larger font */}
+    
             <Text 
               fontSize={{ base: "xl", sm: "2xl" }}
               lineHeight="relaxed" 
@@ -1768,7 +1740,7 @@ const Home = () => {
               Currently diving into AI tools like ChatGPT and how they&apos;re reshaping creative workflows for non-devs.
             </Text>
             
-            {/* Well-spaced vertical list with motion */}
+    
             <VStack spacing={5} mb={6}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -1873,7 +1845,7 @@ const Home = () => {
               </motion.div>
             </VStack>
             
-            {/* Compact CTA */}
+    
             <Box textAlign="center">
               <Button 
                 variant="ghost" 
@@ -1898,8 +1870,8 @@ const Home = () => {
         </Box>
       </Section>
 
-      {/* FAQ Section */}
-      {/* Desktop FAQ Section */}
+
+
       <Section delay={0.7}>
         <Box 
           display={{ base: 'none', lg: 'block' }}
@@ -2112,7 +2084,7 @@ const Home = () => {
           </Box>
         </Box>
         
-        {/* Mobile FAQ Section - Redesigned with Motion */}
+  
         <Box 
           display={{ base: 'block', lg: 'none' }}
           variant="section-container" 
@@ -2142,7 +2114,7 @@ const Home = () => {
           </Heading>
           
           <VStack spacing={6} maxW="lg" mx="auto">
-            {/* FAQ Item 1 */}
+    
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -2211,7 +2183,7 @@ const Home = () => {
               </Box>
             </motion.div>
 
-            {/* FAQ Item 2 */}
+    
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -2275,7 +2247,7 @@ const Home = () => {
               </Box>
             </motion.div>
 
-            {/* FAQ Item 3 */}
+    
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -2343,7 +2315,7 @@ const Home = () => {
       </Section>
     </Container>
 
-    {/* Project Details Modal */}
+    
     <Modal isOpen={isOpen} onClose={onClose} size="xl" isCentered>
       <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(10px)" />
       <ModalContent 
@@ -2468,7 +2440,7 @@ const Home = () => {
       </ModalContent>
     </Modal>
 
-    {/* 回到顶部按钮 */}
+    
     {showScrollTop && (
       <Button
         position="fixed"
