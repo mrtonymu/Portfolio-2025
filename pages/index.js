@@ -574,7 +574,7 @@ const Home = () => {
             </Box>
             
             {/* Mobile Title - Larger and Centered */}
-            <Box mb={8} px={4}>
+            <Box mb={8} px={4} maxW="320px" mx="auto">
               <Text
                 fontSize={{ base: "xl", sm: "2xl" }}
                 fontWeight="800"
@@ -592,33 +592,33 @@ const Home = () => {
               >
                 I help non-tech creatives build
               </Text>
-              <WordRotationEffect
-                staticText=""
-                rotatingWords={["smart websites", "clean sites", "useful tools"]}
-                speed={4800}
-                fontSize={{ base: "lg", sm: "xl" }}
-                fontWeight="800"
-                bgGradient={heroGradient}
-                bgClip="text"
-                minH="40px"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                letterSpacing="-0.01em"
-                lineHeight={1.3}
-                textAlign="center"
-                maxW="280px"
-                mx="auto"
-                px={4}
-                whiteSpace="normal"
-                wordBreak="break-word"
-                overflowWrap="break-word"
-                style={{ 
-                  fontDisplay: 'swap',
-                  WebkitFontSmoothing: 'antialiased',
-                  textRendering: 'optimizeLegibility'
-                }}
-              />
+              <Box display="flex" justifyContent="center" w="full">
+                <WordRotationEffect
+                  staticText=""
+                  rotatingWords={["smart websites", "clean sites", "useful tools"]}
+                  speed={4800}
+                  fontSize={{ base: "lg", sm: "xl" }}
+                  fontWeight="800"
+                  bgGradient={heroGradient}
+                  bgClip="text"
+                  minH="40px"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  letterSpacing="-0.01em"
+                  lineHeight={1.3}
+                  textAlign="center"
+                  maxW="280px"
+                  whiteSpace="normal"
+                  wordBreak="break-word"
+                  overflowWrap="break-word"
+                  style={{ 
+                    fontDisplay: 'swap',
+                    WebkitFontSmoothing: 'antialiased',
+                    textRendering: 'optimizeLegibility'
+                  }}
+                />
+              </Box>
             </Box>
             
             {/* Mobile Subheading - Enlarged */}
@@ -1725,19 +1725,19 @@ const Home = () => {
           </Box>
         </Box>
         
-        {/* Mobile What I'm Currently Exploring Section - Optimized */}
+        {/* Mobile What I'm Currently Exploring Section - Redesigned */}
         <Box 
           display={{ base: 'block', lg: 'none' }}
           variant="section-container"
-          pt={6}
-          pb={8}
-          px={4}
+          pt={8}
+          pb={10}
+          px={6}
         >
           <Heading 
             as="h2" 
             fontSize="2xl"
             textAlign="center"
-            mb={6}
+            mb={8}
             fontWeight="800"
             display="flex"
             alignItems="center"
@@ -1753,79 +1753,135 @@ const Home = () => {
             </Text>
           </Heading>
           
-          <Box 
-            maxW="sm" 
-            mx="auto" 
-            p={5} 
-            bg={whiteBg}
-            borderRadius="xl"
-            border="1px solid"
-            borderColor={grayBorderColor}
-            boxShadow="lg"
-          >
-            {/* Mobile Shortened Content */}
+          {/* Full-width flowing format */}
+          <Box maxW="md" mx="auto">
+            {/* Main paragraph with larger font */}
             <Text 
-              fontSize={{ base: "lg", sm: "xl" }}
+              fontSize={{ base: "xl", sm: "2xl" }}
               lineHeight="relaxed" 
-              mb={3}
-              color={grayLightColor}
-              fontWeight="500"
+              mb={6}
+              color={grayDarkColor}
+              fontWeight="600"
               textAlign="center"
-              bgGradient="linear(to-br, purple.100, teal.100)"
-              bgClip="text"
               letterSpacing="tight"
             >
               Currently diving into AI tools like ChatGPT and how they&apos;re reshaping creative workflows for non-devs.
             </Text>
             
-            {/* Mobile Bullet Points */}
-            <VStack align="start" spacing={3} mb={2} px={0}>
-              <HStack spacing={3} w="full">
-                <Text fontSize="xl" flexShrink={0}>🤖</Text>
-                <Text 
-                  fontSize={{ base: "lg", sm: "xl" }}
-                  color={grayMediumColor}
-                  flex={1}
+            {/* Well-spaced vertical list with motion */}
+            <VStack spacing={5} mb={6}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                style={{ width: '100%' }}
+              >
+                <Box 
+                  w="full" 
+                  p={4} 
+                  bg={whiteBg}
+                  borderRadius="lg"
+                  border="1px solid"
+                  borderColor={grayBorderColor}
+                  boxShadow="sm"
+                  _hover={{
+                    transform: 'translateY(-2px)',
+                    boxShadow: 'md'
+                  }}
+                  transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
                 >
-                  AI integration
-                </Text>
-              </HStack>
-              <HStack spacing={3} w="full">
-                <Text fontSize="xl" flexShrink={0}>📱</Text>
-                <Text 
-                  fontSize={{ base: "lg", sm: "xl" }}
-                  color={grayMediumColor}
-                  flex={1}
+                  <HStack spacing={4} align="center">
+                    <Text fontSize="2xl" flexShrink={0}>🤖</Text>
+                    <Text 
+                      fontSize={{ base: "lg", sm: "xl" }}
+                      color={grayDarkColor}
+                      fontWeight="600"
+                      flex={1}
+                    >
+                      AI integration for creative workflows
+                    </Text>
+                  </HStack>
+                </Box>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                style={{ width: '100%' }}
+              >
+                <Box 
+                  w="full" 
+                  p={4} 
+                  bg={whiteBg}
+                  borderRadius="lg"
+                  border="1px solid"
+                  borderColor={grayBorderColor}
+                  boxShadow="sm"
+                  _hover={{
+                    transform: 'translateY(-2px)',
+                    boxShadow: 'md'
+                  }}
+                  transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
                 >
-                  Mobile design
-                </Text>
-              </HStack>
-              <HStack spacing={3} w="full">
-                <Text fontSize="xl" flexShrink={0}>✨</Text>
-                <Text 
-                  fontSize={{ base: "lg", sm: "xl" }}
-                  color={grayMediumColor}
-                  flex={1}
+                  <HStack spacing={4} align="center">
+                    <Text fontSize="2xl" flexShrink={0}>📱</Text>
+                    <Text 
+                      fontSize={{ base: "lg", sm: "xl" }}
+                      color={grayDarkColor}
+                      fontWeight="600"
+                      flex={1}
+                    >
+                      Mobile-first design principles
+                    </Text>
+                  </HStack>
+                </Box>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                style={{ width: '100%' }}
+              >
+                <Box 
+                  w="full" 
+                  p={4} 
+                  bg={whiteBg}
+                  borderRadius="lg"
+                  border="1px solid"
+                  borderColor={grayBorderColor}
+                  boxShadow="sm"
+                  _hover={{
+                    transform: 'translateY(-2px)',
+                    boxShadow: 'md'
+                  }}
+                  transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
                 >
-                  UI microcopy
-                </Text>
-              </HStack>
+                  <HStack spacing={4} align="center">
+                    <Text fontSize="2xl" flexShrink={0}>✨</Text>
+                    <Text 
+                      fontSize={{ base: "lg", sm: "xl" }}
+                      color={grayDarkColor}
+                      fontWeight="600"
+                      flex={1}
+                    >
+                      UI microcopy that converts
+                    </Text>
+                  </HStack>
+                </Box>
+              </motion.div>
             </VStack>
             
-            {/* Mobile CTA */}
-            <Box textAlign="center" px={2}>
+            {/* Compact CTA */}
+            <Box textAlign="center">
               <Button 
                 variant="ghost" 
-                size="sm"
+                size="md"
                 fontStyle="italic"
                 color={tealTextColor}
-                fontWeight="500"
-                fontSize="xs"
-                maxW="full"
-                whiteSpace="normal"
-                height="auto"
-                py={2}
-                px={3}
+                fontWeight="600"
+                fontSize="md"
                 _hover={{
                   bg: aboutBg,
                   transform: 'scale(1.02)'
@@ -1835,7 +1891,7 @@ const Home = () => {
                 }}
                 transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                Let&apos;s chat! ✨
+                Let&apos;s chat about these! ✨
               </Button>
             </Box>
           </Box>
@@ -2056,7 +2112,7 @@ const Home = () => {
           </Box>
         </Box>
         
-        {/* Mobile FAQ Section - Optimized */}
+        {/* Mobile FAQ Section - Redesigned with Motion */}
         <Box 
           display={{ base: 'block', lg: 'none' }}
           variant="section-container" 
@@ -2067,16 +2123,16 @@ const Home = () => {
         >
           <Heading 
             as="h2" 
-            fontSize="2xl"
+            fontSize="3xl"
             textAlign="center"
-            mb={8}
+            mb={10}
             fontWeight="800"
             display="flex"
             alignItems="center"
             justifyContent="center"
             gap={3}
           >
-            <Text fontSize="2xl">💬</Text>
+            <Text fontSize="3xl">💬</Text>
             <Text 
               bgGradient="linear(to-r, purple.400, teal.400)"
               bgClip="text"
@@ -2085,154 +2141,204 @@ const Home = () => {
             </Text>
           </Heading>
           
-          <Box maxW="md" mx="auto">
-            <Accordion allowToggle>
-              <AccordionItem 
-                border="1px solid"
-                borderColor={grayBorderColor}
-                borderRadius="xl"
-                mb={6}
+          <VStack spacing={6} maxW="lg" mx="auto">
+            {/* FAQ Item 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              style={{ width: '100%' }}
+            >
+              <Box 
+                w="full"
                 bg={whiteBg}
-                boxShadow="md"
-                minH="120px"
-                display="flex"
-                flexDirection="column"
+                borderRadius="2xl"
+                border="2px solid"
+                borderColor={grayBorderColor}
+                boxShadow="lg"
+                overflow="hidden"
                 _hover={{
                   borderColor: purpleBorderColor,
-                  transform: 'scale(1.02)',
-                  boxShadow: 'lg'
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 20px 40px rgba(159, 122, 234, 0.15)'
                 }}
-                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                <AccordionButton 
-                  p={5}
-                  minH="60px"
-                  _hover={{ bg: 'transparent' }}
-                  _expanded={{ 
-                    bg: purpleExpandedBg,
-                    borderBottomRadius: 0
-                  }}
-                >
-                  <Box flex="1" textAlign="left">
-                    <HStack spacing={3}>
-                      <Text fontSize="xl">❓</Text>
-                      <Text fontSize="lg" fontWeight="600" color={purpleTextColor}>
-                        Do you freelance?
-                      </Text>
-                    </HStack>
-                  </Box>
-                  <AccordionIcon fontSize="xl" color={purpleTextColor} />
-                </AccordionButton>
-                <AccordionPanel 
-                  pt={4}
-                  pb={8} 
-                  px={5}
-                  bg={purpleExpandedBg}
-                  borderBottomRadius="xl"
-                >
-                  <Text 
-                    fontSize="md"
-                    color={whiteTextColor} 
-                    lineHeight="relaxed"
-                  >
-                    Yes — on select projects that excite me. I&apos;m particularly drawn to creative problem-solving, AI integration, and building tools that help people.
-                  </Text>
-                </AccordionPanel>
-              </AccordionItem>
+                <Accordion allowToggle>
+                  <AccordionItem border="none">
+                    <AccordionButton 
+                      p={6}
+                      minH="80px"
+                      _hover={{ bg: 'transparent' }}
+                      _expanded={{ 
+                        bg: purpleExpandedBg,
+                      }}
+                    >
+                      <Box flex="1" textAlign="left">
+                        <HStack spacing={4}>
+                          <Text fontSize="3xl">❓</Text>
+                          <Text fontSize="xl" fontWeight="700" color={purpleTextColor}>
+                            Do you freelance?
+                          </Text>
+                        </HStack>
+                      </Box>
+                      <AccordionIcon fontSize="2xl" color={purpleTextColor} />
+                    </AccordionButton>
+                    <AccordionPanel 
+                      pt={2}
+                      pb={6} 
+                      px={6}
+                      bg={purpleExpandedBg}
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Text 
+                          fontSize="lg"
+                          color={grayDarkColor} 
+                          lineHeight="relaxed"
+                          fontWeight="500"
+                        >
+                          Yes — on select projects that excite me. I&apos;m particularly drawn to creative problem-solving, AI integration, and building tools that help people.
+                        </Text>
+                      </motion.div>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
+              </Box>
+            </motion.div>
 
-              <AccordionItem 
-                border="1px solid"
-                borderColor={grayBorderColor}
-                borderRadius="xl"
-                mb={6}
+            {/* FAQ Item 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              style={{ width: '100%' }}
+            >
+              <Box 
+                w="full"
                 bg={whiteBg}
-                boxShadow="md"
+                borderRadius="2xl"
+                border="2px solid"
+                borderColor={grayBorderColor}
+                boxShadow="lg"
+                overflow="hidden"
                 _hover={{
                   borderColor: tealBorderColor,
-                  transform: 'scale(1.02)',
-                  boxShadow: 'lg'
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.15)'
                 }}
-                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                <AccordionButton 
-                  p={5}
-                  minH="60px"
-                  _hover={{ bg: 'transparent' }}
-                  _expanded={{ 
-                    bg: tealExpandedBg,
-                    borderBottomRadius: 0
-                  }}
-                >
-                  <Box flex="1" textAlign="left">
-                    <HStack spacing={3}>
-                      <Text fontSize="xl">💡</Text>
-                      <Text fontSize="lg" fontWeight="600" color={tealTextColor}>
-                        Can we collaborate?
-                      </Text>
-                    </HStack>
-                  </Box>
-                  <AccordionIcon fontSize="xl" color={tealTextColor} />
-                </AccordionButton>
-                <AccordionPanel 
-                  pt={4}
-                  pb={8} 
-                  px={5}
-                  bg={tealExpandedBg}
-                  borderBottomRadius="xl"
-                >
-                  <Text fontSize="md" color={whiteTextColor} lineHeight="relaxed">
-                    Absolutely! Especially if it&apos;s fun, weird, or meaningful. I love projects that push boundaries and solve real problems.
-                  </Text>
-                </AccordionPanel>
-              </AccordionItem>
+                <Accordion allowToggle>
+                  <AccordionItem border="none">
+                    <AccordionButton 
+                      p={6}
+                      minH="80px"
+                      _hover={{ bg: 'transparent' }}
+                      _expanded={{ 
+                        bg: tealExpandedBg,
+                      }}
+                    >
+                      <Box flex="1" textAlign="left">
+                        <HStack spacing={4}>
+                          <Text fontSize="3xl">💡</Text>
+                          <Text fontSize="xl" fontWeight="700" color={tealTextColor}>
+                            Can we collaborate?
+                          </Text>
+                        </HStack>
+                      </Box>
+                      <AccordionIcon fontSize="2xl" color={tealTextColor} />
+                    </AccordionButton>
+                    <AccordionPanel 
+                      pt={2}
+                      pb={6} 
+                      px={6}
+                      bg={tealExpandedBg}
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Text fontSize="lg" color={grayDarkColor} lineHeight="relaxed" fontWeight="500">
+                          Absolutely! Especially if it&apos;s fun, weird, or meaningful. I love projects that push boundaries and solve real problems.
+                        </Text>
+                      </motion.div>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
+              </Box>
+            </motion.div>
 
-              <AccordionItem 
-                border="1px solid"
-                borderColor={grayBorderColor}
-                borderRadius="xl"
-                mb={4}
+            {/* FAQ Item 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              style={{ width: '100%' }}
+            >
+              <Box 
+                w="full"
                 bg={whiteBg}
-                boxShadow="md"
+                borderRadius="2xl"
+                border="2px solid"
+                borderColor={grayBorderColor}
+                boxShadow="lg"
+                overflow="hidden"
                 _hover={{
                   borderColor: pinkBorderColor,
-                  transform: 'scale(1.02)',
-                  boxShadow: 'lg'
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 20px 40px rgba(236, 72, 153, 0.15)'
                 }}
-                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
               >
-                <AccordionButton 
-                  p={5}
-                  minH="60px"
-                  _hover={{ bg: 'transparent' }}
-                  _expanded={{ 
-                    bg: pinkExpandedBg,
-                    borderBottomRadius: 0
-                  }}
-                >
-                  <Box flex="1" textAlign="left">
-                    <HStack spacing={3}>
-                      <Text fontSize="xl">⚙️</Text>
-                      <Text fontSize="lg" fontWeight="600" color={pinkTextColor}>
-                        Tools I use daily?
-                      </Text>
-                    </HStack>
-                  </Box>
-                  <AccordionIcon fontSize="xl" color={pinkTextColor} />
-                </AccordionButton>
-                <AccordionPanel 
-                  pt={4}
-                  pb={8} 
-                  px={5}
-                  bg={pinkExpandedBg}
-                  borderBottomRadius="xl"
-                >
-                  <Text fontSize="md" color={whiteTextColor} lineHeight="relaxed">
-                    VS Code, Framer, ChatGPT, Figma, and lots of caffeine to fuel the creative process. ☕
-                  </Text>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
-          </Box>
+                <Accordion allowToggle>
+                  <AccordionItem border="none">
+                    <AccordionButton 
+                      p={6}
+                      minH="80px"
+                      _hover={{ bg: 'transparent' }}
+                      _expanded={{ 
+                        bg: pinkExpandedBg,
+                      }}
+                    >
+                      <Box flex="1" textAlign="left">
+                        <HStack spacing={4}>
+                          <Text fontSize="3xl">⚙️</Text>
+                          <Text fontSize="xl" fontWeight="700" color={pinkTextColor}>
+                            Tools I use daily?
+                          </Text>
+                        </HStack>
+                      </Box>
+                      <AccordionIcon fontSize="2xl" color={pinkTextColor} />
+                    </AccordionButton>
+                    <AccordionPanel 
+                      pt={2}
+                      pb={6} 
+                      px={6}
+                      bg={pinkExpandedBg}
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Text fontSize="lg" color={grayDarkColor} lineHeight="relaxed" fontWeight="500">
+                          VS Code, Framer, ChatGPT, Figma, and lots of caffeine to fuel the creative process. ☕
+                        </Text>
+                      </motion.div>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
+              </Box>
+            </motion.div>
+          </VStack>
         </Box>
       </Section>
     </Container>
