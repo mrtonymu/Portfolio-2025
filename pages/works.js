@@ -11,14 +11,14 @@ import thumbHitzLyrics from '../public/images/works/HitzLyrics.jpg'
 
 const Works = () => (
   <Layout title="Projects">
-    <Container maxW="container.lg">
-      <Box mb={6}>
+    <Container maxW="container.lg" pt={20}>
+      <Box mb={6} scrollMarginTop="80px">
         <Button as={NextLink} href="/" leftIcon={<ChevronLeftIcon />} variant="ghost" colorScheme="teal">
           Back to Home
         </Button>
       </Box>
       
-      <Heading as="h1" fontSize={32} mb={4}>
+      <Heading as="h1" fontSize={32} mb={4} scrollMarginTop="80px">
         Projects
       </Heading>
       

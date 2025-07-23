@@ -559,6 +559,7 @@ const Home = () => {
                     transition="transform 0.2s ease, box-shadow 0.2s ease"
                     loading="lazy"
                     objectFit="cover"
+                    objectPosition="center top"
                     _hover={{
                       transform: 'scale(1.03)',
                       boxShadow: '0 0 25px rgba(56, 178, 172, 0.6), 0 0 50px rgba(56, 178, 172, 0.3)'
@@ -595,7 +596,7 @@ const Home = () => {
                 staticText=""
                 rotatingWords={["smart websites", "clean sites", "useful tools"]}
                 speed={4800}
-                fontSize={{ base: "xl", sm: "2xl" }}
+                fontSize={{ base: "lg", sm: "xl" }}
                 fontWeight="800"
                 bgGradient={heroGradient}
                 bgClip="text"
@@ -606,8 +607,9 @@ const Home = () => {
                 letterSpacing="-0.01em"
                 lineHeight={1.3}
                 textAlign="center"
-                maxW="100%"
-                px={2}
+                maxW="280px"
+                mx="auto"
+                px={4}
                 whiteSpace="normal"
                 wordBreak="break-word"
                 overflowWrap="break-word"
@@ -838,6 +840,7 @@ const Home = () => {
                   w="200px"
                   h="200px"
                   fallbackSrc="/images/tony.jpeg"
+                  loading="lazy"
                 />
               </Box>
               <Box display={{ base: 'none', md: 'block' }}>
@@ -1762,9 +1765,9 @@ const Home = () => {
           >
             {/* Mobile Shortened Content */}
             <Text 
-              fontSize={{ base: "xl", sm: "2xl" }}
+              fontSize={{ base: "lg", sm: "xl" }}
               lineHeight="relaxed" 
-              mb={4}
+              mb={3}
               color={grayLightColor}
               fontWeight="500"
               textAlign="center"
@@ -1776,31 +1779,31 @@ const Home = () => {
             </Text>
             
             {/* Mobile Bullet Points */}
-            <VStack align="start" spacing={2} mb={3} px={0}>
-              <HStack spacing={2} w="full">
-                <Text fontSize="lg" flexShrink={0}>🤖</Text>
+            <VStack align="start" spacing={3} mb={2} px={0}>
+              <HStack spacing={3} w="full">
+                <Text fontSize="xl" flexShrink={0}>🤖</Text>
                 <Text 
-                  fontSize={{ base: "md", sm: "lg" }}
+                  fontSize={{ base: "lg", sm: "xl" }}
                   color={grayMediumColor}
                   flex={1}
                 >
                   AI integration
                 </Text>
               </HStack>
-              <HStack spacing={2} w="full">
-                <Text fontSize="lg" flexShrink={0}>📱</Text>
+              <HStack spacing={3} w="full">
+                <Text fontSize="xl" flexShrink={0}>📱</Text>
                 <Text 
-                  fontSize={{ base: "md", sm: "lg" }}
+                  fontSize={{ base: "lg", sm: "xl" }}
                   color={grayMediumColor}
                   flex={1}
                 >
                   Mobile design
                 </Text>
               </HStack>
-              <HStack spacing={2} w="full">
-                <Text fontSize="lg" flexShrink={0}>✨</Text>
+              <HStack spacing={3} w="full">
+                <Text fontSize="xl" flexShrink={0}>✨</Text>
                 <Text 
-                  fontSize={{ base: "md", sm: "lg" }}
+                  fontSize={{ base: "lg", sm: "xl" }}
                   color={grayMediumColor}
                   flex={1}
                 >
@@ -2091,6 +2094,9 @@ const Home = () => {
                 mb={6}
                 bg={whiteBg}
                 boxShadow="md"
+                minH="120px"
+                display="flex"
+                flexDirection="column"
                 _hover={{
                   borderColor: purpleBorderColor,
                   transform: 'scale(1.02)',
@@ -2119,7 +2125,7 @@ const Home = () => {
                 </AccordionButton>
                 <AccordionPanel 
                   pt={4}
-                  pb={6} 
+                  pb={8} 
                   px={5}
                   bg={purpleExpandedBg}
                   borderBottomRadius="xl"
@@ -2169,7 +2175,7 @@ const Home = () => {
                 </AccordionButton>
                 <AccordionPanel 
                   pt={4}
-                  pb={6} 
+                  pb={8} 
                   px={5}
                   bg={tealExpandedBg}
                   borderBottomRadius="xl"
@@ -2215,7 +2221,7 @@ const Home = () => {
                 </AccordionButton>
                 <AccordionPanel 
                   pt={4}
-                  pb={6} 
+                  pb={8} 
                   px={5}
                   bg={pinkExpandedBg}
                   borderBottomRadius="xl"

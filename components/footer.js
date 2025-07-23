@@ -186,7 +186,7 @@ const Footer = () => {
             w="full"
             size="lg"
             fontSize="md"
-            px={8}
+            px={6}
             py={4}
             mb={6}
             borderRadius="xl"
@@ -203,7 +203,9 @@ const Footer = () => {
             }}
             transition="all 0.3s ease"
             textAlign="center"
-            whiteSpace="nowrap"
+            whiteSpace="normal"
+            height="auto"
+            minH="56px"
           >
             <Text as="span" verticalAlign="middle">🚀</Text>
             <Text as="span" ml={2}>Currently Available for New Projects</Text>
