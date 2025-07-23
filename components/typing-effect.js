@@ -29,10 +29,11 @@ const WordRotationEffect = ({ staticText, rotatingWords, speed = 3500, ...props 
     <Box 
       {...props} 
       style={{ fontDisplay: 'swap', WebkitFontSmoothing: 'antialiased' }}
-      whiteSpace={{ base: "normal", md: "nowrap" }}
+      whiteSpace="normal"
       overflow="visible"
       wordBreak="break-word"
       overflowWrap="break-word"
+      maxW="100%"
     >
       <Text as="span" {...props}>
         {staticText}{' '}
@@ -44,9 +45,9 @@ const WordRotationEffect = ({ staticText, rotatingWords, speed = 3500, ...props 
         transition="opacity 0.2s ease-in-out, transform 0.2s ease-in-out"
         color="teal.300"
         fontWeight="inherit"
-        whiteSpace={{ base: "normal", md: "nowrap" }}
-        wordBreak={{ base: "break-word", md: "normal" }}
-        overflowWrap={{ base: "break-word", md: "normal" }}
+        whiteSpace="normal"
+        wordBreak="break-word"
+        overflowWrap="break-word"
         display="inline"
         ml={{ base: 1, md: 2 }}
         style={{

@@ -608,6 +608,9 @@ const Home = () => {
                 textAlign="center"
                 maxW="100%"
                 px={2}
+                whiteSpace="normal"
+                wordBreak="break-word"
+                overflowWrap="break-word"
                 style={{ 
                   fontDisplay: 'swap',
                   WebkitFontSmoothing: 'antialiased',
@@ -1723,9 +1726,9 @@ const Home = () => {
         <Box 
           display={{ base: 'block', lg: 'none' }}
           variant="section-container"
-          pt={8}
-          pb={12}
-          px={6}
+          pt={6}
+          pb={8}
+          px={4}
         >
           <Heading 
             as="h2" 
@@ -1759,9 +1762,9 @@ const Home = () => {
           >
             {/* Mobile Shortened Content */}
             <Text 
-              fontSize={{ base: "lg", sm: "xl" }}
+              fontSize={{ base: "xl", sm: "2xl" }}
               lineHeight="relaxed" 
-              mb={6}
+              mb={4}
               color={grayLightColor}
               fontWeight="500"
               textAlign="center"
@@ -1773,11 +1776,11 @@ const Home = () => {
             </Text>
             
             {/* Mobile Bullet Points */}
-            <VStack align="start" spacing={3} mb={4} px={0}>
+            <VStack align="start" spacing={2} mb={3} px={0}>
               <HStack spacing={2} w="full">
-                <Text fontSize="md" flexShrink={0}>🤖</Text>
+                <Text fontSize="lg" flexShrink={0}>🤖</Text>
                 <Text 
-                  fontSize={{ base: "sm", sm: "md" }}
+                  fontSize={{ base: "md", sm: "lg" }}
                   color={grayMediumColor}
                   flex={1}
                 >
@@ -1785,9 +1788,9 @@ const Home = () => {
                 </Text>
               </HStack>
               <HStack spacing={2} w="full">
-                <Text fontSize="md" flexShrink={0}>📱</Text>
+                <Text fontSize="lg" flexShrink={0}>📱</Text>
                 <Text 
-                  fontSize={{ base: "sm", sm: "md" }}
+                  fontSize={{ base: "md", sm: "lg" }}
                   color={grayMediumColor}
                   flex={1}
                 >
@@ -1795,9 +1798,9 @@ const Home = () => {
                 </Text>
               </HStack>
               <HStack spacing={2} w="full">
-                <Text fontSize="md" flexShrink={0}>✨</Text>
+                <Text fontSize="lg" flexShrink={0}>✨</Text>
                 <Text 
-                  fontSize={{ base: "sm", sm: "md" }}
+                  fontSize={{ base: "md", sm: "lg" }}
                   color={grayMediumColor}
                   flex={1}
                 >
