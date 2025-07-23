@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import {
   Container,
   Badge,
@@ -7,7 +8,7 @@ import {
   UnorderedList,
   Heading,
   Center,
-  Image
+  Box
 } from '@chakra-ui/react'
 import Layout from '../../components/layouts/article'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -21,7 +22,17 @@ const Work = () => (
         freeDBTagger <Badge>2004-2009</Badge>
       </Title>
       <Center my={6}>
-        <Image src="/images/works/freedbtagger_icon.gif" alt="icon" />
+        <Box position="relative" width="64px" height="64px">
+          <Image 
+            src="/images/works/freedbtagger_icon.gif" 
+            alt="icon" 
+            width={64}
+            height={64}
+            style={{ objectFit: 'contain' }}
+            loading="lazy"
+            unoptimized
+          />
+        </Box>
       </Center>
       <P>Automatic audio file tagging tool using FreeDB for Windows</P>
       <P>楽曲長の組み合わせでアルバムを特定して楽曲情報を自動入力</P>

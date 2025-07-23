@@ -11,9 +11,29 @@ function easeOutCirc(x) {
 const VoxelDog = () => {
   const refContainer = useRef()
   const [loading, setLoading] = useState(true)
+  const [isInView, setIsInView] = useState(false)
   const refRenderer = useRef()
   const refCamera = useRef()
   const urlDogGLB = `${process.env.NODE_ENV === 'production' ? 'https://tonymumu.vercel.app/' : ''}/dog.glb`
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    )
+
+    if (refContainer.current) {
+      observer.observe(refContainer.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   const handleWindowResize = useCallback(() => {
     const { current: renderer } = refRenderer
@@ -54,12 +74,12 @@ const VoxelDog = () => {
          camera.updateProjectionMatrix()
        }
     }
-  }, [])
+  }, [isInView])
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const { current: container } = refContainer
-    if (container) {
+    if (container && isInView) {
       const scW = container.clientWidth
       const scH = container.clientHeight
 

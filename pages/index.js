@@ -1,4 +1,5 @@
 import NextLink from 'next/link'
+import Image from 'next/image'
 import {
   Container,
   Heading,
@@ -27,8 +28,7 @@ import {
   Icon,
   useToast,
   Skeleton,
-  SkeletonText,
-  Image
+  SkeletonText
 } from '@chakra-ui/react'
 import { ChevronRightIcon, CheckIcon } from '@chakra-ui/icons'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -803,17 +803,27 @@ const Home = () => {
             >
 
               <Box display={{ base: 'block', md: 'none' }}>
-                <Image
-                  src="/images/tony.jpeg"
-                  alt="Tony Yam"
+                <Box
                   borderRadius="full"
-                  objectFit="cover"
-                  objectPosition="center top"
+                  overflow="hidden"
                   w="200px"
                   h="200px"
-                  fallbackSrc="/images/tony.jpeg"
-                  loading="lazy"
-                />
+                  position="relative"
+                >
+                  <Image
+                    src="/images/tony.jpeg"
+                    alt="Tony Yam"
+                    width={200}
+                    height={200}
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center top'
+                    }}
+                    priority
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  />
+                </Box>
               </Box>
               <Box display={{ base: 'none', md: 'block' }}>
                 <VoxelDog />

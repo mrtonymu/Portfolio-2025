@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import {
   Box,
   Container,
@@ -6,8 +7,7 @@ import {
   List,
   ListItem,
   SimpleGrid,
-  UnorderedList,
-  Image
+  UnorderedList
 } from '@chakra-ui/react'
 import Layout from '../../components/layouts/article'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -72,12 +72,17 @@ const Work = () => (
           href="https://itunes.apple.com/app/id1035645520?mt=8"
           target="_blank"
         >
-          <Image
-            maxW={240}
-            src="/images/works/appstore.png"
-            className="image-appstore"
-            alt="Download on App Store"
-          />
+          <Box position="relative" maxW={240} mx="auto">
+            <Image
+              src="/images/works/appstore.png"
+              className="image-appstore"
+              alt="Download on App Store"
+              width={240}
+              height={71}
+              style={{ width: '100%', height: 'auto' }}
+              loading="lazy"
+            />
+          </Box>
         </Link>
       </Box>
 

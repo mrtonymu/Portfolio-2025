@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import {
   Container,
   Badge,
@@ -8,7 +9,7 @@ import {
   UnorderedList,
   Heading,
   Center,
-  Image
+  Box
 } from '@chakra-ui/react'
 import Layout from '../../components/layouts/article'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -22,7 +23,16 @@ const Work = () => (
         amembo <Badge>2005-2008</Badge>
       </Title>
       <Center my={6}>
-        <Image src="/images/works/amembo_icon.png" alt="icon" />
+        <Box position="relative" width="64px" height="64px">
+          <Image 
+            src="/images/works/amembo_icon.png" 
+            alt="icon" 
+            width={64}
+            height={64}
+            style={{ objectFit: 'contain' }}
+            loading="lazy"
+          />
+        </Box>
       </Center>
       <P>
         P2P private file sharing tool with MSN Messenger integration for Windows
