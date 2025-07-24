@@ -1,14 +1,26 @@
-import { Container, Heading, SimpleGrid, Box, Text, Icon } from '@chakra-ui/react'
+import { Container, Heading, SimpleGrid, Box, Text, Icon, Button, useColorModeValue } from '@chakra-ui/react'
 import { FiEdit3, FiFileText, FiVideo, FiBookOpen } from 'react-icons/fi'
+import { ChevronLeftIcon } from '@chakra-ui/icons'
+import NextLink from 'next/link'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 
 const Posts = () => (
   <Layout title="Posts">
-    <Container>
-      <Heading as="h3" fontSize={20} mb={4}>
+    <Container maxW="container.lg" pt={20}>
+      <Box mb={6} scrollMarginTop="80px">
+        <Button as={NextLink} href="/" leftIcon={<ChevronLeftIcon />} variant="ghost" colorScheme="teal">
+          Back to Home
+        </Button>
+      </Box>
+      
+      <Heading as="h1" fontSize={32} mb={4} scrollMarginTop="80px">
         Posts & Content
       </Heading>
+      
+      <Text fontSize="lg" mb={8} color={useColorModeValue('gray.600', 'gray.300')}>
+        Sharing knowledge, experiences, and insights from my journey in web development and technology.
+      </Text>
 
       <Section delay={0.1}>
         <SimpleGrid columns={[1, 2, 2]} gap={6}>

@@ -15,6 +15,8 @@ import {
   Badge,
   useColorModeValue
 } from '@chakra-ui/react'
+import { ChevronLeftIcon } from '@chakra-ui/icons'
+import NextLink from 'next/link'
 import { useState } from 'react'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
@@ -95,12 +97,18 @@ const Guestbook = () => {
 
   return (
     <Layout title="Guestbook">
-      <Container>
-        <Heading as="h3" fontSize={20} mb={4}>
+      <Container maxW="container.lg" pt={20}>
+        <Box mb={6} scrollMarginTop="80px">
+          <Button as={NextLink} href="/" leftIcon={<ChevronLeftIcon />} variant="ghost" colorScheme="teal">
+            Back to Home
+          </Button>
+        </Box>
+        
+        <Heading as="h1" fontSize={32} mb={4} scrollMarginTop="80px">
           Guestbook 💬
         </Heading>
         
-        <Text mb={6} color="gray.600" _dark={{ color: 'gray.400' }}>
+        <Text fontSize="lg" mb={8} color={useColorModeValue('gray.600', 'gray.300')}>
           Leave a message, ask a question, or just say hi! All messages are welcome.
         </Text>
 
