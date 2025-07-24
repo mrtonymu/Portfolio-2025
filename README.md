@@ -13,6 +13,10 @@
 - **Dark/Light Mode**: Theme switching with persistent preferences
 - **Project Showcase**: Detailed case studies of real-world projects
 - **Performance Optimized**: Fast loading with Next.js optimization
+- **TypeScript Support**: Full TypeScript integration for better development experience
+- **PWA Ready**: Progressive Web App features with offline support
+- **Contact Form**: Interactive contact form with validation
+- **SEO Optimized**: Structured data and meta tags for better search visibility
 
 ## 🚀 Quick Start
 
@@ -34,34 +38,43 @@ The development server will start at `http://localhost:3000` (or next available 
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Next.js 12](https://nextjs.org/) - React framework with SSR and static generation
+- **Framework**: [Next.js 15](https://nextjs.org/) - React framework with SSR and static generation
 - **UI Library**: [Chakra UI](https://chakra-ui.com/) - Modular and accessible component library
 - **3D Graphics**: [Three.js](https://threejs.org/) - WebGL 3D library for interactive models
 - **Animations**: [Framer Motion](https://www.framer.com/motion/) - Production-ready motion library
 - **Icons**: [React Icons](https://react-icons.github.io/react-icons/) - Popular icon libraries
+- **Language**: [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript development
+- **PWA**: Progressive Web App features with service worker
 - **Deployment**: [Vercel](https://vercel.com/) - Optimized for Next.js applications
 
 ## 📁 Project Structure
 
 ```
 ├── pages/                 # Next.js pages and routing
-│   ├── index.js          # Homepage with hero, about, projects
+│   ├── index.tsx         # Homepage with hero, about, projects
 │   ├── works.js          # Projects showcase page
 │   ├── works/            # Individual project pages
 │   └── _app.js           # App configuration
 ├── components/           # Reusable React components
 │   ├── layouts/          # Page layout components
 │   ├── icons/            # Custom SVG icons
-│   ├── voxel-dog.js      # 3D dog model component
-│   ├── typing-effect.js  # Word rotation animation
+│   ├── voxel-dog.tsx     # 3D dog model component
+│   ├── voxel-dog-loader.tsx # 3D model loader component
+│   ├── typing-effect.tsx # Word rotation animation
+│   ├── contact-form.tsx  # Contact form component
 │   └── theme-toggle-button.js
 ├── lib/                  # Utility functions
 │   ├── model.js          # 3D model loader
 │   └── theme.js          # Chakra UI theme config
+├── types/                # TypeScript type definitions
+│   └── index.ts          # Shared types and interfaces
+├── utils/                # Utility functions
+│   └── pwa.ts            # PWA utilities
 ├── public/               # Static assets
 │   ├── images/           # Photos and thumbnails
-│   └── dog.glb           # 3D model file
-└── styles/               # Global styles
+│   ├── dog.glb           # 3D model file
+│   └── manifest.json     # PWA manifest
+└── next.config.js        # Next.js configuration
 ```
 
 ## 🎯 Key Components
@@ -102,6 +115,7 @@ Modify `lib/theme.js` to customize:
 1. Create new page in `pages/works/`
 2. Add thumbnail to `public/images/works/`
 3. Update `pages/works.js` with project entry
+4. Add project types to `types/index.ts` if needed
 
 ## 📱 Responsive Design
 
@@ -119,13 +133,16 @@ npm run dev        # Start development server
 npm run build      # Build for production
 npm run start      # Start production server
 npm run lint       # Run ESLint
+npm run lint:fix   # Fix ESLint issues automatically
 npm run prettier   # Format code with Prettier
+npm run type-check # Run TypeScript type checking
 ```
 
 ### Environment Setup
-- Node.js 14+ required
+- Node.js 16+ required
+- TypeScript support
 - Modern browser with WebGL support
-- Development tools: ESLint, Prettier
+- Development tools: ESLint, Prettier, TypeScript
 
 ## 📄 License
 

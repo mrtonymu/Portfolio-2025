@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://tonymumu.vercel.app/sitemap.xml
 
 # Disallow crawling of API routes and private files
 Disallow: /api/
@@ -11,7 +11,16 @@ Disallow: /admin/
 
 # Allow crawling of main pages
 Allow: /
-Allow: /works
-Allow: /posts
-Allow: /guestbook
-Allow: /works/*
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

@@ -1,5 +1,6 @@
 import NextLink from 'next/link'
 import Image from 'next/image'
+import React from 'react'
 import {
   Container,
   Heading,
@@ -34,10 +35,13 @@ import { ChevronRightIcon, CheckIcon } from '@chakra-ui/icons'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useMemo, useCallback, useState, useEffect } from 'react'
 
+
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import WordRotationEffect from '../components/typing-effect'
 import AnimatedAvatar from '../components/animated-avatar'
+import Timeline from '../components/timeline'
+import ContactForm from '../components/contact-form'
 import { IoLogoInstagram, IoLogoGithub, IoOpenOutline, IoCodeSlash } from 'react-icons/io5'
 import dynamic from 'next/dynamic'
 
@@ -45,14 +49,27 @@ const VoxelDog = dynamic(() => import('../components/voxel-dog'), {
   ssr: false
 })
 
+// TypeScript interfaces
+interface ProjectData {
+  id: string;
+  title: string;
+  stack: string[];
+  description: string;
+  features: string[];
+  liveUrl: string | null;
+  githubUrl: string;
+  color: string;
+  result: string;
+}
 
 
-const Home = () => {
+
+const Home: React.FC = () => {
   const { scrollY } = useScroll()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [selectedProject, setSelectedProject] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [showScrollTop, setShowScrollTop] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [showScrollTop, setShowScrollTop] = useState<boolean>(false)
   const toast = useToast()
   
   useEffect(() => {
@@ -144,8 +161,7 @@ const Home = () => {
   const grayDarkColor = useColorModeValue('gray.600', 'gray.300')
   const grayLightColor = useColorModeValue('gray.700', 'gray.200')
   const whiteTextColor = useColorModeValue('gray.800', 'white')
-  const blueTextColor = useColorModeValue('blue.600', 'blue.300')
-  const greenTextColor = useColorModeValue('green.600', 'green.300')
+
   const purpleTextColor = useColorModeValue('purple.600', 'purple.300')
   const pinkTextColor = useColorModeValue('pink.600', 'pink.300')
   const mobileBg = useColorModeValue(
@@ -167,7 +183,7 @@ const Home = () => {
     "linear(135deg, teal.300, blue.300, purple.300)"
   )
 
-  const projectsData = useMemo(() => [
+  const projectsData = useMemo((): ProjectData[] => [
     {
       id: 'portfolio',
       title: '🌟 This Portfolio Site',
@@ -216,13 +232,13 @@ const Home = () => {
     }
   ], [])
 
-  const handleProjectClick = useCallback((project) => {
+  const handleProjectClick = useCallback((project: ProjectData) => {
     setSelectedProject(project)
     onOpen()
   }, [onOpen])
 
   return (
-    <Layout>
+    <Layout title="Tony Yam - Full-Stack Developer & Designer">
       <motion.div
         style={{
           position: 'fixed',
@@ -329,6 +345,7 @@ const Home = () => {
                 staticText="I help non-tech creatives build"
                 rotatingWords={["smart websites", "clean sites", "useful tools"]}
                 speed={4800}
+                showSkeleton={isLoading}
                 fontSize="4xl"
                 fontWeight="800"
                 bgGradient="linear(135deg, teal.400, blue.500, purple.500)"
@@ -344,7 +361,6 @@ const Home = () => {
                 wordBreak="break-word"
                 overflowWrap="break-word"
                 style={{ 
-                  fontDisplay: 'swap',
                   WebkitFontSmoothing: 'antialiased',
                   textRendering: 'optimizeLegibility'
                 }}
@@ -364,7 +380,6 @@ const Home = () => {
             textAlign="center"
             wordBreak="break-word"
             overflowWrap="break-word"
-            tracking="normal"
           >
             No templates, no agencies, no headaches. Just fast, functional websites that actually work for your business.
           </Text>
@@ -425,6 +440,31 @@ const Home = () => {
                 transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
               >
                 🤝 Let&apos;s Connect
+              </Button>
+              <Button 
+                as="a"
+                href="/resume.pdf"
+                download="Tony_Yam_Resume.pdf"
+                size="hero"
+                variant="outline"
+                minW="180px"
+                minH="48px"
+                px={6}
+                py={3}
+                _hover={{
+                  transform: 'translateY(-4px) scale(1.05)',
+                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2), 0 0 0 1px rgba(56, 178, 172, 0.15)'
+                }}
+                _active={{
+                  transform: 'translateY(-1px) scale(1.02)',
+                  boxShadow: '0 8px 16px rgba(56, 178, 172, 0.15)'
+                }}
+                _focus={{
+                  boxShadow: '0 0 0 3px rgba(56, 178, 172, 0.3)'
+                }}
+                transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
+              >
+                📄 Download Resume
               </Button>
             </Flex>
             <Text 
@@ -557,7 +597,6 @@ const Home = () => {
                 textAlign="center"
                 mb={2}
                 style={{ 
-                  fontDisplay: 'swap',
                   WebkitFontSmoothing: 'antialiased',
                   textRendering: 'optimizeLegibility'
                 }}
@@ -585,7 +624,6 @@ const Home = () => {
                   wordBreak="break-word"
                   overflowWrap="break-word"
                   style={{ 
-                    fontDisplay: 'swap',
                     WebkitFontSmoothing: 'antialiased',
                     textRendering: 'optimizeLegibility'
                   }}
@@ -676,6 +714,31 @@ const Home = () => {
                     transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
                   >
                     🤝 Let&apos;s Connect
+                  </Button>
+                  <Button 
+                    as="a"
+                    href="/resume.pdf"
+                    download="Tony_Yam_Resume.pdf"
+                    size="lg"
+                    variant="outline"
+                    w="full"
+                    maxW="280px"
+                    h="56px"
+                    fontSize="lg"
+                    fontWeight="600"
+                    borderRadius="xl"
+                    boxShadow="0 8px 25px rgba(56, 178, 172, 0.15)"
+                    _hover={{
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 12px 35px rgba(56, 178, 172, 0.25)'
+                    }}
+                    _active={{
+                      transform: 'translateY(0px)',
+                      boxShadow: '0 4px 15px rgba(56, 178, 172, 0.15)'
+                    }}
+                    transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
+                  >
+                    📄 Download Resume
                   </Button>
                 </>
               )}
@@ -877,94 +940,7 @@ const Home = () => {
             </VStack>
           </Flex>
 
-          <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={{ base: 6, sm: 8, md: 10 }} mb={{ base: 10, md: 14 }} maxW={{ base: "90%", sm: "100%" }} mx="auto">
-            <Box variant="hero-card" position="relative" overflow="hidden" borderRadius="xl" boxShadow="lg">
-              <Box 
-                position="absolute"
-                top={0}
-                left={0}
-                width="100%"
-                height="4px"
-                bg="linear-gradient(90deg, blue.400, blue.500)"
-              />
-              <VStack align="start" spacing={3}>
-                <Text fontSize="2xl" mb={2}>💳</Text>
-                <Heading as="h3" size="md" mb={2} color="blue.500" fontWeight="700">
-                  Customer Service + Fintech
-                </Heading>
-                <Text fontSize="sm" color={blueTextColor} fontWeight="600" mb={3}>
-                  Where empathy meets problem-solving
-                </Text>
-                <Text 
-                  fontSize={{ base: "17px", md: "md" }} 
-                  lineHeight="relaxed" 
-                  color={grayDarkColor}
-                  wordBreak="break-word"
-                  overflowWrap="break-word"
-                >
-                  Spent years handling customer escalations in fintech. Learned that behind every &ldquo;bug report&rdquo; is a frustrated human who just wants things to work.
-                </Text>
-              </VStack>
-            </Box>
-            
-            <Box variant="hero-card" position="relative" overflow="hidden" borderRadius="xl" boxShadow="lg">
-              <Box 
-                position="absolute"
-                top={0}
-                left={0}
-                width="100%"
-                height="4px"
-                bg="linear-gradient(90deg, green.400, green.500)"
-              />
-              <VStack align="start" spacing={3}>
-                <Text fontSize="2xl" mb={2}>🚚</Text>
-                <Heading as="h3" size="md" mb={2} color="green.500" fontWeight="700">
-                  Dropshipping + Self-starter
-                </Heading>
-                <Text fontSize="sm" color={greenTextColor} fontWeight="600" mb={3}>
-                  Building systems that scale
-                </Text>
-                <Text 
-                  fontSize={{ base: "17px", md: "md" }} 
-                  lineHeight="relaxed" 
-                  color={grayDarkColor}
-                  wordBreak="break-word"
-                  overflowWrap="break-word"
-                >
-                  Ran my own dropshipping operations, built internal tools for tracking profits, managing suppliers, and automating workflows. Nothing teaches you efficiency like your own money on the line.
-                </Text>
-              </VStack>
-            </Box>
-            
-            <Box variant="hero-card" position="relative" overflow="hidden" borderRadius="xl" boxShadow="lg">
-              <Box 
-                position="absolute"
-                top={0}
-                left={0}
-                width="100%"
-                height="4px"
-                bg="linear-gradient(90deg, purple.400, purple.500)"
-              />
-              <VStack align="start" spacing={3}>
-                <Text fontSize="2xl" mb={2}>🤖</Text>
-                <Heading as="h3" size="md" mb={2} color="purple.500" fontWeight="700">
-                  AI + Web3 Explorer
-                </Heading>
-                <Text fontSize="sm" color={purpleTextColor} fontWeight="600" mb={3}>
-                  Experimenting with tomorrow&apos;s tools
-                </Text>
-                <Text 
-                  fontSize={{ base: "17px", md: "md" }} 
-                  lineHeight="relaxed" 
-                  color={grayDarkColor}
-                  wordBreak="break-word"
-                  overflowWrap="break-word"
-                >
-                  Currently exploring GPT integrations, prompt engineering, and blockchain applications. Not chasing hype &mdash; genuinely curious about tools that could solve real problems.
-                </Text>
-              </VStack>
-            </Box>
-          </SimpleGrid>
+          <Timeline />
 
 
         </Box>
@@ -972,7 +948,7 @@ const Home = () => {
 
 
       <Section delay={0.3}>
-        <Box variant="section-container" id="services" scrollMarginTop="80px">
+        <Box id="services" scrollMarginTop="80px">
           <Heading 
             as="h2" 
             variant="section-title"
@@ -1035,7 +1011,6 @@ const Home = () => {
           <Box 
             textAlign="center" 
             p={{ base: 6, md: 8, lg: 10 }} 
-            variant="hero-card"
             position="relative"
             overflow="hidden"
             minHeight={{ base: '120px', md: '140px' }}
@@ -1070,7 +1045,7 @@ const Home = () => {
 
 
       <Section delay={0.4}>
-        <Box variant="section-container" id="projects" pt={{ base: 16, md: 12 }} pb={{ base: 20, md: 16 }} scrollMarginTop="80px">
+        <Box id="projects" pt={{ base: 16, md: 12 }} pb={{ base: 20, md: 16 }} scrollMarginTop="80px">
           <Heading 
             as="h2" 
             variant="section-title"
@@ -1101,7 +1076,6 @@ const Home = () => {
             mx="auto"
           >
             <Box 
-              variant="project-card"
               cursor="pointer"
               onClick={() => handleProjectClick(projectsData[2])}
               _before={{
@@ -1173,7 +1147,6 @@ const Home = () => {
             </Box>
             
             <Box 
-              variant="project-card"
               cursor="pointer"
               onClick={() => handleProjectClick(projectsData[0])}
               _hover={{
@@ -1283,7 +1256,6 @@ const Home = () => {
             </Box>
             
             <Box 
-              variant="project-card"
               cursor="pointer"
               onClick={() => handleProjectClick(projectsData[1])}
               _hover={{
@@ -1348,7 +1320,6 @@ const Home = () => {
             </Box>
             
             <Box 
-              variant="project-card"
               cursor="pointer"
               onClick={() => handleProjectClick(projectsData[1])}
               _hover={{
@@ -1413,7 +1384,6 @@ const Home = () => {
             </Box>
             
             <Box 
-              variant="project-card"
               cursor="pointer"
               onClick={() => handleProjectClick(projectsData[2])}
               _hover={{
@@ -1511,11 +1481,10 @@ const Home = () => {
 
 
       <Section delay={0.5}>
-        <Box variant="section-container" id="contact" scrollMarginTop="80px">
+        <Box id="contact" scrollMarginTop="80px">
           <Box 
             textAlign="center" 
             p={{ base: 8, md: 12, lg: 16 }} 
-            variant="hero-card"
             position="relative"
             overflow="hidden"
             _before={{
@@ -1608,9 +1577,23 @@ const Home = () => {
                 color={grayTextColor} 
                 fontStyle="italic"
                 fontWeight="500"
+                mb={8}
               >
                 ✨ Usually respond within a day or two.
               </Text>
+              
+              <Box mt={12}>
+                <Text 
+                  fontSize="lg" 
+                  color={grayTextColor}
+                  fontWeight="600"
+                  mb={6}
+                  textAlign="center"
+                >
+                  Or send me a message directly:
+                </Text>
+                <ContactForm />
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -1621,7 +1604,6 @@ const Home = () => {
         <Box 
           display={{ base: 'none', lg: 'block' }}
           bg="black" 
-          variant="section-container"
           position="relative"
           overflow="hidden"
           _before={{
@@ -1710,7 +1692,6 @@ const Home = () => {
   
         <Box 
           display={{ base: 'block', lg: 'none' }}
-          variant="section-container"
           pt={8}
           pb={10}
           px={6}
@@ -1885,7 +1866,6 @@ const Home = () => {
       <Section delay={0.7}>
         <Box 
           display={{ base: 'none', lg: 'block' }}
-          variant="section-container" 
           pt={12} 
           pb={16}
         >
@@ -1958,7 +1938,7 @@ const Home = () => {
                 >
                   <Box flex="1" textAlign="left">
                     <HStack spacing={3}>
-                      <Text fontSize="2xl">❓</Text>
+                      <Text fontSize="2xl">💼</Text>
                       <Text fontSize="lg" fontWeight="bold" color={purpleTextColor}>
                         Do you freelance?
                       </Text>
@@ -2097,7 +2077,6 @@ const Home = () => {
   
         <Box 
           display={{ base: 'block', lg: 'none' }}
-          variant="section-container" 
           pt={20} 
           pb={24}
           px={6}
@@ -2158,7 +2137,7 @@ const Home = () => {
                     >
                       <Box flex="1" textAlign="left">
                         <HStack spacing={4}>
-                          <Text fontSize="3xl">❓</Text>
+                          <Text fontSize="3xl">💼</Text>
                           <Text fontSize="xl" fontWeight="700" color={purpleTextColor}>
                             Do you freelance?
                           </Text>
@@ -2324,6 +2303,132 @@ const Home = () => {
         </Box>
       </Section>
     </Container>
+
+    {/* Footer CTA Section */}
+    <Section delay={0.8}>
+      <Box 
+        bg={useColorModeValue(
+          'linear-gradient(135deg, rgba(56, 178, 172, 0.05) 0%, rgba(66, 153, 225, 0.05) 50%, rgba(159, 122, 234, 0.05) 100%)',
+          'linear-gradient(135deg, rgba(56, 178, 172, 0.1) 0%, rgba(66, 153, 225, 0.1) 50%, rgba(159, 122, 234, 0.1) 100%)'
+        )}
+        py={{ base: 16, md: 20 }}
+        px={{ base: 6, md: 8 }}
+        textAlign="center"
+        position="relative"
+        overflow="hidden"
+        _before={{
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bg: 'linear-gradient(45deg, transparent 30%, rgba(56, 178, 172, 0.1) 50%, transparent 70%)',
+          animation: 'shimmer 3s ease-in-out infinite',
+          pointerEvents: 'none'
+        }}
+      >
+        <Container maxW="4xl" position="relative" zIndex={1}>
+          <VStack spacing={8}>
+            <Box>
+              <Text 
+                fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
+                fontWeight="800"
+                bgGradient="linear(135deg, teal.400, blue.500, purple.500)"
+                bgClip="text"
+                letterSpacing="-0.02em"
+                lineHeight="1.1"
+                mb={4}
+              >
+                Enjoyed this? Let&apos;s connect! ✨
+              </Text>
+              <Text 
+                fontSize={{ base: 'lg', md: 'xl' }}
+                color={useColorModeValue('gray.600', 'gray.300')}
+                maxW="2xl"
+                mx="auto"
+                lineHeight="relaxed"
+                fontWeight="500"
+              >
+                Ready to bring your ideas to life? I&apos;d love to hear about your project and explore how we can create something amazing together.
+              </Text>
+            </Box>
+            
+            <Flex 
+              direction={{ base: 'column', sm: 'row' }}
+              gap={4}
+              justify="center"
+              align="center"
+              w="100%"
+            >
+              <Button 
+                as="a"
+                href="#contact"
+                size="lg"
+                variant="solid"
+                bg="linear-gradient(135deg, #38b2ac 0%, #4299e1 50%, #9f7aea 100%)"
+                backgroundSize="200% 200%"
+                color="white"
+                minW={{ base: '280px', sm: '200px' }}
+                h="56px"
+                fontSize="lg"
+                fontWeight="700"
+                borderRadius="xl"
+                boxShadow="0 8px 25px rgba(56, 178, 172, 0.3)"
+                _hover={{
+                  backgroundPosition: '100% 0%',
+                  transform: 'translateY(-3px) scale(1.02)',
+                  boxShadow: '0 15px 35px rgba(56, 178, 172, 0.4)'
+                }}
+                _active={{
+                  transform: 'translateY(-1px) scale(1.01)',
+                  boxShadow: '0 8px 20px rgba(56, 178, 172, 0.3)'
+                }}
+                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+              >
+                🚀 Start a Project
+              </Button>
+              
+              <Button 
+                as="a"
+                href="/resume.pdf"
+                download="Tony_Yam_Resume.pdf"
+                size="lg"
+                variant="outline"
+                borderColor="teal.400"
+                color={useColorModeValue('teal.600', 'teal.300')}
+                minW={{ base: '280px', sm: '180px' }}
+                h="56px"
+                fontSize="lg"
+                fontWeight="600"
+                borderRadius="xl"
+                _hover={{
+                  bg: 'teal.50',
+                  borderColor: 'teal.500',
+                  transform: 'translateY(-3px) scale(1.02)',
+                  boxShadow: '0 15px 35px rgba(56, 178, 172, 0.2)'
+                }}
+                _active={{
+                  transform: 'translateY(-1px) scale(1.01)'
+                }}
+                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+              >
+                📄 View Resume
+              </Button>
+            </Flex>
+            
+            <Text 
+              fontSize="sm"
+              color={useColorModeValue('gray.500', 'gray.400')}
+              fontStyle="italic"
+              opacity={0.8}
+            >
+              💡 Usually respond within 24 hours
+            </Text>
+          </VStack>
+        </Container>
+      </Box>
+    </Section>
 
     
     <Modal isOpen={isOpen} onClose={onClose} size="xl" isCentered>
