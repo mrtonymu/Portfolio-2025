@@ -144,11 +144,17 @@ const VoxelDog = () => {
       controls.autoRotate = true
       controls.target = target
 
+      console.log('Attempting to load model from:', urlDogGLB)
+      
       loadGLTFModel(scene, urlDogGLB, {
         receiveShadow: false,
         castShadow: false
       }).then(() => {
+        console.log('Model loaded successfully')
         animate()
+        setLoading(false)
+      }).catch((error) => {
+        console.error('Error loading model:', error)
         setLoading(false)
       })
 
@@ -182,7 +188,7 @@ const VoxelDog = () => {
         renderer.dispose()
       }
     }
-  }, [])
+  }, [isInView])
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize, false)
