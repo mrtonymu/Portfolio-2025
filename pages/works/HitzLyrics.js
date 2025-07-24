@@ -4,16 +4,24 @@ import {
   Link,
   List,
   ListItem,
-  AspectRatio
+  AspectRatio,
+  Button,
+  Box
 } from '@chakra-ui/react'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { ExternalLinkIcon, ChevronLeftIcon } from '@chakra-ui/icons'
+import NextLink from 'next/link'
 import { Title, WorkImage, Meta } from '../../components/work'
 import P from '../../components/paragraph'
 import Layout from '../../components/layouts/article'
 
 const Work = () => (
   <Layout title="HitzLyrics">
-    <Container>
+    <Container maxW="container.lg" pt={20}>
+      <Box mb={6} scrollMarginTop="80px">
+        <Button as={NextLink} href="/" leftIcon={<ChevronLeftIcon />} variant="ghost" colorScheme="teal">
+          Back to Home
+        </Button>
+      </Box>
       <Title>
       HitzLyrics <Badge>2022</Badge>
       </Title>
