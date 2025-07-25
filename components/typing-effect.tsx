@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, memo } from 'react'
 import { Text, Box, SkeletonText, useColorModeValue, BoxProps } from '@chakra-ui/react'
 
 interface WordRotationEffectProps extends BoxProps {
@@ -8,7 +8,7 @@ interface WordRotationEffectProps extends BoxProps {
   showSkeleton?: boolean;
 }
 
-const WordRotationEffect: React.FC<WordRotationEffectProps> = ({ staticText, rotatingWords, speed = 3500, showSkeleton = false, ...props }) => {
+const WordRotationEffect: React.FC<WordRotationEffectProps> = memo(({ staticText, rotatingWords, speed = 3500, showSkeleton = false, ...props }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -22,18 +22,33 @@ const WordRotationEffect: React.FC<WordRotationEffectProps> = ({ staticText, rot
     [rotatingWords, currentWordIndex]
   )
 
-  // Memoize the rotation logic
+  // Memoize the rotation logic with reduced transition time
   const rotateWord = useCallback(() => {
     setIsVisible(false)
     setTimeout(() => {
       setCurrentWordIndex((prev) => (prev + 1) % rotatingWords.length)
       setIsVisible(true)
-    }, 200)
+    }, 150) // 减少过渡时间
   }, [rotatingWords.length])
 
   useEffect(() => {
-    const interval = setInterval(rotateWord, speed)
-    return () => clearInterval(interval)
+    // 优化：使用requestAnimationFrame进行更平滑的动画
+    let timeoutId: NodeJS.Timeout
+    let intervalId: NodeJS.Timeout
+    
+    const scheduleRotation = () => {
+      timeoutId = setTimeout(() => {
+        rotateWord()
+        intervalId = setInterval(rotateWord, speed)
+      }, speed)
+    }
+    
+    scheduleRotation()
+    
+    return () => {
+      clearTimeout(timeoutId)
+      clearInterval(intervalId)
+    }
   }, [rotateWord, speed])
 
   // Simulate initial loading delay
@@ -84,8 +99,8 @@ const WordRotationEffect: React.FC<WordRotationEffectProps> = ({ staticText, rot
       <Text 
         as="span" 
         opacity={isVisible ? 1 : 0}
-        transform={isVisible ? 'translateX(0)' : 'translateX(8px)'}
-        transition="opacity 0.2s ease-in-out, transform 0.2s ease-in-out"
+        transform={isVisible ? 'translateX(0)' : 'translateX(4px)'} // 减少移动距离
+        transition="opacity 0.15s ease-out, transform 0.15s ease-out" // 优化过渡效果
         color="teal.300"
         fontWeight="inherit"
         whiteSpace="normal"
@@ -95,13 +110,15 @@ const WordRotationEffect: React.FC<WordRotationEffectProps> = ({ staticText, rot
         ml={{ base: 1, md: 2 }}
         style={{
           willChange: 'opacity, transform',
-          backfaceVisibility: 'hidden'
+          backfaceVisibility: 'hidden',
+          transform: 'translate3d(0,0,0)', // 强制GPU加速
+          WebkitFontSmoothing: 'antialiased'
         }}
       >
         {currentWord}
       </Text>
     </Box>
   )
-}
+})
 
 export default WordRotationEffect

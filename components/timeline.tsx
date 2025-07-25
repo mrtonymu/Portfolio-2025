@@ -1,3 +1,4 @@
+import React, { memo, useMemo } from 'react'
 import { Box, VStack, HStack, Text, Heading, useColorModeValue } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 
@@ -13,7 +14,7 @@ interface TimelineItemProps {
   index: number
 }
 
-const TimelineItem: React.FC<TimelineItemProps> = ({ year, title, company, description, icon, isLast, index }) => {
+const TimelineItem: React.FC<TimelineItemProps> = memo(({ year, title, company, description, icon, isLast, index }) => {
   const lineColor = useColorModeValue('gray.200', 'gray.600')
   const dotColor = useColorModeValue('teal.500', 'teal.300')
   const cardBg = useColorModeValue('white', 'gray.800')
@@ -93,7 +94,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ year, title, company, descr
       </HStack>
     </MotionBox>
   )
-}
+})
 
 interface TimelineData {
   year: string
@@ -103,8 +104,8 @@ interface TimelineData {
   icon: string
 }
 
-const Timeline: React.FC = () => {
-   const timelineData: TimelineData[] = [
+const Timeline: React.FC = memo(() => {
+   const timelineData: TimelineData[] = useMemo(() => [
     {
       year: '2024',
       title: 'Freelance Web Developer',
@@ -133,20 +134,23 @@ const Timeline: React.FC = () => {
       description: 'Handled customer escalations in fintech. Learned that behind every "bug report" is a frustrated human who just wants things to work. This shaped my empathy-driven approach to development.',
       icon: '💳'
     }
-  ]
+  ], [])
+  
+  const memoizedItems = useMemo(() => 
+    timelineData.map((item, index) => (
+      <TimelineItem
+        key={`${item.year}-${index}`}
+        {...item}
+        index={index}
+        isLast={index === timelineData.length - 1}
+      />
+    )), [timelineData])
   
   return (
     <VStack spacing={0} align="stretch" maxW="2xl" mx="auto">
-      {timelineData.map((item, index) => (
-        <TimelineItem
-          key={index}
-          {...item}
-          index={index}
-          isLast={index === timelineData.length - 1}
-        />
-      ))}
+      {memoizedItems}
     </VStack>
   )
-}
+})
 
 export default Timeline

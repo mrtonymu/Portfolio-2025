@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import Image from 'next/image'
-import React from 'react'
+import React, { memo } from 'react'
 import {
   Container,
   Heading,
@@ -42,12 +42,20 @@ import Section from '../components/section'
 import WordRotationEffect from '../components/typing-effect'
 import AnimatedAvatar from '../components/animated-avatar'
 import Timeline from '../components/timeline'
-import ContactForm from '../components/contact-form'
 import { IoLogoInstagram, IoLogoGithub, IoOpenOutline, IoCodeSlash } from 'react-icons/io5'
 import dynamic from 'next/dynamic'
 
+// 懒加载组件优化
 const VoxelDog = dynamic(() => import('../components/voxel-dog'), {
-  ssr: false
+  ssr: false,
+  loading: () => <Box h="400px" w="100%" bg="transparent" />
+})
+
+// FloatingParticles component removed as it was unused
+
+const ContactForm = dynamic(() => import('../components/contact-form'), {
+  ssr: false,
+  loading: () => <Skeleton height="300px" />
 })
 
 // TypeScript interfaces
@@ -65,7 +73,7 @@ interface ProjectData {
 
 
 
-const Home: React.FC = () => {
+const Home: React.FC = memo(() => {
   const { scrollY } = useScroll()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null)
@@ -184,6 +192,7 @@ const Home: React.FC = () => {
     "linear(135deg, teal.300, blue.300, purple.300)"
   )
 
+  // 使用useMemo缓存项目数据
   const projectsData = useMemo((): ProjectData[] => [
     {
       id: 'portfolio',
@@ -226,8 +235,8 @@ const Home: React.FC = () => {
         'Clipboard export and quick-copy buttons',
         'Team onboarding with prompt libraries'
       ],
-      liveUrl: 'https://your-prompt-tool.com',
-      githubUrl: 'https://github.com/yourusername/prompt-tool',
+      liveUrl: '#',
+      githubUrl: '#',
       color: 'orange',
       result: 'Standardize prompt testing and knowledge sharing'
     }
@@ -237,6 +246,8 @@ const Home: React.FC = () => {
     setSelectedProject(project)
     onOpen()
   }, [onOpen])
+  
+  // Scroll handling is already implemented in useEffect above
 
   return (
     <Layout title="Tony Yam - Full-Stack Developer & Designer">
@@ -296,35 +307,35 @@ const Home: React.FC = () => {
             bottom: 0,
             background: 'radial-gradient(ellipse 100% 60% at 50% 30%, rgba(56, 178, 172, 0.08) 0%, rgba(66, 153, 225, 0.04) 50%, transparent 80%)',
             zIndex: -2,
-            animation: 'pulse 8s ease-in-out infinite',
+            animation: 'pulse 12s ease-in-out infinite',
             willChange: 'opacity',
             backfaceVisibility: 'hidden'
           }}
           sx={{
             '@keyframes pulse': {
               '0%, 100%': { opacity: 0.6 },
-              '50%': { opacity: 0.9 }
+              '50%': { opacity: 0.8 }
             },
             '@keyframes float': {
               '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-10px)' }
+              '50%': { transform: 'translateY(-6px)' }
             }
           }}
         >
 
           <Box maxW="6xl" mx="auto" px={{ md: 10 }} w="100%" position="relative">
   
-            {[...Array(4)].map((_, i) => (
+            {[...Array(2)].map((_, i) => (
               <Box
                 key={i}
                 position="absolute"
-                w="5px"
-                h="5px"
-                bg="rgba(56, 178, 172, 0.5)"
+                w="4px"
+                h="4px"
+                bg="rgba(56, 178, 172, 0.4)"
                 borderRadius="full"
-                top={`${25 + i * 20}%`}
-                left={`${15 + i * 20}%`}
-                animation={`float ${3 + i * 0.5}s ease-in-out infinite ${i * 0.3}s`}
+                top={`${30 + i * 30}%`}
+                left={`${20 + i * 40}%`}
+                animation={`float ${4 + i * 1}s ease-in-out infinite ${i * 0.5}s`}
                 zIndex={-1}
                 style={{
                   willChange: 'transform',
@@ -404,12 +415,12 @@ const Home: React.FC = () => {
                 px={6}
                 py={3}
                 _hover={{
-                  transform: 'translateY(-4px) scale(1.05)',
-                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.4), 0 0 0 1px rgba(56, 178, 172, 0.2)'
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 12px 24px rgba(56, 178, 172, 0.3)'
                 }}
                 _active={{
-                  transform: 'translateY(-1px) scale(1.02)',
-                  boxShadow: '0 8px 16px rgba(56, 178, 172, 0.3)'
+                  transform: 'translateY(0px)',
+                  boxShadow: '0 4px 8px rgba(56, 178, 172, 0.2)'
                 }}
                 _focus={{
                   boxShadow: '0 0 0 3px rgba(56, 178, 172, 0.3)'
@@ -428,12 +439,12 @@ const Home: React.FC = () => {
                 px={6}
                 py={3}
                 _hover={{
-                  transform: 'translateY(-4px) scale(1.05)',
-                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2), 0 0 0 1px rgba(56, 178, 172, 0.15)'
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 12px 24px rgba(56, 178, 172, 0.15)'
                 }}
                 _active={{
-                  transform: 'translateY(-1px) scale(1.02)',
-                  boxShadow: '0 8px 16px rgba(56, 178, 172, 0.15)'
+                  transform: 'translateY(0px)',
+                  boxShadow: '0 4px 8px rgba(56, 178, 172, 0.1)'
                 }}
                 _focus={{
                   boxShadow: '0 0 0 3px rgba(56, 178, 172, 0.3)'
@@ -453,12 +464,12 @@ const Home: React.FC = () => {
                 px={6}
                 py={3}
                 _hover={{
-                  transform: 'translateY(-4px) scale(1.05)',
-                  boxShadow: '0 20px 40px rgba(56, 178, 172, 0.2), 0 0 0 1px rgba(56, 178, 172, 0.15)'
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 12px 24px rgba(56, 178, 172, 0.15)'
                 }}
                 _active={{
-                  transform: 'translateY(-1px) scale(1.02)',
-                  boxShadow: '0 8px 16px rgba(56, 178, 172, 0.15)'
+                  transform: 'translateY(0px)',
+                  boxShadow: '0 4px 8px rgba(56, 178, 172, 0.1)'
                 }}
                 _focus={{
                   boxShadow: '0 0 0 3px rgba(56, 178, 172, 0.3)'
@@ -476,9 +487,9 @@ const Home: React.FC = () => {
               sx={{
                 '@keyframes pulse': {
                   '0%, 100%': { opacity: 1 },
-                  '50%': { opacity: 0.7 }
+                  '50%': { opacity: 0.8 }
                 },
-                animation: 'pulse 2s ease-in-out infinite'
+                animation: 'pulse 4s ease-in-out infinite'
               }}
             >
               💡 Currently available for new projects
@@ -574,8 +585,8 @@ const Home: React.FC = () => {
                     objectFit="cover"
                     objectPosition="center top"
                     _hover={{
-                      transform: 'scale(1.03)',
-                      boxShadow: '0 0 25px rgba(56, 178, 172, 0.6), 0 0 50px rgba(56, 178, 172, 0.3)'
+                      transform: 'scale(1.02)',
+                      boxShadow: '0 0 20px rgba(56, 178, 172, 0.5)'
                     }}
                     style={{
                       willChange: 'transform',
@@ -2620,7 +2631,7 @@ const Home: React.FC = () => {
     )}
     </Layout>
   )
-}
+})
 
 export default Home
 export { getServerSideProps } from '../components/chakra'

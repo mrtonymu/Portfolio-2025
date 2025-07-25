@@ -16,11 +16,10 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
-import { IoLogoInstagram } from 'react-icons/io5'
 
 const LinkItem = ({ href, path, target, children, ...props }) => {
   const active = path === href
-  const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
+  const inactiveColor = useColorModeValue('gray.200', 'whiteAlpha.900') // Fixed color value
   const hoverBg = useColorModeValue('gray.100', 'whiteAlpha.200')
   return (
     <Link
@@ -82,6 +81,7 @@ const Navbar = props => {
           alignItems="center"
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
+          spacing={{ base: 2, md: 1 }}
         >
           <LinkItem href="/#services" path={path}>
             Services
@@ -100,20 +100,6 @@ const Navbar = props => {
           </LinkItem>
           <LinkItem href="/#contact" path={path}>
             Contact
-          </LinkItem>
-
-          <LinkItem
-            target="_blank"
-            href="https://www.instagram.com/mrtonyyam/"
-            path={path}
-            display="inline-flex"
-            alignItems="center"
-            style={{ gap: 4 }}
-            pl={2}
-            aria-label="Contact me on Instagram"
-          >
-            <IoLogoInstagram aria-hidden="true" />
-            Let&apos;s Talk
           </LinkItem>
         </Stack>
 

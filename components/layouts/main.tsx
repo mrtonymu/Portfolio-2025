@@ -25,7 +25,7 @@ const Main = ({ children, router }: MainProps) => {
 
   return (
     <Box as="main" pb={8} position="relative">
-      <FloatingParticles count={15} />
+      <FloatingParticles />
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Tony Yam - Freelance Web Developer helping solo creators and business owners build fast, functional websites without agency overhead or template limitations. Based in Kuala Lumpur, Malaysia." />
@@ -129,10 +129,10 @@ const Main = ({ children, router }: MainProps) => {
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js')
                     .then(function(registration) {
-                      console.log('SW registered: ', registration);
+                      // Service worker registered successfully
                     })
                     .catch(function(registrationError) {
-                      console.log('SW registration failed: ', registrationError);
+                      // Service worker registration failed
                     });
                 });
               }

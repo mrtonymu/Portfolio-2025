@@ -42,7 +42,7 @@ function Website({ Component, pageProps, router }) {
       } catch (error) {
         // If localStorage is not available (e.g., SSR environment), show preloader as fallback
         // This warning is expected and handled gracefully - no action needed
-        console.warn('localStorage not available:', error)
+        // localStorage not available in this environment
         setShowPreloader(true)
       }
     }
@@ -59,7 +59,7 @@ function Website({ Component, pageProps, router }) {
     } catch (error) {
       // This warning is expected in SSR environments where localStorage is unavailable
       // The application continues to function normally without localStorage
-      console.warn('Could not update lastVisit in localStorage:', error)
+      // Could not update lastVisit in localStorage
     }
     setTimeout(() => {
       setShowPreloader(false)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback, memo } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { loadGLTFModel } from '../lib/model'
@@ -8,7 +8,7 @@ function easeOutCirc(x: number): number {
   return Math.sqrt(1 - Math.pow(x - 1, 4))
 }
 
-const VoxelDog: React.FC = () => {
+const VoxelDog: React.FC = memo(() => {
   const refContainer = useRef<HTMLDivElement>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [isInView, setIsInView] = useState<boolean>(false)
@@ -87,12 +87,14 @@ const VoxelDog: React.FC = () => {
     const scH = container.clientHeight
 
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true
+      antialias: window.devicePixelRatio <= 1, // 只在低DPI设备上启用抗锯齿
+      alpha: true,
+      powerPreference: 'high-performance' // 优先使用高性能GPU
     })
-    renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) // 限制像素比，避免过度渲染
     renderer.setSize(scW, scH)
     renderer.outputEncoding = THREE.sRGBEncoding
+    renderer.shadowMap.enabled = false // 禁用阴影以提升性能
     container.appendChild(renderer.domElement)
     refRenderer.current = renderer
     const scene = new THREE.Scene()
@@ -145,26 +147,41 @@ const VoxelDog: React.FC = () => {
 
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.autoRotate = true
+    controls.autoRotateSpeed = 1.0 // 降低自动旋转速度
+    controls.enableDamping = true
+    controls.dampingFactor = 0.05
     controls.target = target
+    controls.enableZoom = false // 禁用缩放以简化交互
+    controls.enablePan = false // 禁用平移以简化交互
 
-    console.log('Attempting to load model from:', urlDogGLB)
+    // Loading 3D model
     
     loadGLTFModel(scene, urlDogGLB, {
       receiveShadow: false,
       castShadow: false
     }).then(() => {
-      console.log('Model loaded successfully')
+      // Model loaded successfully
       animate()
       setLoading(false)
-    }).catch((error) => {
-      console.error('Error loading model:', error)
-      setLoading(false)
-    })
+    }).catch((_error) => {
+        // Error loading model - fallback to no model display
+        setLoading(false)
+      })
 
     let req: number | null = null
     let frame = 0
-    const animate = () => {
+    let lastTime = 0
+    const targetFPS = 60 // 提升到60FPS获得更流畅的体验
+    const frameInterval = 1000 / targetFPS
+    
+    const animate = (currentTime: number = 0) => {
       req = requestAnimationFrame(animate)
+      
+      // 帧率限制
+      if (currentTime - lastTime < frameInterval) {
+        return
+      }
+      lastTime = currentTime
 
       frame = frame <= 100 ? frame + 1 : frame
 
@@ -206,6 +223,6 @@ const VoxelDog: React.FC = () => {
       {loading && isInView && <DogSkeleton />}
     </DogContainer>
   )
-}
+})
 
 export default VoxelDog
