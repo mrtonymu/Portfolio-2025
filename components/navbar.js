@@ -95,6 +95,9 @@ const Navbar = props => {
           <LinkItem href="/guestbook" path={path}>
             Guestbook
           </LinkItem>
+          <LinkItem href="/journey" path={path}>
+            Journey
+          </LinkItem>
           <LinkItem href="/#contact" path={path}>
             Contact
           </LinkItem>
@@ -144,6 +147,9 @@ const Navbar = props => {
                 </MenuItem>
                 <MenuItem as={NextLink} href="/guestbook">
                   Guestbook
+                </MenuItem>
+                <MenuItem as={NextLink} href="/journey">
+                  Journey
                 </MenuItem>
                 <MenuItem as={NextLink} href="/#contact">
                   Contact

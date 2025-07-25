@@ -29,7 +29,8 @@ import {
   Icon,
   useToast,
   Skeleton,
-  SkeletonText
+  SkeletonText,
+  Link
 } from '@chakra-ui/react'
 import { ChevronRightIcon, CheckIcon } from '@chakra-ui/icons'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -2417,14 +2418,37 @@ const Home: React.FC = () => {
               </Button>
             </Flex>
             
-            <Text 
-              fontSize="sm"
-              color={useColorModeValue('gray.500', 'gray.400')}
-              fontStyle="italic"
-              opacity={0.8}
-            >
-              💡 Usually respond within 24 hours
-            </Text>
+            <VStack spacing={3}>
+              <Text 
+                fontSize="sm"
+                color={useColorModeValue('gray.500', 'gray.400')}
+                fontStyle="italic"
+                opacity={0.8}
+              >
+                💡 Usually respond within 24 hours
+              </Text>
+              
+              <Text 
+                fontSize="sm"
+                color={useColorModeValue('gray.600', 'gray.400')}
+                textAlign="center"
+              >
+                Want to know how I built this? →{' '}
+                <Link 
+                  as={NextLink}
+                  href="/journey"
+                  color="teal.400"
+                  fontWeight="600"
+                  textDecoration="underline"
+                  _hover={{
+                    color: 'teal.300',
+                    textDecoration: 'none'
+                  }}
+                >
+                  Read my journey
+                </Link>
+              </Text>
+            </VStack>
           </VStack>
         </Container>
       </Box>
