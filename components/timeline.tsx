@@ -116,7 +116,7 @@ const Timeline: React.FC = memo(() => {
   const timelineData: TimelineData[] = useMemo(
     () => [
       {
-        year: '2024',
+        year: '2025',
         title: 'Freelance Web Developer',
         company: 'Independent',
         description:
@@ -124,28 +124,28 @@ const Timeline: React.FC = memo(() => {
         icon: '🚀',
       },
       {
-        year: '2023',
-        title: 'AI & Web3 Explorer',
-        company: 'Self-directed Learning',
+        year: '2025',
+        title: 'Automation & HeroCraft',
+        company: 'Present',
         description:
-          "Diving deep into GPT integrations, prompt engineering, and blockchain applications. Experimenting with tomorrow's tools to solve real problems.",
+          'Using ChatGPT to rebuild workflows and developing HeroCraft - an AI copilot for content creators. Cutting repetitive work by 60% while building tools for tomorrow.',
         icon: '🤖',
       },
       {
-        year: '2022',
-        title: 'Dropshipping Operations',
-        company: 'Self-employed',
+        year: '2020–2025',
+        title: 'E-commerce Operations',
+        company: 'Partnership & Strategy',
         description:
-          'Ran my own dropshipping business, built internal tools for tracking profits, managing suppliers, and automating workflows. Learned efficiency with my own money on the line.',
+          'Grew brands from the inside through content strategy, short video mastery, and ad conversion optimization. Learned the difference between 私域 and 公域, and discovered that selling well means understanding deeply.',
         icon: '🚚',
       },
       {
-        year: '2021',
-        title: 'Customer Service Specialist',
-        company: 'Fintech Industry',
+        year: '2017–2020',
+        title: 'Support Specialist',
+        company: 'Grab, Agoda, Microsoft',
         description:
-          'Handled customer escalations in fintech. Learned that behind every "bug report" is a frustrated human who just wants things to work. This shaped my empathy-driven approach to development.',
-        icon: '💳',
+          'Handled 100+ daily issues across three languages in fast-paced teams. Learned that scripts can\'t save you, but structure and empathy can. Developed pattern recognition and the skill of clarifying chaos.',
+        icon: '📞',
       },
     ],
     []

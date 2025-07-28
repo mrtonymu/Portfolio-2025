@@ -200,37 +200,68 @@ const Home: React.FC = memo(() => {
   const projectsData = useMemo(
     (): ProjectData[] => [
       {
+        id: 'profit-tracker',
+        title: '📊 Profit Tracker Dashboard',
+        stack: ['Internal tool', 'Dropshipping ops'],
+        description:
+          'Private dashboard for product ROI and campaign performance tracking.',
+        features: [
+          'Automated sales tracking via Google Sheets',
+          'COGS vs marketing spend visualization',
+          '3x faster campaign optimization',
+        ],
+        liveUrl: '#',
+        githubUrl: '#',
+        color: 'blue',
+        result: '$50K+ tracked, 60% faster decisions',
+      },
+      {
         id: 'portfolio',
         title: '🌟 This Portfolio Site',
         stack: ['Next.js', 'Chakra UI', 'Framer Motion', 'Three.js'],
         description:
-          'Modern portfolio with 3D elements, smooth animations, and responsive design.',
+          'This site isn\'t a vanity project — it\'s a timestamp of who I\'ve been, what I\'ve tried, and where I\'m going.',
         features: [
-          'Framer Motion scroll animations',
-          'Three.js 3D dog model integration',
-          'Responsive design with Chakra UI',
-          'Performance optimized with lazy loading',
+          'Clear layout, honest content',
+          'Mobile-first responsive design',
+          'Framer Motion transitions',
         ],
         liveUrl: '#',
         githubUrl: 'https://github.com/yourusername/portfolio',
         color: 'teal',
+        result: 'Built with Trae AI — now it works like it should, thoughtful not shrunk',
+      },
+      {
+        id: 'gpt-support',
+        title: '🤖 GPT-Powered Support Flow',
+        stack: ['GPT-4', 'Telegram Bot API', 'Python'],
+        description:
+          'Workflow experiment for Fintech — testing GPT prompts to streamline tier-1 support.',
+        features: [
+          'GPT-4 training for refund/OTP/KYC queries',
+          'Response time: 3min → <1min',
+          'Sentiment-based prioritization',
+        ],
+        liveUrl: '#',
+        githubUrl: '#',
+        color: 'purple',
         result: '60% faster response time, used for support triage',
       },
       {
-        id: 'ai-copilot',
-        title: '🎥 Short-Form AI Co-Pilot',
-        stack: ['ChatGPT API', 'JavaScript', 'Template Engine'],
+        id: 'herocraft',
+        title: '🎨 HeroCraft',
+        stack: ['AI Copilot', 'Content Creation'],
         description:
-          'Prototype to help creators batch-edit & script TikTok/IG Reels using ChatGPT + templates.',
+          'An AI copilot for content creators who want to write faster, brainstorm better, and ship without second-guessing.',
         features: [
-          'ChatGPT API for automated script generation',
-          'Reusable templates for content types',
-          'Batch processing for multiple concepts',
+          'AI-powered content brainstorming',
+          'Faster writing workflows',
+          'Ship without second-guessing',
         ],
-        liveUrl: null,
-        githubUrl: 'https://github.com/yourusername/ai-copilot',
-        color: 'pink',
-        result: 'Content planning time from hours → minutes',
+        liveUrl: 'https://chatgpt.com/g/g-686b68d950988191bd83b1308125c780-herocraft',
+        githubUrl: null,
+        color: 'purple',
+        result: 'Raw, early, but real — feedback always welcome',
       },
       {
         id: 'prompt-tool',
@@ -856,7 +887,8 @@ const Home: React.FC = memo(() => {
                 color={tealTextColor}
                 fontStyle='italic'
               >
-                💡 TLDR: Empathy-driven builder with frontline support roots
+                💡 TLDR: From support floors to e-commerce ops to building
+                websites that actually solve problems
               </Text>
             </Box>
 
@@ -959,10 +991,21 @@ const Home: React.FC = memo(() => {
                   fontWeight='500'
                   maxW={{ base: '100%', lg: '400px' }}
                 >
-                  Building digital solutions that actually solve problems, not
-                  just look pretty. I help solo creators and business owners
-                  launch fast, functional websites without the agency overhead
-                  or template limitations.
+                  I didn't start out as a developer — I started out picking up
+                  phones. Years of frontline support at Grab, Agoda, and
+                  Microsoft taught me that the best solutions come from
+                  understanding real problems, not just writing clean code.
+                </Text>
+                <Text
+                  color={grayDarkColor}
+                  fontSize='md'
+                  lineHeight='relaxed'
+                  fontWeight='500'
+                  maxW={{ base: '100%', lg: '400px' }}
+                >
+                  Now I build websites that actually work for solo creators and
+                  business owners — without the agency overhead or template
+                  limitations.
                 </Text>
                 <Text
                   color={grayTextColor}
@@ -970,8 +1013,8 @@ const Home: React.FC = memo(() => {
                   fontStyle='italic'
                   maxW={{ base: '100%', lg: '400px' }}
                 >
-                  &ldquo;Every great website starts with understanding the human
-                  behind the screen.&rdquo;
+                  &ldquo;Structure isn't decoration. It's what lets momentum
+                  scale.&rdquo;
                 </Text>
               </VStack>
             </Flex>
@@ -999,9 +1042,9 @@ const Home: React.FC = memo(() => {
               wordBreak='break-word'
               overflowWrap='break-word'
             >
-              I help solo creators and business owners launch fast, functional,
-              good-looking websites — without relying on expensive agencies or
-              rigid templates.
+              Years of frontline experience taught me what actually matters:
+              websites that work for real people with real problems. No agency
+              overhead, no template limitations.
             </Text>
 
             <SimpleGrid
@@ -1114,7 +1157,7 @@ const Home: React.FC = memo(() => {
             >
               <Box
                 cursor='pointer'
-                onClick={() => handleProjectClick(projectsData[2])}
+                onClick={() => handleProjectClick(projectsData[0])}
                 _before={{
                   content: '""',
                   position: 'absolute',
@@ -1197,7 +1240,7 @@ const Home: React.FC = memo(() => {
 
               <Box
                 cursor='pointer'
-                onClick={() => handleProjectClick(projectsData[0])}
+                onClick={() => handleProjectClick(projectsData[1])}
                 _hover={{
                   _before: {
                     height: '6px',
@@ -1265,15 +1308,15 @@ const Home: React.FC = memo(() => {
                   mb={3}
                   color='gray.300'
                 >
-                  This site — built as both a learning journey and proof of
-                  capability.
+                  This site isn't a vanity project — it's a timestamp of who
+                  I've been, what I've tried, and where I'm going.
                 </Text>
                 <VStack align='start' spacing={2} fontSize='xs'>
-                  <Text color='gray.400'>• 3D dog model with Three.js</Text>
+                  <Text color='gray.400'>• Clear layout, honest content</Text>
                   <Text color='gray.400'>
-                    • Performance-optimized animations
+                    • Mobile-first responsive design
                   </Text>
-                  <Text color='gray.400'>• Responsive design patterns</Text>
+                  <Text color='gray.400'>• Framer Motion transitions</Text>
                 </VStack>
                 <Box
                   mt={4}
@@ -1284,8 +1327,7 @@ const Home: React.FC = memo(() => {
                   borderColor='teal.400'
                 >
                   <Text fontSize='xs' fontWeight='600' color='teal.300'>
-                    Lessons: version control, visual rhythm, when to stop
-                    tweaking 😅
+                    Built with Trae AI — now it works like it should, thoughtful not shrunk
                   </Text>
                 </Box>
 
@@ -1328,7 +1370,7 @@ const Home: React.FC = memo(() => {
 
               <Box
                 cursor='pointer'
-                onClick={() => handleProjectClick(projectsData[1])}
+                onClick={() => handleProjectClick(projectsData[2])}
                 _hover={{
                   _before: {
                     height: '6px',
@@ -1405,7 +1447,7 @@ const Home: React.FC = memo(() => {
 
               <Box
                 cursor='pointer'
-                onClick={() => handleProjectClick(projectsData[1])}
+                onClick={() => handleProjectClick(projectsData[3])}
                 _hover={{
                   _before: {
                     height: '6px',
@@ -1421,7 +1463,7 @@ const Home: React.FC = memo(() => {
                   left: 0,
                   width: '100%',
                   height: '3px',
-                  bg: 'linear-gradient(90deg, pink.400, pink.600)',
+                  bg: 'linear-gradient(90deg, purple.400, purple.600)',
                   zIndex: 1,
                   transition: 'height 0.4s ease',
                 }}
@@ -1432,7 +1474,7 @@ const Home: React.FC = memo(() => {
                   right: 0,
                   width: '40px',
                   height: '40px',
-                  bg: 'linear-gradient(135deg, pink.400, pink.600)',
+                  bg: 'linear-gradient(135deg, purple.400, purple.600)',
                   opacity: 0.15,
                   borderRadius: '0 0 0 40px',
                   transition: 'opacity 0.4s ease',
@@ -1442,13 +1484,13 @@ const Home: React.FC = memo(() => {
                   as='h3'
                   size='sm'
                   mb={3}
-                  color='pink.400'
+                  color='purple.400'
                   fontWeight='700'
                 >
-                  🎥 Short-Form AI Co-Pilot
+                  🎨 HeroCraft
                 </Heading>
                 <Text fontSize='xs' color='gray.400' mb={3} fontWeight='600'>
-                  ChatGPT API, JavaScript, Template Engine
+                  AI Copilot | Content Creation
                 </Text>
                 <Text
                   fontSize={{ base: '17px', md: 'sm' }}
@@ -1456,37 +1498,37 @@ const Home: React.FC = memo(() => {
                   mb={3}
                   color='gray.300'
                 >
-                  Prototype to help creators batch-edit & script TikTok/IG Reels
-                  using ChatGPT + templates.
+                  An AI copilot for content creators who want to write faster,
+                  brainstorm better, and ship without second-guessing.
                 </Text>
                 <VStack align='start' spacing={2} fontSize='xs'>
                   <Text color='gray.400'>
-                    • ChatGPT API for automated script generation
+                    • AI-powered content brainstorming
                   </Text>
                   <Text color='gray.400'>
-                    • Reusable templates for content types
+                    • Faster writing workflows
                   </Text>
                   <Text color='gray.400'>
-                    • Batch processing for multiple concepts
+                    • Ship without second-guessing
                   </Text>
                 </VStack>
                 <Box
                   mt={4}
                   p={3}
-                  bg='pink.900'
+                  bg='purple.900'
                   borderRadius='md'
                   borderLeft='3px solid'
-                  borderColor='pink.400'
+                  borderColor='purple.400'
                 >
-                  <Text fontSize='xs' fontWeight='600' color='pink.300'>
-                    Result: Content planning time from hours → minutes
+                  <Text fontSize='xs' fontWeight='600' color='purple.300'>
+                    Status: Raw, early, but real — feedback always welcome
                   </Text>
                 </Box>
               </Box>
 
               <Box
                 cursor='pointer'
-                onClick={() => handleProjectClick(projectsData[2])}
+                onClick={() => handleProjectClick(projectsData[4])}
                 _hover={{
                   _before: {
                     height: '6px',
@@ -2708,14 +2750,18 @@ const Home: React.FC = memo(() => {
               {selectedProject?.liveUrl && (
                 <Button
                   onClick={() => {
-                    toast({
-                      title: '🚧 In Development',
-                      description: 'This project will be available soon.',
-                      status: 'info',
-                      duration: 3000,
-                      isClosable: true,
-                      position: 'top',
-                    });
+                    if (selectedProject.id === 'herocraft') {
+                      window.open(selectedProject.liveUrl, '_blank');
+                    } else {
+                      toast({
+                        title: '🚧 In Development',
+                        description: 'This project will be available soon.',
+                        status: 'info',
+                        duration: 3000,
+                        isClosable: true,
+                        position: 'top',
+                      });
+                    }
                   }}
                   leftIcon={<Icon as={IoOpenOutline} aria-hidden='true' />}
                   colorScheme={selectedProject?.color}
