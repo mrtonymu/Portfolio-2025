@@ -144,7 +144,7 @@ const Timeline: React.FC = memo(() => {
         title: 'Support Specialist',
         company: 'Grab, Agoda, Microsoft',
         description:
-          'Handled 100+ daily issues across three languages in fast-paced teams. Learned that scripts can\'t save you, but structure and empathy can. Developed pattern recognition and the skill of clarifying chaos.',
+          "Handled 100+ daily issues across three languages in fast-paced teams. Learned that scripts can't save you, but structure and empathy can. Developed pattern recognition and the skill of clarifying chaos.",
         icon: '📞',
       },
     ],

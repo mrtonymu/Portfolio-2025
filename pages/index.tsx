@@ -70,7 +70,7 @@ interface ProjectData {
   description: string;
   features: string[];
   liveUrl: string | null;
-  githubUrl: string;
+  githubUrl: string | null;
   color: string;
   result: string;
 }
@@ -220,7 +220,7 @@ const Home: React.FC = memo(() => {
         title: '🌟 This Portfolio Site',
         stack: ['Next.js', 'Chakra UI', 'Framer Motion', 'Three.js'],
         description:
-          'This site isn\'t a vanity project — it\'s a timestamp of who I\'ve been, what I\'ve tried, and where I\'m going.',
+          "This site isn't a vanity project — it's a timestamp of who I've been, what I've tried, and where I'm going.",
         features: [
           'Clear layout, honest content',
           'Mobile-first responsive design',
@@ -229,7 +229,8 @@ const Home: React.FC = memo(() => {
         liveUrl: '#',
         githubUrl: 'https://github.com/yourusername/portfolio',
         color: 'teal',
-        result: 'Built with Trae AI — now it works like it should, thoughtful not shrunk',
+        result:
+          'Built with Trae AI — now it works like it should, thoughtful not shrunk',
       },
       {
         id: 'gpt-support',
@@ -258,7 +259,8 @@ const Home: React.FC = memo(() => {
           'Faster writing workflows',
           'Ship without second-guessing',
         ],
-        liveUrl: 'https://chatgpt.com/g/g-686b68d950988191bd83b1308125c780-herocraft',
+        liveUrl:
+          'https://chatgpt.com/g/g-686b68d950988191bd83b1308125c780-herocraft',
         githubUrl: null,
         color: 'purple',
         result: 'Raw, early, but real — feedback always welcome',
@@ -991,8 +993,8 @@ const Home: React.FC = memo(() => {
                   fontWeight='500'
                   maxW={{ base: '100%', lg: '400px' }}
                 >
-                  I didn't start out as a developer — I started out picking up
-                  phones. Years of frontline support at Grab, Agoda, and
+                  I didn&apos;t start out as a developer — I started out picking
+                  up phones. Years of frontline support at Grab, Agoda, and
                   Microsoft taught me that the best solutions come from
                   understanding real problems, not just writing clean code.
                 </Text>
@@ -1013,8 +1015,8 @@ const Home: React.FC = memo(() => {
                   fontStyle='italic'
                   maxW={{ base: '100%', lg: '400px' }}
                 >
-                  &ldquo;Structure isn't decoration. It's what lets momentum
-                  scale.&rdquo;
+                  &ldquo;Structure isn&apos;t decoration. It&apos;s what lets
+                  momentum scale.&rdquo;
                 </Text>
               </VStack>
             </Flex>
@@ -1308,14 +1310,13 @@ const Home: React.FC = memo(() => {
                   mb={3}
                   color='gray.300'
                 >
-                  This site isn't a vanity project — it's a timestamp of who
-                  I've been, what I've tried, and where I'm going.
+                  This site isn&apos;t a vanity project — it&apos;s a timestamp
+                  of who I&apos;ve been, what I&apos;ve tried, and where
+                  I&apos;m going.
                 </Text>
                 <VStack align='start' spacing={2} fontSize='xs'>
                   <Text color='gray.400'>• Clear layout, honest content</Text>
-                  <Text color='gray.400'>
-                    • Mobile-first responsive design
-                  </Text>
+                  <Text color='gray.400'>• Mobile-first responsive design</Text>
                   <Text color='gray.400'>• Framer Motion transitions</Text>
                 </VStack>
                 <Box
@@ -1327,7 +1328,8 @@ const Home: React.FC = memo(() => {
                   borderColor='teal.400'
                 >
                   <Text fontSize='xs' fontWeight='600' color='teal.300'>
-                    Built with Trae AI — now it works like it should, thoughtful not shrunk
+                    Built with Trae AI — now it works like it should, thoughtful
+                    not shrunk
                   </Text>
                 </Box>
 
@@ -1505,12 +1507,8 @@ const Home: React.FC = memo(() => {
                   <Text color='gray.400'>
                     • AI-powered content brainstorming
                   </Text>
-                  <Text color='gray.400'>
-                    • Faster writing workflows
-                  </Text>
-                  <Text color='gray.400'>
-                    • Ship without second-guessing
-                  </Text>
+                  <Text color='gray.400'>• Faster writing workflows</Text>
+                  <Text color='gray.400'>• Ship without second-guessing</Text>
                 </VStack>
                 <Box
                   mt={4}
@@ -2750,7 +2748,10 @@ const Home: React.FC = memo(() => {
               {selectedProject?.liveUrl && (
                 <Button
                   onClick={() => {
-                    if (selectedProject.id === 'herocraft') {
+                    if (
+                      selectedProject.id === 'herocraft' &&
+                      selectedProject.liveUrl
+                    ) {
                       window.open(selectedProject.liveUrl, '_blank');
                     } else {
                       toast({
