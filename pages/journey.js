@@ -652,7 +652,7 @@ const Journey = () => {
                       color={useColorModeValue('gray.700', 'gray.200')}
                       mb={2}
                     >
-                      So I worked with Trae AI and fixed it the right way:
+                      So I worked with VSCode & Claude AI and fixed it the right way:
                     </Text>
 
                     <Box

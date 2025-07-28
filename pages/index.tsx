@@ -230,7 +230,7 @@ const Home: React.FC = memo(() => {
         githubUrl: 'https://github.com/yourusername/portfolio',
         color: 'teal',
         result:
-          'Built with Trae AI — now it works like it should, thoughtful not shrunk',
+          'Built with VSCode & Claude AI — now it works like it should, thoughtful not shrunk',
       },
       {
         id: 'gpt-support',
@@ -505,9 +505,9 @@ const Home: React.FC = memo(() => {
                     🤝 Let&apos;s Connect
                   </Button>
                   <Button
-                    as='a'
-                    href='/resume.pdf'
-                    download='Tony_Yam_Resume.pdf'
+                    onClick={() => {
+                      alert('🚧 In Development\n\nThis Resume will available soon.');
+                    }}
                     size='hero'
                     variant='outline'
                     minW='180px'
@@ -791,9 +791,9 @@ const Home: React.FC = memo(() => {
                       🤝 Let&apos;s Connect
                     </Button>
                     <Button
-                      as='a'
-                      href='/resume.pdf'
-                      download='Tony_Yam_Resume.pdf'
+                      onClick={() => {
+                        alert('🚧 In Development\n\nThis Resume will available soon.');
+                      }}
                       size='lg'
                       variant='outline'
                       w='full'
@@ -1328,7 +1328,7 @@ const Home: React.FC = memo(() => {
                   borderColor='teal.400'
                 >
                   <Text fontSize='xs' fontWeight='600' color='teal.300'>
-                    Built with Trae AI — now it works like it should, thoughtful
+                    Built with VSCode & Claude AI — now it works like it should, thoughtful
                     not shrunk
                   </Text>
                 </Box>

@@ -4,6 +4,11 @@
 
 **Live Site:** [https://tonymumu.vercel.app](https://tonymumu.vercel.app)
 
+[![CI/CD Pipeline](https://github.com/tonymumu/Portfolio-2025/actions/workflows/ci.yml/badge.svg)](https://github.com/tonymumu/Portfolio-2025/actions/workflows/ci.yml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
+
 ## ✨ Features
 
 - **Cyberpunk Preloader**: Immersive loading experience with matrix effects and smooth animations
@@ -145,12 +150,34 @@ npm run prettier   # Format code with Prettier
 npm run type-check # Run TypeScript type checking
 ```
 
+### CI/CD Pipeline
+
+This project includes a robust CI/CD pipeline that automatically:
+
+- **Type Checking**: Validates TypeScript types across the codebase
+- **Linting**: Enforces code quality with ESLint rules
+- **Code Formatting**: Ensures consistent formatting with Prettier
+- **Build Testing**: Verifies production builds work correctly
+- **Deployment**: Automatically deploys to Vercel on successful builds
+
+All checks must pass before code can be merged, ensuring high code quality and reliability.
+
 ### Environment Setup
 
-- Node.js 16+ required
-- TypeScript support
-- Modern browser with WebGL support
-- Development tools: ESLint, Prettier, TypeScript
+- **Node.js 16+** required (18+ recommended)
+- **TypeScript** support with strict type checking
+- **Modern browser** with WebGL support for 3D features
+- **Development tools**: ESLint, Prettier, TypeScript
+- **Git** for version control
+- **npm** or **yarn** for package management
+
+### Recent Updates
+
+- ✅ **Fixed TypeScript errors**: Resolved type issues with `githubUrl` and `liveUrl` properties
+- ✅ **ESLint compliance**: Fixed all unescaped entity warnings
+- ✅ **Code formatting**: Applied Prettier formatting across all files
+- ✅ **CI/CD pipeline**: All automated checks now pass successfully
+- ✅ **Production ready**: Verified build and deployment process
 
 ## 📄 License
 
