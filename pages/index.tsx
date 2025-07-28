@@ -506,7 +506,9 @@ const Home: React.FC = memo(() => {
                   </Button>
                   <Button
                     onClick={() => {
-                      alert('🚧 In Development\n\nThis Resume will available soon.');
+                      alert(
+                        '🚧 In Development\n\nThis Resume will available soon.'
+                      );
                     }}
                     size='hero'
                     variant='outline'
@@ -792,7 +794,9 @@ const Home: React.FC = memo(() => {
                     </Button>
                     <Button
                       onClick={() => {
-                        alert('🚧 In Development\n\nThis Resume will available soon.');
+                        alert(
+                          '🚧 In Development\n\nThis Resume will available soon.'
+                        );
                       }}
                       size='lg'
                       variant='outline'
@@ -1328,8 +1332,8 @@ const Home: React.FC = memo(() => {
                   borderColor='teal.400'
                 >
                   <Text fontSize='xs' fontWeight='600' color='teal.300'>
-                    Built with VSCode & Claude AI — now it works like it should, thoughtful
-                    not shrunk
+                    Built with VSCode & Claude AI — now it works like it should,
+                    thoughtful not shrunk
                   </Text>
                 </Box>
 
