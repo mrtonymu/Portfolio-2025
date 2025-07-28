@@ -80,6 +80,7 @@ The development server will start at `http://localhost:3000` (or next available 
 ## 🎯 Key Components
 
 ### Cyberpunk Preloader
+
 - Matrix-style digital rain background effect
 - Floating particle animations with smooth motion
 - Progress bar with cyber-themed styling
@@ -88,16 +89,19 @@ The development server will start at `http://localhost:3000` (or next available 
 - Responsive design for all screen sizes
 
 ### 3D Dog Model
+
 - Interactive WebGL model with orbit controls
 - Responsive sizing and mobile optimization
 - Loading states with custom spinner
 
 ### Dynamic Typography
+
 - Word rotation effects for engaging headlines
 - Gradient text with CSS animations
 - Responsive font sizing
 
 ### Project Showcase
+
 - Real project case studies with metrics
 - Technology stack highlights
 - Impact and learning outcomes
@@ -105,13 +109,16 @@ The development server will start at `http://localhost:3000` (or next available 
 ## 🎨 Customization
 
 ### Theme Configuration
+
 Modify `lib/theme.js` to customize:
+
 - Color schemes and gradients
 - Typography scales
 - Component variants
 - Dark/light mode settings
 
 ### Adding Projects
+
 1. Create new page in `pages/works/`
 2. Add thumbnail to `public/images/works/`
 3. Update `pages/works.js` with project entry
@@ -139,6 +146,7 @@ npm run type-check # Run TypeScript type checking
 ```
 
 ### Environment Setup
+
 - Node.js 16+ required
 - TypeScript support
 - Modern browser with WebGL support
@@ -151,4 +159,3 @@ MIT License - feel free to use this project as inspiration for your own portfoli
 ---
 
 **Built with ❤️ by Tony Yam** | [Portfolio](https://tonymumu.vercel.app) | [GitHub](https://github.com)
-

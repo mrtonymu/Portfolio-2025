@@ -64,8 +64,5 @@
     "*.min.js",
     "package-lock.json"
   ],
-  "ignoreWords": [
-    "Kuala",
-    "Lumpur"
-  ]
+  "ignoreWords": ["Kuala", "Lumpur"]
 }

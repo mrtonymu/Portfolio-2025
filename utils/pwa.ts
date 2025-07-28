@@ -43,7 +43,7 @@ export const installPWA = async (): Promise<boolean> => {
   try {
     await deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    
+
     trackPWAInstallAttempt(outcome);
     return outcome === 'accepted';
   } catch (error) {
@@ -58,10 +58,11 @@ export const isPWAInstallable = (): boolean => Boolean(deferredPrompt);
 
 export const isPWAInstalled = (): boolean => {
   if (typeof window === 'undefined') return false;
-  
+
   return (
     window.matchMedia('(display-mode: standalone)').matches ||
-    ('standalone' in window.navigator && (window.navigator as any).standalone === true)
+    ('standalone' in window.navigator &&
+      (window.navigator as any).standalone === true)
   );
 };
 
@@ -77,7 +78,7 @@ export const initializeOfflineDetection = (): void => {
   const updateOnlineStatus = () => {
     const status = navigator.onLine ? 'online' : 'offline';
     document.body.dataset.connection = status;
-    
+
     if (!navigator.onLine) {
       showOfflineNotification();
     } else {
@@ -93,14 +94,14 @@ export const initializeOfflineDetection = (): void => {
 // Cache Management
 export const clearPWACache = async (): Promise<void> => {
   if (!('caches' in window)) return;
-  
+
   const cacheNames = await caches.keys();
   await Promise.all(cacheNames.map(name => caches.delete(name)));
 };
 
 export const updatePWACache = async (): Promise<void> => {
   if (!('serviceWorker' in navigator)) return;
-  
+
   const registration = await navigator.serviceWorker.ready;
   registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
 };
@@ -147,7 +148,7 @@ const trackPWAInstall = (): void => {
   if (typeof window !== 'undefined' && 'gtag' in window) {
     (window as unknown as GTagWindow).gtag('event', 'pwa_install', {
       event_category: 'PWA',
-      event_label: 'Installation Completed'
+      event_label: 'Installation Completed',
     });
   }
 };
@@ -156,7 +157,7 @@ const trackPWAInstallAttempt = (outcome: 'accepted' | 'dismissed'): void => {
   if (typeof window !== 'undefined' && 'gtag' in window) {
     (window as unknown as GTagWindow).gtag('event', 'pwa_install_prompt', {
       event_category: 'PWA',
-      event_label: `Installation ${outcome}`
+      event_label: `Installation ${outcome}`,
     });
   }
 };
@@ -177,33 +178,35 @@ export const registerBackgroundSync = async (tag: string): Promise<void> => {
 };
 
 // Push Notifications
-export const requestNotificationPermission = async (): Promise<NotificationPermission> => {
-  if (!('Notification' in window)) return 'denied';
-  return Notification.requestPermission();
-};
+export const requestNotificationPermission =
+  async (): Promise<NotificationPermission> => {
+    if (!('Notification' in window)) return 'denied';
+    return Notification.requestPermission();
+  };
 
-export const subscribeToPushNotifications = async (): Promise<PushSubscription | null> => {
-  if (!('serviceWorker' in navigator && 'PushManager' in window)) return null;
+export const subscribeToPushNotifications =
+  async (): Promise<PushSubscription | null> => {
+    if (!('serviceWorker' in navigator && 'PushManager' in window)) return null;
 
-  const registration = await navigator.serviceWorker.ready;
-  return registration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
-  });
-};
+    const registration = await navigator.serviceWorker.ready;
+    return registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+    });
+  };
 
 // Performance Monitoring
 export const measurePWAPerformance = (): void => {
   if (!('performance' in window)) return;
 
-  const observer = new PerformanceObserver((list) => {
+  const observer = new PerformanceObserver(list => {
     list.getEntries().forEach(_entry => {
       // Performance metric collected
     });
   });
-  
-  observer.observe({ 
-    entryTypes: ['navigation', 'paint', 'largest-contentful-paint'] 
+
+  observer.observe({
+    entryTypes: ['navigation', 'paint', 'largest-contentful-paint'],
   });
 };
 
@@ -220,7 +223,7 @@ const PWAUtils = {
   registerBackgroundSync,
   requestNotificationPermission,
   subscribeToPushNotifications,
-  measurePWAPerformance
+  measurePWAPerformance,
 };
 
 export default PWAUtils;

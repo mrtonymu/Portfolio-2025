@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
-  
+
   // 图片优化配置
   images: {
     domains: ['localhost'],
@@ -12,13 +12,13 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30天缓存
   },
-  
+
   // 实验性功能
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['@chakra-ui/react', 'framer-motion'],
   },
-  
+
   // 头部配置
   async headers() {
     return [
@@ -79,9 +79,9 @@ const nextConfig = {
           },
         ],
       },
-    ]
+    ];
   },
-  
+
   // Webpack配置优化
   webpack: (config, { dev, isServer }) => {
     // 生产环境优化
@@ -119,9 +119,9 @@ const nextConfig = {
             chunks: 'all',
           },
         },
-      }
+      };
     }
-    
+
     // GLTF文件处理
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
@@ -132,10 +132,10 @@ const nextConfig = {
           outputPath: 'static/models/',
         },
       },
-    })
-    
-    return config
-  },
-}
+    });
 
-module.exports = nextConfig
+    return config;
+  },
+};
+
+module.exports = nextConfig;

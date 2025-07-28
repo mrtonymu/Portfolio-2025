@@ -10,7 +10,7 @@ import {
   Slide,
   Icon,
   HStack,
-  Text
+  Text,
 } from '@chakra-ui/react';
 import { FiWifiOff, FiWifi } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,7 +25,7 @@ interface OfflineIndicatorProps {
 
 const OfflineIndicator: React.FC<OfflineIndicatorProps> = ({
   position = 'top',
-  persistent = false
+  persistent = false,
 }) => {
   const [isOffline, setIsOffline] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -41,7 +41,7 @@ const OfflineIndicator: React.FC<OfflineIndicatorProps> = ({
     const updateStatus = () => {
       const online = isOnline();
       setIsOffline(!online);
-      
+
       if (!online) {
         setHasBeenOffline(true);
         setIsVisible(true);
@@ -90,53 +90,52 @@ const OfflineIndicator: React.FC<OfflineIndicatorProps> = ({
           in={isVisible}
           style={{ zIndex: 1000 }}
         >
-        <MotionBox
-          id="offline-indicator"
-          position="fixed"
-          top={position === 'top' ? 0 : 'auto'}
-          bottom={position === 'bottom' ? 0 : 'auto'}
-          left={0}
-          right={0}
-          zIndex={1000}
-          initial={{ opacity: 0, y: position === 'top' ? -50 : 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: position === 'top' ? -50 : 50 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Alert
-            status={isOffline ? 'error' : 'success'}
-            variant="subtle"
-            bg={isOffline ? bgColor : successBgColor}
-            borderBottom={`2px solid`}
-            borderColor={isOffline ? borderColor : successBorderColor}
-            borderRadius={0}
+          <MotionBox
+            id='offline-indicator'
+            position='fixed'
+            top={position === 'top' ? 0 : 'auto'}
+            bottom={position === 'bottom' ? 0 : 'auto'}
+            left={0}
+            right={0}
+            zIndex={1000}
+            initial={{ opacity: 0, y: position === 'top' ? -50 : 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: position === 'top' ? -50 : 50 }}
+            transition={{ duration: 0.3 }}
           >
-            <AlertIcon as={isOffline ? FiWifiOff : FiWifi} />
-            
-            <Box flex="1">
-              <AlertTitle fontSize="sm" fontWeight="bold">
-                {isOffline ? 'You\'re offline' : 'Back online!'}
-              </AlertTitle>
-              <AlertDescription fontSize="xs">
-                {isOffline
-                  ? 'Some features may be limited. Check your internet connection.'
-                  : 'Your connection has been restored. All features are available.'
-                }
-              </AlertDescription>
-            </Box>
+            <Alert
+              status={isOffline ? 'error' : 'success'}
+              variant='subtle'
+              bg={isOffline ? bgColor : successBgColor}
+              borderBottom={`2px solid`}
+              borderColor={isOffline ? borderColor : successBorderColor}
+              borderRadius={0}
+            >
+              <AlertIcon as={isOffline ? FiWifiOff : FiWifi} />
 
-            {!persistent && (
-              <CloseButton
-                alignSelf="flex-start"
-                position="relative"
-                right={-1}
-                top={-1}
-                onClick={handleClose}
-                size="sm"
-              />
-            )}
-          </Alert>
-        </MotionBox>
+              <Box flex='1'>
+                <AlertTitle fontSize='sm' fontWeight='bold'>
+                  {isOffline ? "You're offline" : 'Back online!'}
+                </AlertTitle>
+                <AlertDescription fontSize='xs'>
+                  {isOffline
+                    ? 'Some features may be limited. Check your internet connection.'
+                    : 'Your connection has been restored. All features are available.'}
+                </AlertDescription>
+              </Box>
+
+              {!persistent && (
+                <CloseButton
+                  alignSelf='flex-start'
+                  position='relative'
+                  right={-1}
+                  top={-1}
+                  onClick={handleClose}
+                  size='sm'
+                />
+              )}
+            </Alert>
+          </MotionBox>
         </Slide>
       )}
     </AnimatePresence>
@@ -176,7 +175,7 @@ export const CompactOfflineIndicator: React.FC = () => {
 
   return (
     <MotionBox
-      position="fixed"
+      position='fixed'
       top={4}
       right={4}
       zIndex={999}
@@ -189,13 +188,13 @@ export const CompactOfflineIndicator: React.FC = () => {
         color={iconColor}
         px={3}
         py={2}
-        borderRadius="full"
-        border="1px solid"
+        borderRadius='full'
+        border='1px solid'
         borderColor={borderColor}
-        boxShadow="lg"
+        boxShadow='lg'
       >
         <Icon as={FiWifiOff} boxSize={4} />
-        <Text fontSize="xs" fontWeight="medium">
+        <Text fontSize='xs' fontWeight='medium'>
           Offline
         </Text>
       </HStack>

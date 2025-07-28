@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import {
   Box,
   Container,
@@ -7,15 +7,15 @@ import {
   List,
   ListItem,
   SimpleGrid,
-  UnorderedList
-} from '@chakra-ui/react'
-import Layout from '../../components/layouts/article'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { Title, WorkImage, Meta } from '../../components/work'
-import P from '../../components/paragraph'
+  UnorderedList,
+} from '@chakra-ui/react';
+import Layout from '../../components/layouts/article';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Title, WorkImage, Meta } from '../../components/work';
+import P from '../../components/paragraph';
 
 const Work = () => (
-  <Layout title="Menkiki (麺利き)">
+  <Layout title='Menkiki (麺利き)'>
     <Container>
       <Title>
         Menkiki (麺利き) <Badge>2015</Badge>
@@ -48,52 +48,53 @@ const Work = () => (
         </ListItem>
         <ListItem>
           <Meta>Presentation</Meta>
-          <Link href="https://speakerdeck.com/tonymumu/the-fun-deep-learning">
-          The fun Deep Learning <ExternalLinkIcon mx="2px" />
-        </Link>
-      </ListItem>
-      <ListItem>
-        <Meta>Presentation</Meta>
-        <Link href="https://speakerdeck.com/tonymumu/caffedeoshou-qing-ben-ge-deipuraninguiosapuri">
-          Caffeでお手軽本格ディープラーニングiOSアプリ <ExternalLinkIcon mx="2px" />
-        </Link>
-      </ListItem>
-      <ListItem>
-        <Meta>Source</Meta>
-        <Link href="https://github.com/tonymumu/caffe-ios-sample">
-          github.com/tonymumu/caffe-ios-sample <ExternalLinkIcon mx="2px" />
+          <Link href='https://speakerdeck.com/tonymumu/the-fun-deep-learning'>
+            The fun Deep Learning <ExternalLinkIcon mx='2px' />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Meta>Presentation</Meta>
+          <Link href='https://speakerdeck.com/tonymumu/caffedeoshou-qing-ben-ge-deipuraninguiosapuri'>
+            Caffeでお手軽本格ディープラーニングiOSアプリ{' '}
+            <ExternalLinkIcon mx='2px' />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Meta>Source</Meta>
+          <Link href='https://github.com/tonymumu/caffe-ios-sample'>
+            github.com/tonymumu/caffe-ios-sample <ExternalLinkIcon mx='2px' />
           </Link>
         </ListItem>
       </List>
 
-      <Box align="center" my={6}>
+      <Box align='center' my={6}>
         <Link
-          className="link-appstore"
-          href="https://itunes.apple.com/app/id1035645520?mt=8"
-          target="_blank"
+          className='link-appstore'
+          href='https://itunes.apple.com/app/id1035645520?mt=8'
+          target='_blank'
         >
-          <Box position="relative" maxW={240} mx="auto">
+          <Box position='relative' maxW={240} mx='auto'>
             <Image
-              src="/images/works/appstore.png"
-              className="image-appstore"
-              alt="Download on App Store"
+              src='/images/works/appstore.png'
+              className='image-appstore'
+              alt='Download on App Store'
               width={240}
               height={71}
               style={{ width: '100%', height: 'auto' }}
-              loading="lazy"
+              loading='lazy'
             />
           </Box>
         </Link>
       </Box>
 
-      <WorkImage src="/images/works/menkiki_eyecatch.png" alt="menkiki" />
+      <WorkImage src='/images/works/menkiki_eyecatch.png' alt='menkiki' />
       <SimpleGrid columns={2} gap={2}>
-        <WorkImage src="/images/works/menkiki_01.png" alt="menkiki" />
-        <WorkImage src="/images/works/menkiki_02.png" alt="menkiki" />
+        <WorkImage src='/images/works/menkiki_01.png' alt='menkiki' />
+        <WorkImage src='/images/works/menkiki_02.png' alt='menkiki' />
       </SimpleGrid>
     </Container>
   </Layout>
-)
+);
 
-export default Work
-export { getServerSideProps } from '../../components/chakra'
+export default Work;
+export { getServerSideProps } from '../../components/chakra';

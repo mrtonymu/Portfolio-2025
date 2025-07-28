@@ -6,7 +6,7 @@ import {
   Tooltip,
   Box,
   Text,
-  VStack
+  VStack,
 } from '@chakra-ui/react';
 import { FiDownload, FiSmartphone } from 'react-icons/fi';
 import { motion } from 'framer-motion';
@@ -25,7 +25,7 @@ const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
   variant = 'solid',
   size = 'md',
   showText = true,
-  position = 'relative'
+  position = 'relative',
 }) => {
   const [isInstallable, setIsInstallable] = useState<boolean>(false);
   const [isInstalled, setIsInstalled] = useState<boolean>(false);
@@ -55,10 +55,10 @@ const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
 
   const handleInstall = async (): Promise<void> => {
     setIsInstalling(true);
-    
+
     try {
       const success = await installPWA();
-      
+
       if (success) {
         toast({
           title: 'App Installed!',
@@ -96,29 +96,29 @@ const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
 
   const buttonContent = (
     <MotionButton
-      id="pwa-install-button"
+      id='pwa-install-button'
       variant={variant}
       size={size}
-      colorScheme="teal"
+      colorScheme='teal'
       onClick={handleInstall}
       isLoading={isInstalling}
-      loadingText="Installing..."
+      loadingText='Installing...'
       leftIcon={<Icon as={FiDownload} />}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.2 }}
-      boxShadow="lg"
+      boxShadow='lg'
       _hover={{
         boxShadow: 'xl',
-        transform: 'translateY(-2px)'
+        transform: 'translateY(-2px)',
       }}
     >
       {showText && (
-        <VStack spacing={0} align="start">
-          <Text fontSize="sm" fontWeight="bold">
+        <VStack spacing={0} align='start'>
+          <Text fontSize='sm' fontWeight='bold'>
             Install App
           </Text>
-          <Text fontSize="xs" opacity={0.8}>
+          <Text fontSize='xs' opacity={0.8}>
             Quick access
           </Text>
         </VStack>
@@ -130,15 +130,15 @@ const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
   if (position === 'fixed') {
     return (
       <Box
-        position="fixed"
+        position='fixed'
         bottom={4}
         right={4}
         zIndex={1000}
         display={{ base: 'block', md: 'none' }} // Only show on mobile
       >
         <Tooltip
-          label="Install this app for quick access"
-          placement="left"
+          label='Install this app for quick access'
+          placement='left'
           hasArrow
         >
           {buttonContent}
@@ -149,8 +149,8 @@ const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
 
   return (
     <Tooltip
-      label="Install this portfolio as an app on your device"
-      placement="top"
+      label='Install this portfolio as an app on your device'
+      placement='top'
       hasArrow
     >
       {buttonContent}

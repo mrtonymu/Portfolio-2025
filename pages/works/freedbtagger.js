@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import {
   Container,
   Badge,
@@ -8,28 +8,28 @@ import {
   UnorderedList,
   Heading,
   Center,
-  Box
-} from '@chakra-ui/react'
-import Layout from '../../components/layouts/article'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { Title, WorkImage, Meta } from '../../components/work'
-import P from '../../components/paragraph'
+  Box,
+} from '@chakra-ui/react';
+import Layout from '../../components/layouts/article';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Title, WorkImage, Meta } from '../../components/work';
+import P from '../../components/paragraph';
 
 const Work = () => (
-  <Layout title="freeDBTagger">
+  <Layout title='freeDBTagger'>
     <Container>
       <Title>
         freeDBTagger <Badge>2004-2009</Badge>
       </Title>
       <Center my={6}>
-        <Box position="relative" width="64px" height="64px">
-          <Image 
-            src="/images/works/freedbtagger_icon.gif" 
-            alt="icon" 
+        <Box position='relative' width='64px' height='64px'>
+          <Image
+            src='/images/works/freedbtagger_icon.gif'
+            alt='icon'
             width={64}
             height={64}
             style={{ objectFit: 'contain' }}
-            loading="lazy"
+            loading='lazy'
             unoptimized
           />
         </Box>
@@ -53,7 +53,7 @@ const Work = () => (
         </ListItem>
         <ListItem>
           <Meta>Download</Meta>
-          <Link href="http://odoruinu.net.s3.amazonaws.com/software/freedbtagger/fdbt105.zip">
+          <Link href='http://odoruinu.net.s3.amazonaws.com/software/freedbtagger/fdbt105.zip'>
             v1.0.5
           </Link>
         </ListItem>
@@ -63,26 +63,26 @@ const Work = () => (
         </ListItem>
       </List>
 
-      <Heading as="h4" fontSize={16} my={6}>
+      <Heading as='h4' fontSize={16} my={6}>
         <Center>Media coverage</Center>
       </Heading>
 
       <UnorderedList my={4}>
         <ListItem>
-          <Link href="https://forest.watch.impress.co.jp/article/2005/02/01/freedbtagger.html">
+          <Link href='https://forest.watch.impress.co.jp/article/2005/02/01/freedbtagger.html'>
             <Badge mr={2}>窓の杜</Badge>
             再生時間の組み合わせでアルバムを特定して楽曲情報を取得「freeDBTagger」{' '}
-            <ExternalLinkIcon mx="2px" />
+            <ExternalLinkIcon mx='2px' />
           </Link>
         </ListItem>
       </UnorderedList>
 
-      <Heading as="h4" fontSize={16} my={6}>
+      <Heading as='h4' fontSize={16} my={6}>
         <Center>
           User reviews&nbsp;
           <Link
-            target="_blank"
-            href="http://www.vector.co.jp/soft/cmt/win95/art/se350576.html"
+            target='_blank'
+            href='http://www.vector.co.jp/soft/cmt/win95/art/se350576.html'
           >
             from Vector
           </Link>
@@ -128,10 +128,10 @@ const Work = () => (
         </ListItem>
       </UnorderedList>
 
-      <WorkImage src="/images/works/freedbtagger_01.jpg" alt="freeDBTagger" />
+      <WorkImage src='/images/works/freedbtagger_01.jpg' alt='freeDBTagger' />
     </Container>
   </Layout>
-)
+);
 
-export default Work
-export { getServerSideProps } from '../../components/chakra'
+export default Work;
+export { getServerSideProps } from '../../components/chakra';

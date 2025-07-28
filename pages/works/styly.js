@@ -4,15 +4,15 @@ import {
   Link,
   List,
   ListItem,
-  AspectRatio
-} from '@chakra-ui/react'
-import Layout from '../../components/layouts/article'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { Title, WorkImage, Meta } from '../../components/work'
-import P from '../../components/paragraph'
+  AspectRatio,
+} from '@chakra-ui/react';
+import Layout from '../../components/layouts/article';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Title, WorkImage, Meta } from '../../components/work';
+import P from '../../components/paragraph';
 
 const Work = () => (
-  <Layout title="STYLY">
+  <Layout title='STYLY'>
     <Container>
       <Title>
         STYLY <Badge>2017</Badge>
@@ -34,29 +34,29 @@ const Work = () => (
         </ListItem>
         <ListItem>
           <Meta>Website</Meta>
-          <Link href="https://styly.cc/">
-            STYLY <ExternalLinkIcon mx="2px" />
+          <Link href='https://styly.cc/'>
+            STYLY <ExternalLinkIcon mx='2px' />
           </Link>
         </ListItem>
       </List>
 
-      <AspectRatio maxW="640px" ratio={1.7} my={4}>
+      <AspectRatio maxW='640px' ratio={1.7} my={4}>
         <iframe
-          src="https://www.youtube.com/embed/YLdHAggLBCw"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          src='https://www.youtube.com/embed/YLdHAggLBCw'
+          title='YouTube video player'
+          frameBorder='0'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
           allowFullScreen
         ></iframe>
       </AspectRatio>
 
-      <WorkImage src="/images/works/styly_eyecatch.png" alt="STYLY" />
-      <WorkImage src="/images/works/styly_01.png" alt="STYLY" />
-      <WorkImage src="/images/works/styly_02.png" alt="STYLY" />
-      <WorkImage src="/images/works/styly_03.png" alt="STYLY" />
+      <WorkImage src='/images/works/styly_eyecatch.png' alt='STYLY' />
+      <WorkImage src='/images/works/styly_01.png' alt='STYLY' />
+      <WorkImage src='/images/works/styly_02.png' alt='STYLY' />
+      <WorkImage src='/images/works/styly_03.png' alt='STYLY' />
     </Container>
   </Layout>
-)
+);
 
-export default Work
-export { getServerSideProps } from '../../components/chakra'
+export default Work;
+export { getServerSideProps } from '../../components/chakra';
